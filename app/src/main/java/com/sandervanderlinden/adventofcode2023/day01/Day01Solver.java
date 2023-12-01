@@ -9,6 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day01Solver {
+
+    /**
+     * Main method to execute the solver.
+     */
     public static void main(String[] args) {
         InputStream inputStream = Day01Solver.class.getResourceAsStream("/day01/day01_input.txt");
         if (inputStream != null) {
@@ -23,12 +27,25 @@ public class Day01Solver {
         }
     }
 
+    /**
+     * Extracts the first and last digit from a line and combines them into a two-digit number.
+     *
+     * @param line The string line to extract digits from.
+     * @return Combined two-digit number.
+     */
     public int extractAndCombineDigits(String line) {
         int firstNumber = extractFirstDigit(line);
         int lastNumber = extractLastDigit(line);
         return firstNumber * 10 + lastNumber;
     }
 
+    /**
+     * Extracts the first digit from a given line.
+     *
+     * @param line The string line to extract the first digit from.
+     * @return The first digit found in the line.
+     * @throws NoDigitFoundException if no digit is found in the line.
+     */
     int extractFirstDigit(String line) {
         Pattern pattern = Pattern.compile("\\d");
         Matcher matcher = pattern.matcher(line);
@@ -39,6 +56,12 @@ public class Day01Solver {
         throw new NoDigitFoundException("No digits found in the line: " + line);
     }
 
+    /**
+     * Extracts the last digit from a given line by reversing it and using extractFirstDigit.
+     *
+     * @param line The string line to extract the last digit from.
+     * @return The last digit found in the line.
+     */
     int extractLastDigit(String line) {
         String reversedLine = new StringBuilder(line).reverse().toString();
         return extractFirstDigit(reversedLine);
