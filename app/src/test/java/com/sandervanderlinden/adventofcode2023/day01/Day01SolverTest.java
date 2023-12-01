@@ -9,23 +9,23 @@ class Day01SolverTest {
 
 
     @Test
-    void extractAndSumNumbers_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
+    void extractAndSumDigits_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
         String line = "example1line2";
         int expected = 12;
-        assertEquals(expected, solver.extractAndSumNumbers(line));
+        assertEquals(expected, solver.extractAndSumDigits(line));
     }
 
     @Test
-    void extractFirstNumber_whenTypicalLine_shouldReturnFirstDigit() {
+    void extractFirstDigit_whenTypicalLine_shouldReturnFirstDigit() {
         String line = "example1line2";
         int expected = 1;
-        assertEquals(expected, solver.extractFirstNumber(line));
+        assertEquals(expected, solver.extractFirstDigit(line));
     }
 
     @Test
-    void extractLastNumber_whenTypicalLine_shouldReturnLastDigit() {
+    void extractLastDigit_whenTypicalLine_shouldReturnLastDigit() {
         String line = "example1line2";
         int expected = 2;
-        assertEquals(expected, solver.extractLastNumber(line));
+        assertEquals(expected, solver.extractLastDigit(line));
     }
 }

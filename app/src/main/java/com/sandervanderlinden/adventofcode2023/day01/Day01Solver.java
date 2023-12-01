@@ -11,7 +11,7 @@ public class Day01Solver {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             Day01Solver solver = new Day01Solver();
             int sum = reader.lines()
-                    .mapToInt(solver::extractAndSumNumbers)
+                    .mapToInt(solver::extractAndSumDigits)
                     .sum();
             System.out.println("Total sum: " + sum);
         } else {
@@ -19,17 +19,17 @@ public class Day01Solver {
         }
     }
 
-    public int extractAndSumNumbers(String line) {
-        int firstNumber = extractFirstNumber(line);
-        int lastNumber = extractLastNumber(line);
+    public int extractAndSumDigits(String line) {
+        int firstNumber = extractFirstDigit(line);
+        int lastNumber = extractLastDigit(line);
         return firstNumber + lastNumber;
     }
 
-    int extractFirstNumber(String line) {
+    int extractFirstDigit(String line) {
         return 0;
     }
 
-    int extractLastNumber(String line) {
+    int extractLastDigit(String line) {
         return 0;
     }
 
