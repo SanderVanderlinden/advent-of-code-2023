@@ -10,6 +10,7 @@ class Day02SolverPuzzle02Test {
 
     private final Day01Puzzle02Solver solver = new Day01Puzzle02Solver();
 
+
     @Test
     void extractAndCombineDigits_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
         String line = "example9line2";
@@ -56,6 +57,28 @@ class Day02SolverPuzzle02Test {
         assertThrows(NullPointerException.class, () -> solver.extractFirstDigit(null));
     }
 
+
+    @Test
+    void extractFirstDigit_whenLineWithTextDigits_shouldReturnFirstDigit() {
+        String line = "two1nine";
+        int expected = 2;
+        assertEquals(expected, solver.extractFirstDigit(line));
+    }
+
+    @Test
+    void extractFirstDigit_whenLineWithTextDigitsAndRegularDigits_shouldReturnFirstDigit() {
+        String line = "zoneight234";
+        int expected = 1;
+        assertEquals(expected, solver.extractFirstDigit(line));
+    }
+
+    @Test
+    void extractFirstDigit_whenLineWithOverlappingTextDigits_shouldReturnFirstDigit() {
+        String line = "oneight";
+        int expected = 1;
+        assertEquals(expected, solver.extractFirstDigit(line));
+    }
+
     @Test
     void extractLastDigit_whenTypicalLine_shouldReturnLastDigit() {
         String line = "example1line2";
@@ -97,17 +120,24 @@ class Day02SolverPuzzle02Test {
     }
 
     @Test
-    void changeNumbersInTextToDigits_whenLineWithTextDigits_shouldChangeTextToDigits() {
-        String line = "tworq1trnine";
-        String expected = "2rq1tr9";
-        assertEquals(expected, solver.changeNumbersInTextToDigits(line));
+    void extractLastDigit_whenLineWithTextDigits_shouldReturnLastDigit() {
+        String line = "two1nine";
+        int expected = 9;
+        assertEquals(expected, solver.extractLastDigit(line));
     }
 
     @Test
-    void changeNumbersInTextToDigits_whenLineWithOverlappingTextDigits_shouldChangeTextToDigits() {
+    void extractLastDigit_whenLineWithTextDigitsAndRegularDigits_shouldReturnLastDigit() {
         String line = "zoneight234";
-        String expected = "z18234";
-        assertEquals(expected, solver.changeNumbersInTextToDigits(line));
+        int expected = 4;
+        assertEquals(expected, solver.extractLastDigit(line));
+    }
+
+    @Test
+    void extractLastDigit_whenLineWithOverlappingTextDigits_shouldReturnLastDigit() {
+        String line = "oneight";
+        int expected = 8;
+        assertEquals(expected, solver.extractLastDigit(line));
     }
 
 }
