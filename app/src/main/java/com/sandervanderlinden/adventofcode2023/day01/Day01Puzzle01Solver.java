@@ -8,16 +8,16 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day01SolverPuzzle01 implements Day01Solver{
+public class Day01Puzzle01Solver implements Day01PuzzleSolver {
 
     /**
      * Main method to execute the solver.
      */
     public static void main(String[] args) {
-        InputStream inputStream = Day01SolverPuzzle01.class.getResourceAsStream("/day01/day01_input.txt");
+        InputStream inputStream = Day01Puzzle01Solver.class.getResourceAsStream("/day01/day01_input.txt");
         if (inputStream != null) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            Day01SolverPuzzle01 solver = new Day01SolverPuzzle01();
+            Day01Puzzle01Solver solver = new Day01Puzzle01Solver();
             int sum = reader.lines()
                     .mapToInt(solver::extractAndCombineDigits)
                     .sum();
