@@ -27,7 +27,7 @@ class Day01SolverTest {
 
     @Test
     void extractFirstDigit_whenLotsOfDigitsInLine_shouldReturnFirstDigit() {
-        String line = "8e564xa546m654p23l56e1l85764i87641n57e36927";
+        String line = "82e564xa546m654p23l56e1l85764i87641n57e36927";
         int expected = 8;
         assertEquals(expected, solver.extractFirstDigit(line));
     }
