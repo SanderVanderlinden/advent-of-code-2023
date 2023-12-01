@@ -12,10 +12,10 @@ class Day01SolverTest {
 
 
     @Test
-    void extractAndSumDigits_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
+    void extractAndCombineDigits_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
         String line = "example9line2";
         int expected = 92;
-        assertEquals(expected, solver.extractAndSumDigits(line));
+        assertEquals(expected, solver.extractAndCombineDigits(line));
     }
 
     @Test
