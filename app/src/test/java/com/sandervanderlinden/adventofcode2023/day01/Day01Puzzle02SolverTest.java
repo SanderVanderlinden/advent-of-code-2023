@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class Day02SolverPuzzle02Test {
+class Day01SolverPuzzle02Test {
 
     private final Day01Puzzle02Solver solver = new Day01Puzzle02Solver();
 
