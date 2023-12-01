@@ -19,11 +19,26 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Virtual machine crash logs
 hs_err_pid*
 replay_pid*
 
-
-# .idea
+# IntelliJ IDEA files
 .idea
 .idea/*
+
+# Gradle files
+.gradle/
+build/
+
+# Gradle wrapper jar file (optional)
+gradle/wrapper/gradle-wrapper.jar
+
+# Local Gradle properties
+gradle.properties
+
+# Avoid committing compiled files
+**/*.class
+
+# Directory for output files
+out/
