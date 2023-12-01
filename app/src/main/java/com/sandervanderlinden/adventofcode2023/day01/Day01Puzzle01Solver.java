@@ -28,18 +28,6 @@ public class Day01Puzzle01Solver implements Day01PuzzleSolver {
     }
 
     /**
-     * Extracts the first and last digit from a line and combines them into a two-digit number.
-     *
-     * @param line The string line to extract digits from.
-     * @return Combined two-digit number.
-     */
-    public int extractAndCombineDigits(String line) {
-        int firstNumber = extractFirstDigit(line);
-        int lastNumber = extractLastDigit(line);
-        return firstNumber * 10 + lastNumber;
-    }
-
-    /**
      * Extracts the first digit from a given line.
      *
      * @param line The string line to extract the first digit from.

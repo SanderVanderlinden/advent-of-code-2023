@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Day01Puzzle02Solver implements Day01PuzzleSolver {
 
-    Map<String, Integer> singleDigits = Map.of(
+    private static final Map<String, Integer> singleDigits = Map.of(
             "0", 0,
             "1", 1,
             "2", 2,
@@ -24,7 +24,7 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
             "9", 9
     );
 
-    Map<String, Integer> textualNumbers = Map.of(
+    private static final Map<String, Integer> textualNumbers = Map.of(
             "zero", 0,
             "one", 1,
             "two", 2,
@@ -37,7 +37,7 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
             "nine", 9
     );
 
-    Map<String, Integer> reversedTextualNumbers = Map.of(
+    private static final Map<String, Integer> reversedTextualNumbers = Map.of(
             "orez", 0,
             "eno", 1,
             "owt", 2,
@@ -66,18 +66,6 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
         } else {
             System.err.println("Input file not found");
         }
-    }
-
-    /**
-     * Extracts the first and last digit from a line and combines them into a two-digit number.
-     *
-     * @param line The string line to extract digits from.
-     * @return Combined two-digit number.
-     */
-    public int extractAndCombineDigits(String line) {
-        int firstNumber = extractFirstDigit(line);
-        int lastNumber = extractLastDigit(line);
-        return firstNumber * 10 + lastNumber;
     }
 
     /**
