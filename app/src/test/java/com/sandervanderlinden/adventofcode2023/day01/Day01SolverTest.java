@@ -93,7 +93,7 @@ class Day01SolverTest {
     }
 
     @Test
-    void extractlastDigit_whenNullLine_throwError() {
+    void extractLastDigit_whenNullLine_throwError() {
         assertThrows(NullPointerException.class, () -> solver.extractLastDigit(null));
     }
 }
