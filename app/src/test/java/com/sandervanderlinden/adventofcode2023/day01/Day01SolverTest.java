@@ -44,9 +44,18 @@ class Day01SolverTest {
     void extractFirstDigit_whenNoDigitsInLine_throwError() {
         String line = "example";
         assertThrows(NoDigitFoundException.class, () -> solver.extractFirstDigit(line));
-
     }
 
+    @Test
+    void extractFirstDigit_whenEmptyLine_throwError() {
+        String line = "";
+        assertThrows(NoDigitFoundException.class, () -> solver.extractFirstDigit(line));
+    }
+
+    @Test
+    void extractFirstDigit_whenNullLine_throwError() {
+        assertThrows(NullPointerException.class, () -> solver.extractFirstDigit(null));
+    }
 
     @Test
     void extractLastDigit_whenTypicalLine_shouldReturnLastDigit() {
@@ -75,5 +84,16 @@ class Day01SolverTest {
         String line = "example";
         assertThrows(NoDigitFoundException.class, () -> solver.extractLastDigit(line));
 
+    }
+
+    @Test
+    void extractLastDigit_whenEmptyLine_throwError() {
+        String line = "";
+        assertThrows(NoDigitFoundException.class, () -> solver.extractLastDigit(line));
+    }
+
+    @Test
+    void extractlastDigit_whenNullLine_throwError() {
+        assertThrows(NullPointerException.class, () -> solver.extractLastDigit(null));
     }
 }
