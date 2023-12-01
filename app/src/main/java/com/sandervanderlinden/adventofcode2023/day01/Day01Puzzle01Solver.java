@@ -1,10 +1,8 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
+import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,17 +16,9 @@ public class Day01Puzzle01Solver implements Day01PuzzleSolver {
      * Main method to execute the solver.
      */
     public static void main(String[] args) {
-        InputStream inputStream = Day01Puzzle01Solver.class.getResourceAsStream("/day01/day01_input.txt");
-        if (inputStream != null) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            Day01Puzzle01Solver solver = new Day01Puzzle01Solver();
-            int sum = reader.lines()
-                    .mapToInt(solver::extractAndCombineDigits)
-                    .sum();
-            System.out.println("Total sum: " + sum);
-        } else {
-            System.err.println("Input file not found");
-        }
+        Day01PuzzleSolver solver = new Day01Puzzle01Solver();
+        int sum = FileReaderUtil.processFile("/day01/day01_input.txt", solver::extractAndCombineDigits);
+        System.out.println("Total sum: " + sum);
     }
 
     /**
