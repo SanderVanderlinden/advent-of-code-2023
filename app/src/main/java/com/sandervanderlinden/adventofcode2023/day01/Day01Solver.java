@@ -14,4 +14,8 @@ public class Day01Solver {
             System.err.println("Input file not found");
         }
     }
+
+    public int extractAndSumNumbers(String line) {
+        return 0;
+    }
 }
