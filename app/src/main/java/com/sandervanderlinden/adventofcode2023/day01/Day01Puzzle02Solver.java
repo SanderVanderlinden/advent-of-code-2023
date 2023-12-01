@@ -5,6 +5,7 @@ import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,22 +111,11 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
     }
 
     private int findFirstSubstring(String line, Map<String, Integer> digits) {
-        int earliestPosition = line.length();
-        String earliestSubstring = null;
-
-        for (Map.Entry<String, Integer> entry : digits.entrySet()) {
-            String substring = entry.getKey();
-            int position = line.indexOf(substring);
-            if (position != -1 && position < earliestPosition) {
-                earliestPosition = position;
-                earliestSubstring = substring;
-            }
-        }
-
-        if (earliestPosition == line.length()) {
-            throw new NoDigitFoundException("No digits found in the line: " + line);
-        }
-
-        return digits.get(earliestSubstring);
+        return digits.entrySet().stream()
+                .filter(entry -> line.contains(entry.getKey()))
+                .min(Comparator.comparingInt(entry -> line.indexOf(entry.getKey())))
+                .map(Map.Entry::getValue)
+                .orElseThrow(() -> new NoDigitFoundException("No digits found in the line: " + line));
     }
+
 }
