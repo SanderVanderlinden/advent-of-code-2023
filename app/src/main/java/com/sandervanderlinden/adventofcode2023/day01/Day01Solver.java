@@ -1,8 +1,12 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
+import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Day01Solver {
     public static void main(String[] args) {
@@ -26,11 +30,17 @@ public class Day01Solver {
     }
 
     int extractFirstDigit(String line) {
-        return 0;
+        Pattern pattern = Pattern.compile("\\d");
+        Matcher matcher = pattern.matcher(line);
+
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group());
+        }
+        throw new NoDigitFoundException("No digits found in the line: " + line);
     }
 
     int extractLastDigit(String line) {
-        return 0;
+        String reversedLine = new StringBuilder(line).reverse().toString();
+        return extractFirstDigit(reversedLine);
     }
-
 }
