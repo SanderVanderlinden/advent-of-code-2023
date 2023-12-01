@@ -9,6 +9,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Solver for Day 1 Puzzle 2 of Advent of Code 2023.
+ * This solver extracts digits from textual representations and combines them for processing.
+ */
 public class Day01Puzzle02Solver implements Day01PuzzleSolver {
 
     private static final Map<String, Integer> singleDigits = Map.of(
@@ -52,7 +56,8 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
 
 
     /**
-     * Main method to execute the solver.
+     * Main method for running the solver.
+     * Reads the input from a file and processes each line to calculate the sum of combined digits.
      */
     public static void main(String[] args) {
         InputStream inputStream = Day01Puzzle02Solver.class.getResourceAsStream("/day01/day01_input.txt");
@@ -98,6 +103,14 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
         return findFirstSubstring(reversedLine, digits);
     }
 
+    /**
+     * Finds the first occurrence of a digit (either numeric or textual) in the given line.
+     *
+     * @param line   The line to search for the digit.
+     * @param digits A map of digit representations to their numeric values.
+     * @return The numeric value of the first found digit.
+     * @throws NoDigitFoundException if no digit representation is found in the line.
+     */
     private int findFirstSubstring(String line, Map<String, Integer> digits) {
         return digits.entrySet().stream()
                 .filter(entry -> line.contains(entry.getKey()))

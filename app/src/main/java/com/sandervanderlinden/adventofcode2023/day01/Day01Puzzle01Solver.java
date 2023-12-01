@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Solver for Day 1 Puzzle 1 of Advent of Code 2023.
+ * This solver extracts digits from textual representations and combines them for processing.
+ */
 public class Day01Puzzle01Solver implements Day01PuzzleSolver {
 
     /**
