@@ -9,13 +9,28 @@ public class Day01Solver {
         InputStream inputStream = Day01Solver.class.getResourceAsStream("/day01/day01_input.txt");
         if (inputStream != null) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            reader.lines().forEach(System.out::println);
+            Day01Solver solver = new Day01Solver();
+            int sum = reader.lines()
+                    .mapToInt(solver::extractAndSumNumbers)
+                    .sum();
+            System.out.println("Total sum: " + sum);
         } else {
             System.err.println("Input file not found");
         }
     }
 
     public int extractAndSumNumbers(String line) {
+        int firstNumber = extractFirstNumber(line);
+        int lastNumber = extractLastNumber(line);
+        return firstNumber + lastNumber;
+    }
+
+    int extractFirstNumber(String line) {
         return 0;
     }
+
+    int extractLastNumber(String line) {
+        return 0;
+    }
+
 }
