@@ -1,5 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day02;
 
+import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
@@ -22,7 +23,7 @@ public class Day02Puzzle01Solver {
      */
     public int getIdValue(String line) {
         Game game = createGameFromLine(line);
-        if (isPossible(game)) {
+        if (game.isPossible()) {
             return game.id();
         }
         return 0;
@@ -43,8 +44,4 @@ public class Day02Puzzle01Solver {
         throw new NoDigitFoundException("No Id found in the line: " + line);
     }
 
-    public boolean isPossible(Game game) {
-        //TODO implement
-        return true;
-    }
 }
