@@ -16,18 +16,18 @@ public class Day02Puzzle01Solver {
      * @return game id or 0.
      */
     public int getIdValue(String line) {
-        if (isSolvable(line)){
+        if (isPossible(line)){
             return getId(line);
         }
         return 0;
     }
 
-    private int getId(String line) {
+    public int getId(String line) {
         //TODO implement
         return 0;
     }
 
-    private boolean isSolvable(String line) {
+    public boolean isPossible(String line) {
         //TODO implement
         return true;
     }

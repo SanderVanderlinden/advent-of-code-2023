@@ -23,5 +23,24 @@ class Day02Puzzle01SolverTest {
         assertEquals(expected, solver.getIdValue(line));
     }
 
+    @Test
+    void getId_shouldReturnId() {
+        String line = "Game 31: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
+        int expected = 31;
+        assertEquals(expected, solver.getId(line));
+    }
 
+    @Test
+    void isPossible_whenPossible_shouldReturnTrue() {
+        String line = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
+        boolean expected = true;
+        assertEquals(expected, solver.isPossible(line));
+    }
+
+    @Test
+    void isPossible_whenImpossible_shouldReturnFalse() {
+        String line = "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
+        boolean expected = false;
+        assertEquals(expected, solver.isPossible(line));
+    }
 }
