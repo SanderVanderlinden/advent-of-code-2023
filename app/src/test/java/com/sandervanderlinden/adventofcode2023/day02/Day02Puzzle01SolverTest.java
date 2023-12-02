@@ -24,23 +24,25 @@ class Day02Puzzle01SolverTest {
     }
 
     @Test
-    void getId_shouldReturnId() {
+    void extractGameId_shouldReturnId() {
         String line = "Game 31: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
         int expected = 31;
-        assertEquals(expected, solver.getId(line));
+        assertEquals(expected, solver.extractGameId(line));
     }
 
     @Test
     void isPossible_whenPossible_shouldReturnTrue() {
         String line = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
+        Game game = solver.createGameFromLine(line);
         boolean expected = true;
-        assertEquals(expected, solver.isPossible(line));
+        assertEquals(expected, solver.isPossible(game));
     }
 
     @Test
     void isPossible_whenImpossible_shouldReturnFalse() {
         String line = "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
+        Game game = solver.createGameFromLine(line);
         boolean expected = false;
-        assertEquals(expected, solver.isPossible(line));
+        assertEquals(expected, solver.isPossible(game));
     }
 }

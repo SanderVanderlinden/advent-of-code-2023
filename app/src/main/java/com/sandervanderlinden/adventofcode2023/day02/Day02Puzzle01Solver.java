@@ -1,6 +1,11 @@
 package com.sandervanderlinden.adventofcode2023.day02;
 
+import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
+
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Day02Puzzle01Solver {
     public static void main(String[] args) {
@@ -16,18 +21,29 @@ public class Day02Puzzle01Solver {
      * @return game id or 0.
      */
     public int getIdValue(String line) {
-        if (isPossible(line)){
-            return getId(line);
+        Game game = createGameFromLine(line);
+        if (isPossible(game)) {
+            return game.id();
         }
         return 0;
     }
 
-    public int getId(String line) {
+    public Game createGameFromLine(String line) {
         //TODO implement
-        return 0;
+        return new Game(extractGameId(line), new HashSet<>(), 0, 0, 0);
     }
 
-    public boolean isPossible(String line) {
+    public int extractGameId(String line) {
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(line);
+
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group());
+        }
+        throw new NoDigitFoundException("No Id found in the line: " + line);
+    }
+
+    public boolean isPossible(Game game) {
         //TODO implement
         return true;
     }
