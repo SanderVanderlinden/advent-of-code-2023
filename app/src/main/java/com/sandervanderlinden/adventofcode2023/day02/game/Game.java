@@ -8,13 +8,15 @@ import java.util.stream.Stream;
 public class Game {
     private final int id;
     private final Set<CubeReveal> cubeReveals;
-    private final EnumMap<Color, Integer> revealedMaximums;
+    private final EnumMap<Color, Integer> MostRevealedCubes;
+    private final EnumMap<Color, Integer> cubesInBag;
 
 
-    public Game(int id, Set<CubeReveal> cubeReveals) {
+    public Game(int id, Set<CubeReveal> cubeReveals, EnumMap<Color, Integer> cubesInBag) {
         this.id = id;
         this.cubeReveals = cubeReveals;
-        this.revealedMaximums = new EnumMap<>(Color.class);
+        this.cubesInBag = cubesInBag;
+        this.MostRevealedCubes = new EnumMap<>(Color.class);
         Stream.of(Color.values())
                 .forEach(this::setMaximum);
     }
@@ -32,7 +34,7 @@ public class Game {
     }
 
     private void setMaximum(Color color) {
-        revealedMaximums.put(color, findMaximum(color));
+        MostRevealedCubes.put(color, findMaximum(color));
     }
 
     public int findMaximum(Color color) {

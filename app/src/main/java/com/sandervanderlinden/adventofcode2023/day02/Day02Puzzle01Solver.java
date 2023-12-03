@@ -5,10 +5,20 @@ import com.sandervanderlinden.adventofcode2023.day02.game.CubeReveal;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Day02Puzzle01Solver {
+    private static final EnumMap<Color, Integer> cubesInBag;
+
+    static {
+        cubesInBag = new EnumMap<>(Color.class);
+        cubesInBag.put(Color.RED, 12);   // Example values
+        cubesInBag.put(Color.GREEN, 13);
+        cubesInBag.put(Color.BLUE, 14);
+    }
+
     public static void main(String[] args) {
         Day02Puzzle01Solver solver = new Day02Puzzle01Solver();
         int sum = FileReaderUtil.processFile("/day02/day02_input.txt", solver::getIdValue);
@@ -30,7 +40,7 @@ public class Day02Puzzle01Solver {
     }
 
     public Game createGameFromLine(String line) {
-        return new Game(extractGameId(line), extractCubeReveals(line));
+        return new Game(extractGameId(line), extractCubeReveals(line), cubesInBag);
     }
 
     private Set<CubeReveal> extractCubeReveals(String line) {

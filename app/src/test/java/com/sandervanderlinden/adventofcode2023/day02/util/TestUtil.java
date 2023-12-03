@@ -4,10 +4,20 @@ import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.CubeReveal;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class TestUtil {
+
+    private static final EnumMap<Color, Integer> cubesInBag;
+
+    static {
+        cubesInBag = new EnumMap<>(Color.class);
+        cubesInBag.put(Color.RED, 12);   // Example values
+        cubesInBag.put(Color.GREEN, 13);
+        cubesInBag.put(Color.BLUE, 14);
+    }
 
     public static String linePresentingPossibleGame() {
         return "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
@@ -26,6 +36,6 @@ public class TestUtil {
         cubeReveals.add(new CubeReveal(Color.GREEN, 2));
         cubeReveals.add(new CubeReveal(Color.BLUE, 6));
         cubeReveals.add(new CubeReveal(Color.GREEN, 2));
-        return new Game(1, cubeReveals);
+        return new Game(1, cubeReveals, cubesInBag);
     }
 }
