@@ -21,9 +21,14 @@ public class Day02Puzzle01Solver {
 
     public static void main(String[] args) {
         Day02Puzzle01Solver solver = new Day02Puzzle01Solver();
-        int sum = FileReaderUtil.processFile("/day02/day02_input.txt", solver::getIdValue);
+        int sum = solver.solve();
         System.out.println("Total sum: " + sum);
     }
+
+    public int solve() {
+        return FileReaderUtil.processFile("/day02/day02_input.txt", this::getIdValue);
+    }
+
 
     /**
      * Returns the id of the game, if the game is possible and 0 otherwise.

@@ -57,7 +57,7 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
      */
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle02Solver();
-        int sum = solver.solve("/day01/day01_input.txt");
+        int sum = solver.solve();
         System.out.println("Total sum: " + sum);
     }
 
