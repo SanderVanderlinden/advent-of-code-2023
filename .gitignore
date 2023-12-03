@@ -31,8 +31,6 @@ replay_pid*
 .gradle/
 build/
 
-# Gradle wrapper jar file (optional)
-gradle/wrapper/gradle-wrapper.jar
 
 # Local Gradle properties
 gradle.properties
