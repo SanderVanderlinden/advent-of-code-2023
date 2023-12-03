@@ -1,7 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -58,7 +57,7 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
      */
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle02Solver();
-        int sum = FileReaderUtil.processFile("/day01/day01_input.txt", solver::extractAndCombineDigits);
+        int sum = solver.solve();
         System.out.println("Total sum: " + sum);
     }
 
