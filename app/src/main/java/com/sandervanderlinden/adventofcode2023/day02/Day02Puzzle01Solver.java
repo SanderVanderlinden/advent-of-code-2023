@@ -1,12 +1,12 @@
 package com.sandervanderlinden.adventofcode2023.day02;
 
+import com.sandervanderlinden.adventofcode2023.day02.game.Color;
+import com.sandervanderlinden.adventofcode2023.day02.game.CubeReveal;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
-import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
 import java.util.HashSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 public class Day02Puzzle01Solver {
     public static void main(String[] args) {
@@ -30,18 +30,29 @@ public class Day02Puzzle01Solver {
     }
 
     public Game createGameFromLine(String line) {
-        //TODO implement
-        return new Game(extractGameId(line), new HashSet<>(), 0, 0, 0);
+        return new Game(extractGameId(line), extractCubeReveals(line));
+    }
+
+    private Set<CubeReveal> extractCubeReveals(String line) {
+        String cubeRevealsString = line.substring(line.indexOf(":") + 1).trim();
+
+        String[] separators = cubeRevealsString.split("[,;]");
+
+        Set<CubeReveal> cubeReveals = new HashSet<>();
+
+        for (String separator : separators) {
+            String[] cubeRevealData = separator.trim().split(" ");
+            Color color = Color.fromString(cubeRevealData[1]);
+            int amount = Integer.parseInt(cubeRevealData[0]);
+            cubeReveals.add(new CubeReveal(color, amount));
+        }
+        return cubeReveals;
     }
 
     public int extractGameId(String line) {
-        Pattern pattern = Pattern.compile("\\d+");
-        Matcher matcher = pattern.matcher(line);
-
-        if (matcher.find()) {
-            return Integer.parseInt(matcher.group());
-        }
-        throw new NoDigitFoundException("No Id found in the line: " + line);
+        String gameId = line.substring(5, line.indexOf(":"));
+        return Integer.parseInt(gameId);
     }
+
 
 }
