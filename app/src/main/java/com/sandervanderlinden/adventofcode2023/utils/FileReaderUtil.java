@@ -1,5 +1,7 @@
 package com.sandervanderlinden.adventofcode2023.utils;
 
+import com.sandervanderlinden.adventofcode2023.exceptions.FileProcessingException;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,12 +23,12 @@ public class FileReaderUtil {
     public static int processFile(String filePath, ToIntFunction<String> lineProcessor) {
         InputStream inputStream = FileReaderUtil.class.getResourceAsStream(filePath);
         if (inputStream == null) {
-            throw new RuntimeException("Input file not found: " + filePath);
+            throw new FileProcessingException("Input file not found: " + filePath);
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             return reader.lines().mapToInt(lineProcessor).sum();
         } catch (Exception e) {
-            throw new RuntimeException("Error processing file: " + filePath, e);
+            throw new FileProcessingException("Error processing file: " + filePath, e);
         }
     }
 }
