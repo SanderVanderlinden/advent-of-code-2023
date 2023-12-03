@@ -7,6 +7,9 @@ import java.util.function.ToIntFunction;
 
 public class FileReaderUtil {
 
+    private FileReaderUtil() {
+    }
+
     /**
      * Processes each line of the file specified by the filePath using the provided lineProcessor function.
      *
