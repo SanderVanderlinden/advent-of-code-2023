@@ -35,7 +35,7 @@ public class Game {
         revealedMaximums.put(color, findMaximum(color));
     }
 
-    private int findMaximum(Color color) {
+    public int findMaximum(Color color) {
         return cubeReveals.stream()
                 .filter(c -> c.color() == color)
                 .mapToInt(CubeReveal::amount)
