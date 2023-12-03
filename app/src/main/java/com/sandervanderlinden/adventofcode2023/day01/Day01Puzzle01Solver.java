@@ -2,6 +2,8 @@ package com.sandervanderlinden.adventofcode2023.day01;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,13 +13,15 @@ import java.util.regex.Pattern;
  */
 public class Day01Puzzle01Solver implements Day01PuzzleSolver {
 
+    private static final Logger logger = Logger.getLogger(Day01Puzzle01Solver.class.getName());
+
     /**
      * Main method to execute the solver.
      */
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle01Solver();
         int sum = solver.solve();
-        System.out.println("Total sum: " + sum);
+        logger.log(Level.INFO, "Total sum: {}",  sum);
     }
 
 

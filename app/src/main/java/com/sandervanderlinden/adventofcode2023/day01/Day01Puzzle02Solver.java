@@ -5,6 +5,8 @@ import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Solver for Day 1 Puzzle 2 of Advent of Code 2023.
@@ -50,6 +52,7 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
             "thgie", 8,
             "enin", 9
     );
+    private static final Logger logger = Logger.getLogger(Day01Puzzle02Solver.class.getName());
 
 
     /**
@@ -58,7 +61,7 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle02Solver();
         int sum = solver.solve();
-        System.out.println("Total sum: " + sum);
+        logger.log(Level.INFO, "Total sum: {}", sum);
     }
 
     /**

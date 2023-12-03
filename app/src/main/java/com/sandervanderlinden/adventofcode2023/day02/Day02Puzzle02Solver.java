@@ -4,6 +4,8 @@ import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 /**
@@ -13,6 +15,8 @@ import java.util.stream.Stream;
  */
 public class Day02Puzzle02Solver implements Day02PuzzleSolver {
 
+    private static final Logger logger = Logger.getLogger(Day02Puzzle02Solver .class.getName());
+
     /**
      * Main method to execute the solver.
      * Processes the input file and calculates the total sum of the IDs of possible games.
@@ -20,7 +24,7 @@ public class Day02Puzzle02Solver implements Day02PuzzleSolver {
     public static void main(String[] args) {
         Day02Puzzle02Solver solver = new Day02Puzzle02Solver();
         int sum = solver.solve();
-        System.out.println("Total sum: " + sum);
+        logger.log(Level.INFO, "Total sum: {}", sum);
     }
 
     /**
