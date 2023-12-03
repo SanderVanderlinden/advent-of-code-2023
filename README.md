@@ -43,4 +43,4 @@ Sander
 
 ---
 
-[Go to Day 1 →](../app/src/main/resources/day01/README.md)
+[Go to Day 1 →](app/src/main/resources/day01/README.md)
