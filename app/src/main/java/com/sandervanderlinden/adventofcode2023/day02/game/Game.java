@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 public class Game {
     private final int id;
     private final Set<CubeReveal> cubeReveals;
-    private final EnumMap<Color, Integer> MostRevealedCubes;
+    private final EnumMap<Color, Integer> mostRevealedCubes;
     private final EnumMap<Color, Integer> cubesInBag;
 
 
@@ -16,7 +16,7 @@ public class Game {
         this.id = id;
         this.cubeReveals = cubeReveals;
         this.cubesInBag = cubesInBag;
-        this.MostRevealedCubes = new EnumMap<>(Color.class);
+        this.mostRevealedCubes = new EnumMap<>(Color.class);
         Stream.of(Color.values())
                 .forEach(this::setMaximum);
     }
@@ -34,7 +34,7 @@ public class Game {
     }
 
     private void setMaximum(Color color) {
-        MostRevealedCubes.put(color, findMaximum(color));
+        mostRevealedCubes.put(color, findMaximum(color));
     }
 
     public int findMaximum(Color color) {
@@ -46,7 +46,7 @@ public class Game {
     }
 
     public boolean isPossible() {
-        //TODO implement
-        return true;
+        return Stream.of(Color.values())
+                .allMatch(color -> cubesInBag.get(color) >= mostRevealedCubes.get(color));
     }
 }

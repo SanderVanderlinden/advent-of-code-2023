@@ -4,7 +4,7 @@ import com.sandervanderlinden.adventofcode2023.day02.Day02Puzzle01Solver;
 import org.junit.jupiter.api.Test;
 
 import static com.sandervanderlinden.adventofcode2023.day02.util.TestUtil.createStandardGame;
-import static com.sandervanderlinden.adventofcode2023.day02.util.TestUtil.linePresentingPossibleGame;
+import static com.sandervanderlinden.adventofcode2023.day02.util.TestUtil.linePresentingImpossibleGame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameTest {
@@ -21,7 +21,7 @@ class GameTest {
 
     @Test
     void isPossible_whenImpossible_shouldReturnFalse() {
-        Game game = solver.createGameFromLine(linePresentingPossibleGame());
+        Game game = solver.createGameFromLine(linePresentingImpossibleGame());
         boolean expected = false;
         assertEquals(expected, game.isPossible());
     }
