@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  */
 public class Day02Puzzle02Solver implements Day02PuzzleSolver {
 
-    private static final Logger logger = Logger.getLogger(Day02Puzzle02Solver .class.getName());
+    private static final Logger logger = Logger.getLogger(Day02Puzzle02Solver.class.getName());
 
     /**
      * Main method to execute the solver.

@@ -15,6 +15,7 @@ public class Day02Puzzle01Solver implements Day02PuzzleSolver {
 
     private static final Logger logger = Logger.getLogger(Day02Puzzle01Solver.class.getName());
 
+
     /**
      * Main method to execute the solver.
      * Processes the input file and calculates the total sum of the IDs of possible games.

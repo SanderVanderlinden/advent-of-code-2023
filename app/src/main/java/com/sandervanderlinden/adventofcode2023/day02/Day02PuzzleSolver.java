@@ -6,16 +6,24 @@ import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public interface Day02PuzzleSolver {
 
-    EnumMap<Color, Integer> cubesInBag = new EnumMap<>(Color.class) {{
-        put(Color.RED, 12);
-        put(Color.GREEN, 13);
-        put(Color.BLUE, 14);
-    }};
-
+    /**
+     * Provides a map of the maximum number of cubes of each color available in the bag.
+     * This map is used to determine if a game configuration is possible.
+     *
+     * @return A Map with keys as Color and values as Integer representing the maximum number of cubes of each color.
+     */
+    default Map<Color, Integer> getCubesInBag() {
+        EnumMap<Color, Integer> map = new EnumMap<>(Color.class);
+        map.put(Color.RED, 12);
+        map.put(Color.GREEN, 13);
+        map.put(Color.BLUE, 14);
+        return map;
+    }
 
     /**
      * Solves the puzzle by processing the input file and summing some puzzle specific value.
@@ -31,7 +39,7 @@ public interface Day02PuzzleSolver {
      * @return A Game object representing the game described in the line.
      */
     default Game createGameFromLine(String line) {
-        return new Game(extractGameId(line), extractCubeReveals(line), Day02Puzzle01Solver.cubesInBag);
+        return new Game(extractGameId(line), extractCubeReveals(line), getCubesInBag());
     }
 
     /**
