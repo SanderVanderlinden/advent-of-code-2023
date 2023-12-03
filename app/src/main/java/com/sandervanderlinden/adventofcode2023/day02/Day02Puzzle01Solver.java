@@ -24,7 +24,7 @@ public class Day02Puzzle01Solver {
     public int getIdValue(String line) {
         Game game = createGameFromLine(line);
         if (game.isPossible()) {
-            return game.id();
+            return game.getId();
         }
         return 0;
     }

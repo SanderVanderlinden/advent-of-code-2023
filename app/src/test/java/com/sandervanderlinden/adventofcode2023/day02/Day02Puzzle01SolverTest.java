@@ -44,7 +44,7 @@ class Day02Puzzle01SolverTest {
         cubeReveals.add(new CubeReveal(Color.GREEN, 2));
         cubeReveals.add(new CubeReveal(Color.BLUE, 6));
         cubeReveals.add(new CubeReveal(Color.GREEN, 2));
-        Game expected = new Game(1, cubeReveals, 2, 4, 6);
+        Game expected = new Game(1, cubeReveals);
         assertEquals(expected, solver.createGameFromLine(linePresentingPossibleGame));
     }
 }
