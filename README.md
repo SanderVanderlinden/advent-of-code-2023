@@ -40,3 +40,7 @@ This project is open-source and available under the [MIT License](LICENSE).
 Happy coding!
 
 Sander
+
+---
+
+[Go to Day 1 →](../day01/README.md)
