@@ -3,7 +3,6 @@ package com.sandervanderlinden.adventofcode2023.day02;
 import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.CubeReveal;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
 import java.util.EnumMap;
 import java.util.HashSet;
@@ -19,27 +18,11 @@ public interface Day02PuzzleSolver {
 
 
     /**
-     * Solves the puzzle by processing the input file and summing the IDs of possible games.
+     * Solves the puzzle by processing the input file and summing some puzzle specific value.
      *
-     * @return The sum of the IDs of all possible games.
+     * @return The sum of these values.
      */
-    default int solve() {
-        return FileReaderUtil.processFile("/day02/day02_input.txt", this::getIdValue);
-    }
-
-    /**
-     * Determines the ID value of a game based on its possibility.
-     *
-     * @param line A string representing a line from the puzzle input.
-     * @return The ID of the game if it is possible, or 0 otherwise.
-     */
-    default int getIdValue(String line) {
-        Game game = createGameFromLine(line);
-        if (game.isPossible()) {
-            return game.getId();
-        }
-        return 0;
-    }
+    int solve();
 
     /**
      * Creates a Game object from a line of the input file.
