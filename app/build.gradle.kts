@@ -8,15 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-    id("org.sonarqube") version "4.4.1.3373"
 }
 
-sonar {
-    properties {
-        property("sonar.projectKey", "advent-of-code-2023")
-        property("sonar.projectName", "Advent of code 2023")
-    }
-}
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
