@@ -61,8 +61,10 @@ public class Day01Puzzle02Solver implements Day01PuzzleSolver {
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle02Solver();
         int sum = solver.solve();
-        logger.log(Level.INFO, "Total sum: {}", sum);
+        String message = String.format("Total sum: %d", sum);
+        logger.log(Level.INFO, message);
     }
+
 
     /**
      * Extracts the first digit from a given line.

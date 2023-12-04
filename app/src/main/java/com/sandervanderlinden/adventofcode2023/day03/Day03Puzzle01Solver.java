@@ -19,7 +19,8 @@ public class Day03Puzzle01Solver {
     public static void main(String[] args) {
         Day03Puzzle01Solver solver = new Day03Puzzle01Solver();
         int sum = solver.solve();
-        logger.log(Level.INFO, "Total sum: {}", sum);
+        String message = String.format("Total sum: %d", sum);
+        logger.log(Level.INFO, message);
     }
 
     int solve() {

@@ -23,7 +23,8 @@ public class Day02Puzzle01Solver implements Day02PuzzleSolver {
     public static void main(String[] args) {
         Day02Puzzle01Solver solver = new Day02Puzzle01Solver();
         int sum = solver.solve();
-        logger.log(Level.INFO, "Total sum: {}", sum);
+        String message = String.format("Total sum: %d", sum);
+        logger.log(Level.INFO, message);
     }
 
 
