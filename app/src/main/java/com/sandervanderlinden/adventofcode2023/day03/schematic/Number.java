@@ -58,8 +58,9 @@ public class Number extends SchematicToken {
 
 
     public boolean isAdjacentToSymbolInOtherLine(Set<SchematicToken> tokensInPreviousLine) {
-        //TODO implement
-        return false;
+        return tokensInPreviousLine.stream()
+                .filter(Symbol.class::isInstance)
+                .anyMatch(token -> token.positionIndex >= this.positionIndex - 1  && this.positionIndex <= token.positionIndex + this.getLength());
     }
 
 }
