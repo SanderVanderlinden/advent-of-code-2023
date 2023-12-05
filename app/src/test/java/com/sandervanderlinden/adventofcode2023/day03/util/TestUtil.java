@@ -93,4 +93,12 @@ public class TestUtil {
     public static Number createMultipleDigitsWithAdjacentTokenToTheRight() {
         return new Number(28, 335);
     }
+
+    public static Number createSingleDigitNumberWithAdjacentTokenOnTheSameIndex() {
+        return new Number(25, 1);
+    }
+
+    public static Number createMultipleDigitsNumberWithAdjacentTokenOnTheSameIndex() {
+        return new Number(24, 5875);
+    }
 }

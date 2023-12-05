@@ -19,7 +19,7 @@ public class Day03Puzzle01Solver {
 
     private static final Logger logger = Logger.getLogger(Day03Puzzle01Solver.class.getName());
 
-    private Set<SchematicToken> tokensInCurrentLine;
+    private Set<SchematicToken> tokensInCurrentLine = new HashSet<>();
 
     /**
      * Main method to execute the solver.
@@ -35,7 +35,7 @@ public class Day03Puzzle01Solver {
         return FileReaderUtil.processFile("/day03/day03_input.txt", this::solveLine);
     }
 
-    private int solveLine(String line) {
+    int solveLine(String line) {
         Set<SchematicToken> tokensInPreviousLine = tokensInCurrentLine;
         tokensInCurrentLine = convertLineToSchematicTokens(line);
         int sumNumbersInCurrentLineSymbolsInCurrentLine = sumNumbersInCurrentLineSymbolsInCurrentLine(tokensInCurrentLine);
@@ -76,15 +76,15 @@ public class Day03Puzzle01Solver {
         return tokensInLine;
     }
 
-    private int sumNumbersInCurrentLineSymbolsInCurrentLine(Set<SchematicToken> tokensInCurrentLine) {
+    int sumNumbersInCurrentLineSymbolsInCurrentLine(Set<SchematicToken> tokensInCurrentLine) {
         return sumUncountedNumbersWithAdjacentSymbol(tokensInCurrentLine, number -> number.isAdjacentToSymbolInSameLine(tokensInCurrentLine));
     }
 
-    private int sumNumbersInCurrentLineSymbolsInPreviousLine(Set<SchematicToken> tokensInPreviousLine, Set<SchematicToken> tokensInCurrentLine) {
+    int sumNumbersInCurrentLineSymbolsInPreviousLine(Set<SchematicToken> tokensInPreviousLine, Set<SchematicToken> tokensInCurrentLine) {
         return sumUncountedNumbersWithAdjacentSymbol(tokensInCurrentLine, number -> number.isAdjacentToSymbolInOtherLine(tokensInPreviousLine));
     }
 
-    private int sumNumbersInPreviousLineSymbolsInCurrentLine(Set<SchematicToken> tokensInPreviousLine, Set<SchematicToken> tokensInCurrentLine) {
+    int sumNumbersInPreviousLineSymbolsInCurrentLine(Set<SchematicToken> tokensInPreviousLine, Set<SchematicToken> tokensInCurrentLine) {
         return sumUncountedNumbersWithAdjacentSymbol(tokensInPreviousLine, number -> number.isAdjacentToSymbolInOtherLine(tokensInCurrentLine));
     }
 
