@@ -10,23 +10,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Abstract class for solving Day 3 puzzles of Advent of Code 2023.
- * This class provides a common foundation and utilities for solving puzzles that involve
- * interpreting and processing schematic data. It defines methods that are common across
- * various Day 3 puzzle solvers, such as converting input lines into sets of schematic tokens.
+ * Abstract class for Day 3 puzzles in Advent of Code 2023.
+ * This class offers a foundational framework for puzzles that involve interpreting
+ * and processing schematic data. It provides utility methods to convert input lines
+ * into sets of schematic tokens, supporting the creation of solutions for Day 3 challenges.
  */
 public abstract class Day03PuzzleSolver implements BasePuzzleSolver {
 
     /**
-     * Converts a line of input text into a set of schematic tokens. Each token can represent
-     * either a number or a symbol based on the content of the line. Numbers are identified
-     * from sequences of digit characters, while symbols are identified from specific non-digit
-     * characters. This method is essential for parsing and processing the puzzle input.
+     * Converts a line of input text into a set of schematic tokens.
+     * This method parses each character in the input line, distinguishing between
+     * digits (which form numbers) and non-digit characters (which are treated as symbols).
+     * It is essential for parsing the puzzle input and preparing it for further processing.
      *
-     * @param line The input line to be converted into tokens. It is a string that potentially
-     *             contains numbers, symbols, and other characters.
-     * @return A set of {@link SchematicToken} objects, each representing either a number or a symbol
-     * found in the input line. The set includes all identified tokens from the line.
+     * @param line The input line to be converted into tokens.
+     * @return A set of {@link SchematicToken} objects representing the identified numbers and symbols.
      */
     public Set<SchematicToken> convertLineToSchematicTokens(String line) {
         Set<SchematicToken> tokensInLine = new HashSet<>();
@@ -43,27 +41,53 @@ public abstract class Day03PuzzleSolver implements BasePuzzleSolver {
                 currentNumber.append(c);
             }
             else {
-                if (c != '.') {
-                    if (c == '*') {
-                        tokensInLine.add(new GearSymbol(i));
-                    }
-                    else {
-                        tokensInLine.add(new Symbol(i));
-                    }
-                }
-                if (!currentNumber.isEmpty()) {
-                    tokensInLine.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
-                    currentNumber.setLength(0);
-                }
+                handleNonDigitCharacter(tokensInLine, currentNumber, numberPositionIndex, i, c);
+                currentNumber.setLength(0);
             }
         }
 
-        if (currentNumber.length() > 0) {
-            tokensInLine.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
-        }
+        addRemainingNumberToken(tokensInLine, currentNumber, numberPositionIndex);
 
         return tokensInLine;
     }
+
+    /**
+     * Handles non-digit characters in the input line, adding the appropriate symbol tokens
+     * to the set of schematic tokens. Also adds any accumulated number token before processing
+     * the symbol.
+     *
+     * @param tokens The set of schematic tokens being constructed.
+     * @param currentNumber The currently accumulated number, if any.
+     * @param numberPositionIndex The starting index of the current number in the input line.
+     * @param currentIndex The index of the current non-digit character being processed.
+     * @param c The current non-digit character.
+     */
+    private static void handleNonDigitCharacter(Set<SchematicToken> tokens, StringBuilder currentNumber, int numberPositionIndex, int currentIndex, char c) {
+        if (c != '.') {
+            tokens.add(c == '*' ? new GearSymbol(currentIndex) : new Symbol(currentIndex));
+        }
+
+        if (currentNumber.length() > 0) {
+            tokens.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
+        }
+
+    }
+
+    /**
+     * Adds the last accumulated number token to the set of schematic tokens, if any.
+     * This method is called after the end of input line processing to ensure that any
+     * remaining number is not left out.
+     *
+     * @param tokensInLine The set of schematic tokens being constructed.
+     * @param currentNumber The currently accumulated number, if any.
+     * @param numberPositionIndex The starting index of the current number in the input line.
+     */
+    private static void addRemainingNumberToken(Set<SchematicToken> tokensInLine, StringBuilder currentNumber, int numberPositionIndex) {
+        if (currentNumber.length() > 0) {
+            tokensInLine.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
+        }
+    }
+
 
 
 }
