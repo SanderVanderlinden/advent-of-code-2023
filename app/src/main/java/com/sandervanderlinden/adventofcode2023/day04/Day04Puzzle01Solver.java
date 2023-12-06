@@ -1,11 +1,8 @@
 package com.sandervanderlinden.adventofcode2023.day04;
 
 
-import java.util.Arrays;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * This class solves the first puzzle of Day 4 in the Advent of Code 2023.
@@ -40,41 +37,7 @@ public class Day04Puzzle01Solver extends Day04PuzzleSolver {
      */
     @Override
     public int processLine(String line) {
-        int output = 0;
-        String[] numberGroups = parseLine(line);
-
-        Set<Integer> winningNumbers = parseNumbers(numberGroups[0]);
-        Set<Integer> ownNumbers = parseNumbers(numberGroups[1]);
-
-        for (Integer number : winningNumbers) {
-            if (ownNumbers.contains(number)) {
-                output = output == 0 ? 1 : output * 2;
-            }
-        }
-        return output;
-    }
-
-    /**
-     * Parses a line from the input file to extract the winning and own numbers.
-     * The method assumes the line is formatted with a colon and a pipe symbol separating the numbers.
-     *
-     * @param line A single line from the input file.
-     * @return An array of two strings, where the first element is the string of winning numbers
-     *         and the second is the string of own numbers.
-     */
-    private String[] parseLine(String line) {
-        return line.substring(line.indexOf(":") + 1).trim().split("\\s*\\|\\s*");
-    }
-
-    /**
-     * Parses a string of numbers separated by spaces into a Set of Integers.
-     *
-     * @param numbers A string containing numbers separated by spaces.
-     * @return A Set of integers parsed from the input string.
-     */
-    private Set<Integer> parseNumbers(String numbers) {
-        return Arrays.stream(numbers.split("\\s+"))
-                .map(Integer::parseInt)
-                .collect(Collectors.toSet());
+        int amountOfMatchingNumbers = getAmountOfMatchingNumbers(line);
+        return (int) Math.pow(2, amountOfMatchingNumbers - 1.0);
     }
 }
