@@ -14,6 +14,10 @@ import java.util.stream.Stream;
 import static com.sandervanderlinden.adventofcode2023.day03.util.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test class for Day03Puzzle01Solver.
+ * Contains various test cases to verify the functionality of the puzzle solver for Day 3 Puzzle 1.
+ */
 class Day03Puzzle01SolverTest {
 
     Day03Puzzle01Solver solver = new Day03Puzzle01Solver();
@@ -40,6 +44,9 @@ class Day03Puzzle01SolverTest {
         );
     }
 
+    /**
+     * Tests the conversion of a line to schematic tokens.
+     */
     @ParameterizedTest(name = "{0} should return {1}")
     @MethodSource("testConvertLineToSchematicTokensArguments")
     void testConvertLineToSchematicTokens(String line, Set<SchematicToken> expected) {
@@ -67,16 +74,17 @@ class Day03Puzzle01SolverTest {
 
 
     @Test
-    void testSolve(){
+    void testSolve() {
         int expected = 110101;
-        String filepath = "/day03/day03_test_input_01.txt";
-        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::solveLine));
+        String filepath = "day03/day03_test_input_01.txt";
+        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::processLine));
     }
+
     @Test
-    void testSolve02(){
+    void testSolve02() {
         int expected = 4361;
-        String filepath = "/day03/day03_test_input_02.txt";
-        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::solveLine));
+        String filepath = "day03/day03_test_input_02.txt";
+        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::processLine));
     }
 
 }

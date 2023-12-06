@@ -4,7 +4,6 @@ package com.sandervanderlinden.adventofcode2023.day03;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Symbol;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,8 +13,10 @@ import java.util.logging.Logger;
 
 /**
  * Solver for Day 3 Puzzle 1 of Advent of Code 2023.
+ * This class is responsible for interpreting and processing schematic data,
+ * represented as tokens, from a given puzzle input.
  */
-public class Day03Puzzle01Solver {
+public class Day03Puzzle01Solver extends Day03PuzzleSolver {
 
     private static final Logger logger = Logger.getLogger(Day03Puzzle01Solver.class.getName());
 
@@ -26,16 +27,19 @@ public class Day03Puzzle01Solver {
      */
     public static void main(String[] args) {
         Day03Puzzle01Solver solver = new Day03Puzzle01Solver();
-        int sum = solver.solve();
+        int sum = solver.solve("/day03/day03_input.txt");
         String message = String.format("Total sum: %d", sum);
         logger.log(Level.INFO, message);
     }
 
-    int solve() {
-        return FileReaderUtil.processFile("/day03/day03_input.txt", this::solveLine);
-    }
-
-    int solveLine(String line) {
+    /**
+     * Processes a line of input by converting it to schematic tokens and summing up specific values based on these tokens.
+     *
+     * @param line The input line to be processed.
+     * @return The calculated sum based on the processed line.
+     */
+    @Override
+    public int processLine(String line) {
         Set<SchematicToken> tokensInPreviousLine = tokensInCurrentLine;
         tokensInCurrentLine = convertLineToSchematicTokens(line);
         int sumNumbersInCurrentLineSymbolsInCurrentLine = sumNumbersInCurrentLineSymbolsInCurrentLine(tokensInCurrentLine);
@@ -44,6 +48,12 @@ public class Day03Puzzle01Solver {
         return sumNumbersInCurrentLineSymbolsInCurrentLine + sumNumbersInCurrentLineSymbolsInPreviousLine + sumNumbersInPreviousLineSymbolsInCurrentLine;
     }
 
+    /**
+     * Converts a line of input into a set of schematic tokens representing numbers and symbols.
+     *
+     * @param line The input line to be converted.
+     * @return A set of SchematicToken objects parsed from the line.
+     */
     Set<SchematicToken> convertLineToSchematicTokens(String line) {
         Set<SchematicToken> tokensInLine = new HashSet<>();
         StringBuilder currentNumber = new StringBuilder();

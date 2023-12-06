@@ -2,7 +2,6 @@ package com.sandervanderlinden.adventofcode2023.day02;
 
 import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +12,7 @@ import java.util.stream.Stream;
  * This solver processes game data to determine which games are possible
  * given specific constraints on the number of cubes.
  */
-public class Day02Puzzle02Solver implements Day02PuzzleSolver {
+public class Day02Puzzle02Solver extends Day02PuzzleSolver {
 
     private static final Logger logger = Logger.getLogger(Day02Puzzle02Solver.class.getName());
 
@@ -23,20 +22,11 @@ public class Day02Puzzle02Solver implements Day02PuzzleSolver {
      */
     public static void main(String[] args) {
         Day02Puzzle02Solver solver = new Day02Puzzle02Solver();
-        int sum = solver.solve();
+        int sum = solver.solve("day02/day02_input.txt");
         String message = String.format("Total sum: %d", sum);
         logger.log(Level.INFO, message);
     }
 
-
-    /**
-     * Solves the puzzle by processing the input file and summing the IDs of possible games.
-     *
-     * @return The sum of the IDs of all possible games.
-     */
-    public int solve() {
-        return FileReaderUtil.processFile("/day02/day02_input.txt", this::getPower);
-    }
 
     /**
      * Determines the power value of a game.
@@ -44,7 +34,7 @@ public class Day02Puzzle02Solver implements Day02PuzzleSolver {
      * @param line A string representing a line from the puzzle input.
      * @return The power value of the game.
      */
-    int getPower(String line) {
+    public int processLine(String line) {
         Game game = createGameFromLine(line);
 
         return Stream.of(Color.values())

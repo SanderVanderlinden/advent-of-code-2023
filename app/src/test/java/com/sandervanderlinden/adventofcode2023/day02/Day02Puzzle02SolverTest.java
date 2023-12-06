@@ -11,8 +11,8 @@ class Day02Puzzle02SolverTest {
 
 
     @Test
-    void getPower_whenPossible_shouldReturnPower() {
+    void processLine_whenPossible_shouldReturnPower() {
         int expected = 48;
-        assertEquals(expected, solver.getPower(linePresentingPossibleGame()));
+        assertEquals(expected, solver.processLine(linePresentingPossibleGame()));
     }
 }

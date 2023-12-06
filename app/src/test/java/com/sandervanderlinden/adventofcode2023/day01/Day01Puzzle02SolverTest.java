@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import static com.sandervanderlinden.adventofcode2023.day01.util.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test class for Day01Puzzle02Solver.
+ * Contains various test cases to verify the functionality of the puzzle solver for the second puzzle of Day 1.
+ */
 class Day01Puzzle02SolverTest extends AbstractDay01SolverTest {
 
     @Override

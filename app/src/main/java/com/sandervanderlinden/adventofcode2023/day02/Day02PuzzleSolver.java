@@ -1,5 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day02;
 
+import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
 import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.CubeReveal;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
@@ -9,7 +10,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public interface Day02PuzzleSolver {
+/**
+ * Abstract class representing a solver for Day 2 puzzles of Advent of Code 2023.
+ * This class provides common methods to process input data related to games and cubes.
+ */
+public abstract class Day02PuzzleSolver implements BasePuzzleSolver {
 
     /**
      * Provides a map of the maximum number of cubes of each color available in the bag.
@@ -17,7 +22,7 @@ public interface Day02PuzzleSolver {
      *
      * @return A Map with keys as Color and values as Integer representing the maximum number of cubes of each color.
      */
-    default Map<Color, Integer> getCubesInBag() {
+    Map<Color, Integer> getCubesInBag() {
         EnumMap<Color, Integer> map = new EnumMap<>(Color.class);
         map.put(Color.RED, 12);
         map.put(Color.GREEN, 13);
@@ -25,12 +30,6 @@ public interface Day02PuzzleSolver {
         return map;
     }
 
-    /**
-     * Solves the puzzle by processing the input file and summing some puzzle specific value.
-     *
-     * @return The sum of these values.
-     */
-    int solve();
 
     /**
      * Creates a Game object from a line of the input file.
@@ -38,7 +37,7 @@ public interface Day02PuzzleSolver {
      * @param line A string representing a line from the puzzle input.
      * @return A Game object representing the game described in the line.
      */
-    default Game createGameFromLine(String line) {
+    public Game createGameFromLine(String line) {
         return new Game(extractGameId(line), extractCubeReveals(line), getCubesInBag());
     }
 
@@ -48,7 +47,7 @@ public interface Day02PuzzleSolver {
      * @param line A string representing a line from the puzzle input.
      * @return A set of CubeReveal objects extracted from the line.
      */
-    default Set<CubeReveal> extractCubeReveals(String line) {
+    Set<CubeReveal> extractCubeReveals(String line) {
         String cubeRevealsString = line.substring(line.indexOf(":") + 1).trim();
 
         String[] separators = cubeRevealsString.split("[,;]");
@@ -70,7 +69,7 @@ public interface Day02PuzzleSolver {
      * @param line A string representing a line from the puzzle input.
      * @return The game ID extracted from the line.
      */
-    default int extractGameId(String line) {
+    int extractGameId(String line) {
         String gameId = line.substring(5, line.indexOf(":"));
         return Integer.parseInt(gameId);
     }
