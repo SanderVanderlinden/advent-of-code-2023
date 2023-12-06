@@ -12,15 +12,15 @@ class Day02Puzzle01SolverTest {
 
 
     @Test
-    void getIdValue_whenPossible_shouldReturnId() {
+    void processLine_whenPossible_shouldReturnId() {
         int expected = 1;
-        assertEquals(expected, solver.getIdValue(linePresentingPossibleGame()));
+        assertEquals(expected, solver.processLine(linePresentingPossibleGame()));
     }
 
     @Test
-    void getIdValue_whenImpossible_shouldReturnZero() {
+    void processLine_whenImpossible_shouldReturnZero() {
         int expected = 0;
-        assertEquals(expected, solver.getIdValue(linePresentingImpossibleGame()));
+        assertEquals(expected, solver.processLine(linePresentingImpossibleGame()));
     }
 
     @Test

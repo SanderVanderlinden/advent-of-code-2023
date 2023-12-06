@@ -13,17 +13,21 @@ import static com.sandervanderlinden.adventofcode2023.day01.util.TestUtil.linePr
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class AbstractDay01SolverTest {
+/**
+ * Abstract base class for testing Day 1 puzzle solvers.
+ * Defines common test cases and requires subclasses to provide the specific solver implementation.
+ */
+public abstract class Day01PuzzleSolverTest {
 
     protected abstract Day01PuzzleSolver getSolver();
     Day01PuzzleSolver solver = getSolver();
 
 
     @Test
-    void extractAndCombineDigits_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
+    void processLine_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
         String line = linePresentingLettersAndDigits_FirstDigitIs1_LastDigitIs2();
         int expected = 12;
-        assertEquals(expected, solver.extractAndCombineDigits(line));
+        assertEquals(expected, solver.processLine(line));
     }
 
     @ParameterizedTest(name = "{0} should return {1}")

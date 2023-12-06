@@ -13,14 +13,14 @@ class Day02PuzzleSolverTest {
 
     @Test
     void Day02Puzzle01Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
-        int actualSum = solver01.solve();
+        int actualSum = solver01.solve("day02/day02_input.txt");
         int expectedSum = 2369;
         assertEquals(expectedSum, actualSum);
     }
 
     @Test
     void Day02Puzzle02Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
-        int actualSum = solver02.solve();
+        int actualSum = solver02.solve("day02/day02_input.txt");
         int expectedSum = 66363;
         assertEquals(expectedSum, actualSum);
     }
