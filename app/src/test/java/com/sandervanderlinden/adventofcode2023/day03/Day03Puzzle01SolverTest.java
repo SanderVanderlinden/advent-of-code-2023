@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class Day03Puzzle01SolverTest {
 
-    Day03Puzzle01Solver solver = new Day03Puzzle01Solver();
+    private final Day03Puzzle01Solver solver = new Day03Puzzle01Solver();
 
     static Stream<Arguments> testConvertLineToSchematicTokensArguments() {
         return Stream.of(

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Test class for Day01Puzzle02Solver.
  * Contains various test cases to verify the functionality of the puzzle solver for the second puzzle of Day 1.
  */
-class Day01Puzzle02SolverTest extends AbstractDay01SolverTest {
+class Day01Puzzle02SolverTest extends Day01PuzzleSolverTest {
 
     @Override
     protected Day01PuzzleSolver getSolver() {

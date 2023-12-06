@@ -3,7 +3,8 @@ package com.sandervanderlinden.adventofcode2023.day03.schematic;
 import java.util.Objects;
 
 /**
- * Represents a symbol in the schematic puzzle.
+ * Represents a basic symbol in the schematic puzzle. This class provides the foundational
+ * representation for different types of symbols, identified by their position in the schematic.
  */
 public class Symbol extends SchematicToken {
 

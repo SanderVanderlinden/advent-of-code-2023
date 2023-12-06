@@ -1,5 +1,8 @@
 package com.sandervanderlinden.adventofcode2023.day03.util;
 
+import com.sandervanderlinden.adventofcode2023.day03.Day03Puzzle01Solver;
+import com.sandervanderlinden.adventofcode2023.day03.Day03PuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Symbol;
@@ -7,7 +10,10 @@ import com.sandervanderlinden.adventofcode2023.day03.schematic.Symbol;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class TestUtil {
+
+    public static Day03PuzzleSolver solver = new Day03Puzzle01Solver();
 
 
     public static Set<SchematicToken> createEmptySchematicTokenSet() {
@@ -17,6 +23,7 @@ public class TestUtil {
     public static String lineContainingSymbols() {
         return "*......+.....;";
     }
+
 
     public static Set<SchematicToken> createSetForLineContainingSymbols() {
         Set<SchematicToken> tokens = new HashSet<>();
@@ -100,5 +107,30 @@ public class TestUtil {
 
     public static Number createMultipleDigitsNumberWithAdjacentTokenOnTheSameIndex() {
         return new Number(24, 5875);
+    }
+
+    public static Set<SchematicToken> createSetWithSomeGearSymbols() {
+        return solver.convertLineToSchematicTokens(".7*..*2..%3..5*11......13*17.......");
+    }
+
+
+    public static String lineContainingGears() {
+        return "..2*7..2/..3*..%4.*6.";
+    }
+
+    public static Set<SchematicToken> createSetForLineContainingGears() {
+        Set<SchematicToken> tokens = new HashSet<>();
+        tokens.add(new Number(2, 2));
+        tokens.add(new GearSymbol(3));
+        tokens.add(new Number(4, 7));
+        tokens.add(new Number(7, 2));
+        tokens.add(new Symbol(8));
+        tokens.add(new Number(11, 3));
+        tokens.add(new GearSymbol(12));
+        tokens.add(new Symbol(15));
+        tokens.add(new Number(16, 4));
+        tokens.add(new GearSymbol(18));
+        tokens.add(new Number(19, 6));
+        return tokens;
     }
 }

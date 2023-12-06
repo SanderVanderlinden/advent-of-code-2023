@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Abstract base class for testing Day 1 puzzle solvers.
  * Defines common test cases and requires subclasses to provide the specific solver implementation.
  */
-public abstract class AbstractDay01SolverTest {
+public abstract class Day01PuzzleSolverTest {
 
     protected abstract Day01PuzzleSolver getSolver();
     Day01PuzzleSolver solver = getSolver();
