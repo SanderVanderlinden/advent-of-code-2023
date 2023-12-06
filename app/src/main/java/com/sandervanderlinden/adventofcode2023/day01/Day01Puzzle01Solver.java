@@ -1,7 +1,7 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
-import com.sandervanderlinden.adventofcode2023.utils.DigitExtractionUtility;
+import com.sandervanderlinden.adventofcode2023.util.DigitExtractionUtility;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

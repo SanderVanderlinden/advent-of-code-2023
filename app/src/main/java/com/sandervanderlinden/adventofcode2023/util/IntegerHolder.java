@@ -1,4 +1,4 @@
-package com.sandervanderlinden.adventofcode2023.utils;
+package com.sandervanderlinden.adventofcode2023.util;
 
 public class IntegerHolder {
     private int value;

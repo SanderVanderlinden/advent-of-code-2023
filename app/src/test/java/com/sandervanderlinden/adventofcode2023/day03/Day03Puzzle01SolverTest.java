@@ -2,7 +2,7 @@ package com.sandervanderlinden.adventofcode2023.day03;
 
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
+import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

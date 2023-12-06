@@ -1,7 +1,7 @@
 package com.sandervanderlinden.adventofcode2023.day04;
 
 
-import com.sandervanderlinden.adventofcode2023.utils.IntegerHolder;
+import com.sandervanderlinden.adventofcode2023.util.IntegerHolder;
 
 import java.util.LinkedList;
 import java.util.logging.Level;

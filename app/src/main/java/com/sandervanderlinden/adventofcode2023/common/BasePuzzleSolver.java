@@ -1,6 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.common;
 
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
+import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 
 /**
  * Defines the basic structure and functionality for puzzle solvers in Advent of Code 2023.

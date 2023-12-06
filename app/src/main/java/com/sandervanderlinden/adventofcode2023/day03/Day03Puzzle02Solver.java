@@ -4,7 +4,7 @@ package com.sandervanderlinden.adventofcode2023.day03;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
+import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 
 import java.util.HashSet;
 import java.util.Set;
