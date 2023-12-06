@@ -62,9 +62,13 @@ public class Day03Puzzle02Solver extends Day03PuzzleSolver {
     }
 
     private void checkForGears(Set<SchematicToken> tokensInPreviousLine, Set<SchematicToken> tokensInCurrentLine) {
-        processTokens(tokensInCurrentLine, tokensInCurrentLine);
+        processTokens(tokensInCurrentLine);
         processTokens(tokensInPreviousLine, tokensInCurrentLine);
         processTokens(tokensInCurrentLine, tokensInPreviousLine);
+    }
+
+    public void processTokens(Set<SchematicToken> tokens) {
+        processTokens(tokens, tokens);
     }
 
     private void processTokens(Set<SchematicToken> sourceTokens, Set<SchematicToken> targetTokens) {

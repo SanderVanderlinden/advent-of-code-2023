@@ -38,7 +38,8 @@ public class GearSymbol extends Symbol {
      * Determines if this symbol represents a gear based on its associated part numbers.
      *
      * @return true if the symbol represents a gear, false otherwise.
-     */public boolean isGear() {
+     */
+    public boolean isGear() {
         return partNumbers.size() == 2;
     }
 
@@ -46,14 +47,21 @@ public class GearSymbol extends Symbol {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GearSymbol that)) return false;
-        if (!super.equals(o)) return false;
-        return partNumbers.equals(that.partNumbers);
+        if (!(o instanceof GearSymbol)) return false;
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), partNumbers);
+        return Objects.hash(super.hashCode());
+    }
+
+    @Override
+    public String toString() {
+        return "GearSymbol{" +
+                "partNumbers=" + partNumbers +
+                ", positionIndex=" + positionIndex +
+                '}';
     }
 
     /**

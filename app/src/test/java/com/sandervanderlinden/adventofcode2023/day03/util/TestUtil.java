@@ -1,7 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day03.util;
 
-import com.sandervanderlinden.adventofcode2023.day03.Day03Puzzle01Solver;
-import com.sandervanderlinden.adventofcode2023.day03.Day03PuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.day03.Day03Puzzle02Solver;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 public class TestUtil {
 
-    public static Day03PuzzleSolver solver = new Day03Puzzle01Solver();
+    public static Day03Puzzle02Solver solver = new Day03Puzzle02Solver();
 
 
     public static Set<SchematicToken> createEmptySchematicTokenSet() {
@@ -27,7 +26,7 @@ public class TestUtil {
 
     public static Set<SchematicToken> createSetForLineContainingSymbols() {
         Set<SchematicToken> tokens = new HashSet<>();
-        tokens.add(new Symbol(0));
+        tokens.add(new GearSymbol(0));
         tokens.add(new Symbol(7));
         tokens.add(new Symbol(13));
         return tokens;
@@ -66,12 +65,12 @@ public class TestUtil {
         tokens.add(createMultipleDigitsNumberWithNoAdjacentTokens());
         tokens.add(new Symbol(7));
         tokens.add(createMultipleDigitsWithAdjacentTokenToTheLeft());
-        tokens.add(new Symbol(13));
+        tokens.add(new GearSymbol(13));
         tokens.add(createSingleDigitNumberWithAdjacentTokenToTheLeft());
         tokens.add(createSingleDigitNumberWithAdjacentTokenToTheRight());
         tokens.add(new Symbol(19));
         tokens.add(createSingleDigitNumberWithNoAdjacentTokens());
-        tokens.add(new Symbol(25));
+        tokens.add(new GearSymbol(25));
         tokens.add(createMultipleDigitsWithAdjacentTokenToTheRight());
         tokens.add(new Symbol(31));
         return tokens;
@@ -110,7 +109,9 @@ public class TestUtil {
     }
 
     public static Set<SchematicToken> createSetWithSomeGearSymbols() {
-        return solver.convertLineToSchematicTokens(".7*..*2..%3..5*11......13*17.......");
+        var tokens = solver.convertLineToSchematicTokens(".7*..*2..%3..5*11......13*17.......");
+        solver.processTokens(tokens);
+        return tokens;
     }
 
 
@@ -131,6 +132,7 @@ public class TestUtil {
         tokens.add(new Number(16, 4));
         tokens.add(new GearSymbol(18));
         tokens.add(new Number(19, 6));
+        solver.processTokens(tokens);
         return tokens;
     }
 }

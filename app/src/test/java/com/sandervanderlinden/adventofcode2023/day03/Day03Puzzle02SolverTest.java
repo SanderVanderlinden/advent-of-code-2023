@@ -1,6 +1,5 @@
 package com.sandervanderlinden.adventofcode2023.day03;
 
-import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
 import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import java.util.stream.Stream;
 
 import static com.sandervanderlinden.adventofcode2023.day03.util.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test class for Day03Puzzle02Solver.
@@ -21,11 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Day03Puzzle02SolverTest {
 
     Day03Puzzle02Solver solver = new Day03Puzzle02Solver();
-
-    @Test
-    void testConvertLineToSchematicTokens() {
-        assertEquals(createSetForLineContainingGears(), solver.convertLineToSchematicTokens(lineContainingGears()));
-    }
 
     static Stream<Arguments> testSumGearRatiosArguments() {
         return Stream.of(
@@ -38,20 +33,24 @@ class Day03Puzzle02SolverTest {
         );
     }
 
+    @Test
+    void testConvertLineToSchematicTokens() {
+        assertEquals(createSetForLineContainingGears(), solver.convertLineToSchematicTokens(lineContainingGears()));
+    }
 
     @Test
     void testConvertLineToSchematicTokensWithSchematicTokens() {
-        Set<SchematicToken> tokens = solver.convertLineToSchematicTokens(lineContainingGears());
+        Set<SchematicToken> expected = createSetForLineContainingGears();
 
-        GearSymbol gearSymbol = tokens.stream()
-                .filter(token -> token instanceof GearSymbol && token.getPositionIndex() == 3)
-                .map(token -> (GearSymbol) token)
-                .findFirst()
-                .orElseThrow(() -> new AssertionError("GearSymbol not found at index 3"));
+        Set<SchematicToken> actual = solver.convertLineToSchematicTokens(lineContainingGears());
+        solver.processTokens(actual);
+        System.out.println(expected);
+        System.out.println(actual);
+        assertEquals(expected.size(), actual.size(), "Sets should be the same size");
 
-        int expectedRatio = 14; // The expected gear ratio at this index
-
-        assertEquals(expectedRatio, gearSymbol.getRatio(), "Gear ratio did not match the expected value.");
+        for (SchematicToken expectedToken : expected) {
+            assertTrue(actual.contains(expectedToken), "Actual set should contain: " + expectedToken);
+        }
     }
 
     @ParameterizedTest(name = "{0} should return {1}")

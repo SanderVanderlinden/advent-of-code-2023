@@ -13,6 +13,7 @@ class GearSymbolTest {
     @Test
     void getRatio() {
         Set<SchematicToken> tokens = solver.convertLineToSchematicTokens(lineContainingGears());
+        solver.processTokens(tokens);
 
         GearSymbol gearSymbol = tokens.stream()
                 .filter(token -> token instanceof GearSymbol && token.getPositionIndex() == 3)

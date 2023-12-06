@@ -35,22 +35,22 @@ public class Number extends SchematicToken {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Number number)) return false;
-        return positionIndex == number.positionIndex && value == number.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(positionIndex, value);
-    }
-
-    @Override
     public String toString() {
         return "Number{positionIndex=" + getPositionIndex() + ", value=" + value + "}";
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Number number)) return false;
+        return getValue() == number.getValue() && number.positionIndex == positionIndex;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue(), positionIndex);
+    }
 
     // Common method to check if a token is adjacent
     private boolean isAdjacent(SchematicToken token) {
