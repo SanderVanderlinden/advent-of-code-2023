@@ -1,6 +1,7 @@
 package com.sandervanderlinden.adventofcode2023.day03;
 
 import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Symbol;
@@ -25,7 +26,7 @@ public abstract class Day03PuzzleSolver implements BasePuzzleSolver {
      * @param line The input line to be converted into tokens. It is a string that potentially
      *             contains numbers, symbols, and other characters.
      * @return A set of {@link SchematicToken} objects, each representing either a number or a symbol
-     *         found in the input line. The set includes all identified tokens from the line.
+     * found in the input line. The set includes all identified tokens from the line.
      */
     public Set<SchematicToken> convertLineToSchematicTokens(String line) {
         Set<SchematicToken> tokensInLine = new HashSet<>();
@@ -43,7 +44,12 @@ public abstract class Day03PuzzleSolver implements BasePuzzleSolver {
             }
             else {
                 if (c != '.') {
-                    tokensInLine.add(new Symbol(i));
+                    if (c == '*') {
+                        tokensInLine.add(new GearSymbol(i));
+                    }
+                    else {
+                        tokensInLine.add(new Symbol(i));
+                    }
                 }
                 if (!currentNumber.isEmpty()) {
                     tokensInLine.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));

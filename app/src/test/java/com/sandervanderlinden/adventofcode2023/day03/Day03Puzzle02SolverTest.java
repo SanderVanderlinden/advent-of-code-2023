@@ -2,6 +2,7 @@ package com.sandervanderlinden.adventofcode2023.day03;
 
 import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
+import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -57,6 +58,13 @@ class Day03Puzzle02SolverTest {
     @MethodSource("testSumGearRatiosArguments")
     void testSumGearRatios(Set<SchematicToken> schematicTokens, int expected) {
         assertEquals(expected, solver.sumGearRatios(schematicTokens));
+    }
+
+    @Test
+    void testSolve() {
+        int expected = 467835;
+        String filepath = "day03/day03_test_input_02.txt";
+        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::processLine));
     }
 
 }
