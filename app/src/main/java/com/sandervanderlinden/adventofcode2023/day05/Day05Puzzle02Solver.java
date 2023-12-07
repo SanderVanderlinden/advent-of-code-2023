@@ -13,8 +13,6 @@ public class Day05Puzzle02Solver extends Day05PuzzleSolver {
     private static final Logger logger = Logger.getLogger(Day05Puzzle02Solver.class.getName());
 
 
-
-
     /**
      * The main method that initializes the solver, processes the input file,
      * and logs the total sum calculated by the solver.
@@ -28,16 +26,11 @@ public class Day05Puzzle02Solver extends Day05PuzzleSolver {
     }
 
     @Override
-    public void initializeSolver() {
+    void createSeedSet(String line) {
+        //todo implement
+//        currentSet = extractNumbersAsStream(line)
+//                .collect(toSet());
+//        but then, startrange, endrange, startrange, endrange, ...
     }
 
-    @Override
-    public void processLine(String line) {
-
-    }
-
-    @Override
-    public Object finalizeSolver() {
-        return null;
-    }
 }

@@ -1,26 +1,21 @@
+
 # [Day 5: If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5)
 
 ## --- Part One ---
 
 ### Problem Description
 
-You've reached the gardener at Island Island and are tasked with assisting in food production. The Island Island Almanac
-lists seeds, soils, fertilizers, water, light, temperature, humidity, and locations, all identified by numbers. Each
-category's numbers are mapped to the next category's numbers, showing what combinations to use for optimal growth.
+You're assisting a gardener at Island Island with their food production problem. The Island Island Almanac contains complex mappings of seeds to soils, fertilizers, water, light, temperature, humidity, and locations. Each item is identified by a number, but numbers are reused across categories.
 
 ### Example
 
-The almanac lists seeds and maps for converting numbers from one category to the next. For instance, the seed-to-soil
-map shows which soil number corresponds to each seed number. The map lines contain three numbers: destination range
-start, source range start, and range length, indicating how to convert a range of source numbers to destination numbers.
+- Seeds: 79 14 55 13
+- Seed-to-soil map:
+  - 50 98 2
+  - 52 50 48
+- [Continued with soil-to-fertilizer map, fertilizer-to-water map, etc.]
 
-- seeds: 79 14 55 13
-- seed-to-soil map:
-    - 50 98 2
-    - 52 50 48
-
-The task is to find the lowest location number that corresponds to any of the initial seed numbers by converting each
-seed number through the categories using the maps.
+Maps convert numbers from a source category to a destination category. Your task is to find the lowest location number corresponding to any initial seed number.
 
 ### Task
 
@@ -28,7 +23,22 @@ Determine the lowest location number that corresponds to any of the initial seed
 
 ---
 
-[Placeholder for Part Two - Once details are provided, this section can be updated accordingly.]
+## --- Part Two ---
+
+### Problem Description
+
+The initial 'seeds:' line in the almanac describes ranges of seed numbers, not individual seeds. Each pair of values in this line represents the start of a range and the length of the range.
+
+### Example
+
+- Seeds: 79 14 55 13
+  - This describes two ranges: 79-92 and 55-67.
+
+The task now is to consider all seed numbers in these ranges and find the lowest location number corresponding to any of these seeds.
+
+### Task
+
+Determine the lowest location number that corresponds to any of the initial seed numbers listed in the ranges on the first line of the almanac.
 
 ---
 

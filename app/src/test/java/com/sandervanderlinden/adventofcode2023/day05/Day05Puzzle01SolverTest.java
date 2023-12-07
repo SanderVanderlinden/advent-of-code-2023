@@ -20,7 +20,7 @@ class Day05Puzzle01SolverTest {
         String filepath = "day05/day05_test_input.txt";
         Object result = solver.solve(filepath);
 
-        assertTrue(result instanceof Long, "Result should be an integer");
+        assertTrue(result instanceof Long, "Result should be a long");
         long actual = (Long) result;
 
         assertEquals(expected, actual);
@@ -47,7 +47,7 @@ class Day05Puzzle01SolverTest {
         String secondLine = "52 50 48";
         solver.buildNextSet(NumberExtractionUtility.extractNumbersAsStream(firstLine).toList());
         solver.buildNextSet(NumberExtractionUtility.extractNumbersAsStream(secondLine).toList());
-        solver.updateMaps();
+        solver.transferToNextSet();
 
         Set<Long> expected = Set.of(13L, 14L, 57L, 81L);
 
@@ -66,7 +66,7 @@ class Day05Puzzle01SolverTest {
         String secondLine = "52 50 48";
         List<Long> secondLineList = NumberExtractionUtility.extractNumbersAsStream(secondLine).toList();
         solver.buildNextSet(secondLineList);
-        solver.updateMaps();
+        solver.transferToNextSet();
 
         Set<Long> expected = Set.of(81L, 14L, 57L, 13L);
 
@@ -84,7 +84,7 @@ class Day05Puzzle01SolverTest {
         String secondMapThirdLine = "39 0 15";
         List<Long> secondMapThirdLineList = NumberExtractionUtility.extractNumbersAsStream(secondMapThirdLine).toList();
         solver.buildNextSet(secondMapThirdLineList);
-        solver.updateMaps();
+        solver.transferToNextSet();
 
         Set<Long> expectedAfterSecondMapping = Set.of(81L, 53L, 57L, 52L);
 
