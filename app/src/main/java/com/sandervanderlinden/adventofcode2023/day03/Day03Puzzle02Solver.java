@@ -4,11 +4,9 @@ package com.sandervanderlinden.adventofcode2023.day03;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
-import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -28,23 +26,16 @@ public class Day03Puzzle02Solver extends Day03PuzzleSolver {
      * It reads the puzzle input from a file, processes each line, and calculates the final sum.
      */
     public static void main(String[] args) {
-        Day03Puzzle02Solver solver = new Day03Puzzle02Solver();
-        int sum = solver.solve("day03/day03_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Day03PuzzleSolver solver = new Day03Puzzle02Solver();
+        Object result = solver.solve("day03/day03_input.txt");
+        checkResult(result, logger);
     }
 
-    /**
-     * Processes the puzzle input file and sums up the gear ratios from the last line of tokens.
-     * This method extends the base solve method by adding an additional step of summing gear ratios.
-     *
-     * @param filePath The path to the input file containing the puzzle data.
-     * @return The total sum of the calculated values, including the gear ratios from the last line.
-     */
     @Override
-    public int solve(String filePath) {
-        return FileReaderUtil.processFile(filePath, this::processLine) + sumGearRatios(tokensInCurrentLine);
+    public Object finalizeSolver() {
+        return sum + sumGearRatios(tokensInCurrentLine);
     }
+
 
     /**
      * Processes a single line of input by converting it into schematic tokens.
@@ -54,7 +45,7 @@ public class Day03Puzzle02Solver extends Day03PuzzleSolver {
      * @return The sum of gear ratios for the processed line.
      */
     @Override
-    public int processLine(String line) {
+    public int extractValueFromLine(String line) {
         Set<SchematicToken> tokensInPreviousLine = tokensInCurrentLine;
         tokensInCurrentLine = convertLineToSchematicTokens(line);
         checkForGears(tokensInPreviousLine, tokensInCurrentLine);

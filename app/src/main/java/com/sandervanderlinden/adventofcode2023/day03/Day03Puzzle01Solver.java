@@ -7,7 +7,6 @@ import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -25,10 +24,9 @@ public class Day03Puzzle01Solver extends Day03PuzzleSolver {
      * Main method to execute the solver.
      */
     public static void main(String[] args) {
-        Day03Puzzle01Solver solver = new Day03Puzzle01Solver();
-        int sum = solver.solve("/day03/day03_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Day03PuzzleSolver solver = new Day03Puzzle01Solver();
+        Object result = solver.solve("day03/day03_input.txt");
+        checkResult(result, logger);
     }
 
     /**
@@ -40,7 +38,7 @@ public class Day03Puzzle01Solver extends Day03PuzzleSolver {
      * @return The sum of values as per the puzzle's logic.
      */
     @Override
-    public int processLine(String line) {
+    public int extractValueFromLine(String line) {
         Set<SchematicToken> tokensInPreviousLine = tokensInCurrentLine;
         tokensInCurrentLine = convertLineToSchematicTokens(line);
         int sumNumbersInCurrentLineSymbolsInCurrentLine = sumNumbersInCurrentLineSymbolsInCurrentLine(tokensInCurrentLine);

@@ -1,23 +1,23 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
-import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.common.LineSumPuzzleSolver;
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 
 /**
  * Abstract class representing a generic solver for Day 1 puzzles of Advent of Code 2023.
  * This class provides common methods to process input data and extract digits from strings.
  */
-public abstract class Day01PuzzleSolver implements BasePuzzleSolver {
+public abstract class Day01PuzzleSolver extends LineSumPuzzleSolver {
+
 
     /**
      * Extracts the first and last digit from a given line and combines them to form a two-digit number.
      * The first digit becomes the tens place, and the last digit becomes the ones place in the resulting number.
      *
      * @param line The string line from which digits are to be extracted.
-     * @return The two-digit number formed from the first and last digits of the line.
      */
     @Override
-    public int processLine(String line) {
+    public int extractValueFromLine(String line) {
         int firstNumber = extractFirstDigit(line);
         int lastNumber = extractLastDigit(line);
         return firstNumber * 10 + lastNumber;

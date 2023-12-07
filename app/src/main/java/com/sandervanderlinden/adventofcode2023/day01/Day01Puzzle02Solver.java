@@ -5,7 +5,6 @@ import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -27,7 +26,8 @@ public class Day01Puzzle02Solver extends Day01PuzzleSolver {
     /**
      * Initializes the maps used for digit conversion.
      * Populates singleDigits, textualNumbers, and reversedTextualNumbers with appropriate mappings.
-     */private static void initializeNumbers() {
+     */
+    private static void initializeNumbers() {
 
         String[] words = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         for (int i = 0; i < words.length; i++) {
@@ -42,11 +42,9 @@ public class Day01Puzzle02Solver extends Day01PuzzleSolver {
      */
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle02Solver();
-        int sum = solver.solve("day01/day01_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Object result = solver.solve("day01/day01_input.txt");
+        checkResult(result, logger);
     }
-
 
     @Override
     public int extractFirstDigit(String line) {

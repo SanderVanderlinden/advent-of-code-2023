@@ -5,6 +5,7 @@ import com.sandervanderlinden.adventofcode2023.day03.Day03Puzzle02Solver;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Day03PuzzleSolverTest {
 
@@ -13,14 +14,20 @@ class Day03PuzzleSolverTest {
 
     @Test
     void Day03Puzzle01Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
-        int actualSum = solver01.solve("day03/day03_input.txt");
+        Object result = solver01.solve("day03/day03_input.txt");
+        assertTrue(result instanceof Integer, "Result should be an integer");
+
+        int actual = (Integer) result;
         int expectedSum = 512794;
-        assertEquals(expectedSum, actualSum);
+        assertEquals(expectedSum, actual);
     }
     @Test
     void Day03Puzzle02Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
-        int actualSum = solver02.solve("day03/day03_input.txt");
+        Object result = solver02.solve("day03/day03_input.txt");
+        assertTrue(result instanceof Integer, "Result should be an integer");
+
+        int actual = (Integer) result;
         int expectedSum = 67779080;
-        assertEquals(expectedSum, actualSum);
+        assertEquals(expectedSum, actual);
     }
 }

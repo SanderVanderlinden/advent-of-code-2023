@@ -1,7 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day03;
 
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
-import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -63,7 +62,11 @@ class Day03Puzzle02SolverTest {
     void testSolve() {
         int expected = 467835;
         String filepath = "day03/day03_test_input_02.txt";
-        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::processLine));
-    }
 
+        Object result = solver.solve(filepath);
+        assertTrue(result instanceof Integer, "Result should be an integer");
+
+        int actual = (Integer) result;
+        assertEquals(expected, actual);
+    }
 }

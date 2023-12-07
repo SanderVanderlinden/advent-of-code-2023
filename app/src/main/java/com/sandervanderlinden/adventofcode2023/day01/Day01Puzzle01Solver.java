@@ -3,7 +3,6 @@ package com.sandervanderlinden.adventofcode2023.day01;
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import com.sandervanderlinden.adventofcode2023.util.DigitExtractionUtility;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -19,9 +18,8 @@ public class Day01Puzzle01Solver extends Day01PuzzleSolver {
      */
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle01Solver();
-        int sum = solver.solve("day01/day01_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Object result = solver.solve("day01/day01_input.txt");
+        checkResult(result, logger);
     }
 
     @Override

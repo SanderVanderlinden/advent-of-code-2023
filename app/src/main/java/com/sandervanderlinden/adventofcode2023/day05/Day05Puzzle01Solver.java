@@ -1,7 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day05;
 
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -22,13 +21,22 @@ public class Day05Puzzle01Solver extends Day05PuzzleSolver {
      */
     public static void main(String[] args) {
         Day05Puzzle01Solver solver = new Day05Puzzle01Solver();
-        int sum = solver.solve("day05/day05_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Object result = solver.solve("day05/day05_input.txt");
+        checkResult(result, logger);
     }
 
     @Override
-    public int processLine(String line) {
-        return 0;
+    public void initializeSolver() {
+
+    }
+
+    @Override
+    public void processLine(String line) {
+
+    }
+
+    @Override
+    public Object finalizeSolver() {
+        return null;
     }
 }

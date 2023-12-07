@@ -1,6 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day03;
 
-import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.common.LineSumPuzzleSolver;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.GearSymbol;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
@@ -15,7 +15,44 @@ import java.util.Set;
  * and processing schematic data. It provides utility methods to convert input lines
  * into sets of schematic tokens, supporting the creation of solutions for Day 3 challenges.
  */
-public abstract class Day03PuzzleSolver implements BasePuzzleSolver {
+public abstract class Day03PuzzleSolver extends LineSumPuzzleSolver {
+
+    /**
+     * Handles non-digit characters in the input line, adding the appropriate symbol tokens
+     * to the set of schematic tokens. Also adds any accumulated number token before processing
+     * the symbol.
+     *
+     * @param tokens              The set of schematic tokens being constructed.
+     * @param currentNumber       The currently accumulated number, if any.
+     * @param numberPositionIndex The starting index of the current number in the input line.
+     * @param currentIndex        The index of the current non-digit character being processed.
+     * @param c                   The current non-digit character.
+     */
+    private static void handleNonDigitCharacter(Set<SchematicToken> tokens, StringBuilder currentNumber, int numberPositionIndex, int currentIndex, char c) {
+        if (c != '.') {
+            tokens.add(c == '*' ? new GearSymbol(currentIndex) : new Symbol(currentIndex));
+        }
+
+        if (currentNumber.length() > 0) {
+            tokens.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
+        }
+
+    }
+
+    /**
+     * Adds the last accumulated number token to the set of schematic tokens, if any.
+     * This method is called after the end of input line processing to ensure that any
+     * remaining number is not left out.
+     *
+     * @param tokensInLine        The set of schematic tokens being constructed.
+     * @param currentNumber       The currently accumulated number, if any.
+     * @param numberPositionIndex The starting index of the current number in the input line.
+     */
+    private static void addRemainingNumberToken(Set<SchematicToken> tokensInLine, StringBuilder currentNumber, int numberPositionIndex) {
+        if (currentNumber.length() > 0) {
+            tokensInLine.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
+        }
+    }
 
     /**
      * Converts a line of input text into a set of schematic tokens.
@@ -50,44 +87,6 @@ public abstract class Day03PuzzleSolver implements BasePuzzleSolver {
 
         return tokensInLine;
     }
-
-    /**
-     * Handles non-digit characters in the input line, adding the appropriate symbol tokens
-     * to the set of schematic tokens. Also adds any accumulated number token before processing
-     * the symbol.
-     *
-     * @param tokens The set of schematic tokens being constructed.
-     * @param currentNumber The currently accumulated number, if any.
-     * @param numberPositionIndex The starting index of the current number in the input line.
-     * @param currentIndex The index of the current non-digit character being processed.
-     * @param c The current non-digit character.
-     */
-    private static void handleNonDigitCharacter(Set<SchematicToken> tokens, StringBuilder currentNumber, int numberPositionIndex, int currentIndex, char c) {
-        if (c != '.') {
-            tokens.add(c == '*' ? new GearSymbol(currentIndex) : new Symbol(currentIndex));
-        }
-
-        if (currentNumber.length() > 0) {
-            tokens.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
-        }
-
-    }
-
-    /**
-     * Adds the last accumulated number token to the set of schematic tokens, if any.
-     * This method is called after the end of input line processing to ensure that any
-     * remaining number is not left out.
-     *
-     * @param tokensInLine The set of schematic tokens being constructed.
-     * @param currentNumber The currently accumulated number, if any.
-     * @param numberPositionIndex The starting index of the current number in the input line.
-     */
-    private static void addRemainingNumberToken(Set<SchematicToken> tokensInLine, StringBuilder currentNumber, int numberPositionIndex) {
-        if (currentNumber.length() > 0) {
-            tokensInLine.add(new Number(numberPositionIndex, Integer.parseInt(currentNumber.toString())));
-        }
-    }
-
 
 
 }
