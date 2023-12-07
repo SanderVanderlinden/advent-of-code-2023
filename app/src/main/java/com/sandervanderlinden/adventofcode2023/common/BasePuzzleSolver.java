@@ -8,7 +8,8 @@ public interface BasePuzzleSolver {
      * Initializes or sets up the puzzle solver with necessary data or state.
      * This method can be used to perform any pre-processing before the main solving logic.
      */
-    void initializeSolver();
+    default void initializeSolver() {
+    }
 
     /**
      * Processes a single line from the input file.

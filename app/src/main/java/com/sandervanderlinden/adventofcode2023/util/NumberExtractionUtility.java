@@ -4,13 +4,14 @@ import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
-public class DigitExtractionUtility {
+public class NumberExtractionUtility {
 
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
 
     // Private constructor to prevent instantiation
-    private DigitExtractionUtility() {
+    NumberExtractionUtility() {
     }
 
     /**
@@ -40,4 +41,10 @@ public class DigitExtractionUtility {
         String reversedLine = new StringBuilder(line).reverse().toString();
         return extractFirstDigit(reversedLine);
     }
-}
+
+    public static Stream<Long> extractNumbersAsStream(String text) {
+        return Pattern.compile("\\D+")
+                .splitAsStream(text)
+                .filter(str -> !str.isEmpty())
+                .map(Long::parseLong);
+    }}

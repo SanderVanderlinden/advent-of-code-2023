@@ -13,7 +13,7 @@ class Day05Puzzle02SolverTest {
     @Test
     void testSolve() {
         int expected = 0;
-        String filepath = "day04/day04_test_input.txt";
+        String filepath = "day05/day05_test_input.txt";
         Object result = solver.solve(filepath);
 
         assertTrue(result instanceof Integer, "Result should be an integer");

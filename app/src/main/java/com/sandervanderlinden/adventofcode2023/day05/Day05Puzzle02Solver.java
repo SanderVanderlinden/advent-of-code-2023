@@ -10,7 +10,9 @@ import java.util.logging.Logger;
  */
 public class Day05Puzzle02Solver extends Day05PuzzleSolver {
 
-    private static final Logger logger = Logger.getLogger(Day05Puzzle01Solver.class.getName());
+    private static final Logger logger = Logger.getLogger(Day05Puzzle02Solver.class.getName());
+
+
 
 
     /**
@@ -27,7 +29,6 @@ public class Day05Puzzle02Solver extends Day05PuzzleSolver {
 
     @Override
     public void initializeSolver() {
-
     }
 
     @Override

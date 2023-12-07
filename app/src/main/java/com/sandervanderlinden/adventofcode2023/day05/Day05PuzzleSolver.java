@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 public abstract class Day05PuzzleSolver implements BasePuzzleSolver {
 
     static void checkResult(Object result, Logger logger) {
-        if (result instanceof Integer locationNumber) {
+        if (result instanceof Long locationNumber) {
             String message = String.format("Lowest location number: %d", locationNumber);
             logger.info(message);
         }
         else {
-            String message = "Unexpected result type:" + result;
+            String message = "Unexpected result type:" + result.getClass();
             logger.warning(message);
         }
     }

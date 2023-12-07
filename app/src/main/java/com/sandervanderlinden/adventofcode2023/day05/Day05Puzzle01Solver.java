@@ -1,7 +1,11 @@
 package com.sandervanderlinden.adventofcode2023.day05;
 
 
+import java.util.*;
 import java.util.logging.Logger;
+
+import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsStream;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * This class solves the first puzzle of Day 4 in the Advent of Code 2023.
@@ -11,6 +15,9 @@ import java.util.logging.Logger;
 public class Day05Puzzle01Solver extends Day05PuzzleSolver {
 
     private static final Logger logger = Logger.getLogger(Day05Puzzle01Solver.class.getName());
+    Set<Long> currentSet;
+    Map<Long, Long> currentSetToNextSet;
+    Set<Long> nextSet;
 
 
     /**
@@ -27,16 +34,60 @@ public class Day05Puzzle01Solver extends Day05PuzzleSolver {
 
     @Override
     public void initializeSolver() {
-
+        nextSet = new HashSet<>();
+        currentSetToNextSet = new HashMap<>();
     }
 
     @Override
     public void processLine(String line) {
+if (line.startsWith("seeds:")) {
+            createSeedSet(line);
+        }
+        else if (line.endsWith("map:")) {
+            updateMaps();
+        }
+        else {
+            buildNextSet(extractNumbersAsStream(line).toList());
+        }
+    }
 
+    void updateMaps() {
+        currentSet.forEach(item -> {
+            if (!currentSetToNextSet.containsKey(item)) {
+                currentSetToNextSet.put(item, item);
+            }
+        });
+        currentSet = new HashSet<>(currentSetToNextSet.values());
+
+        currentSetToNextSet = new HashMap<>();
+        nextSet = new HashSet<>();
+    }
+
+    void buildNextSet(List<Long> integers) {
+        long destinationRangeStart = integers.get(0);
+        long sourceRangeStart = integers.get(1);
+        long rangeLength = integers.get(2);
+
+        for (Long item : currentSet) {
+            if (item >= sourceRangeStart && item < sourceRangeStart + rangeLength){
+                currentSetToNextSet.put(item, item + destinationRangeStart - sourceRangeStart);
+            }
+        }
+    }
+
+    void createSeedSet(String line) {
+        currentSet = extractNumbersAsStream(line)
+                .collect(toSet());
     }
 
     @Override
     public Object finalizeSolver() {
-        return null;
+        updateMaps();
+        Optional<Long> smallest = currentSet
+                .stream()
+                .min(Long::compare);
+
+        return smallest.orElse(null);
     }
+
 }
