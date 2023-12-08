@@ -1,6 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day04;
 
-import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.common.LineSumPuzzleSolver;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Abstract class for Day 4 puzzles in Advent of Code 2023.-
  */
-public abstract class Day04PuzzleSolver implements BasePuzzleSolver {
+public abstract class Day04PuzzleSolver extends LineSumPuzzleSolver {
 
 
     /**
@@ -18,7 +18,7 @@ public abstract class Day04PuzzleSolver implements BasePuzzleSolver {
      *
      * @param line A single line from the input file.
      * @return An array of two strings, where the first element is the string of winning numbers
-     *         and the second is the string of own numbers.
+     * and the second is the string of own numbers.
      */
     String[] parseLine(String line) {
         return line.substring(line.indexOf(":") + 1).trim().split("\\s*\\|\\s*");

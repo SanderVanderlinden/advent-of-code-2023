@@ -2,7 +2,6 @@ package com.sandervanderlinden.adventofcode2023.day03;
 
 import com.sandervanderlinden.adventofcode2023.day03.schematic.Number;
 import com.sandervanderlinden.adventofcode2023.day03.schematic.SchematicToken;
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,6 +12,7 @@ import java.util.stream.Stream;
 
 import static com.sandervanderlinden.adventofcode2023.day03.util.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test class for Day03Puzzle01Solver.
@@ -77,14 +77,26 @@ class Day03Puzzle01SolverTest {
     void testSolve() {
         int expected = 110101;
         String filepath = "day03/day03_test_input_01.txt";
-        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::processLine));
+        Object result = solver.solve(filepath);
+
+        // Verify that the result is an Integer before casting
+        assertTrue(result instanceof Integer, "Result should be an integer");
+        int actual = (Integer) result;
+
+        assertEquals(expected, actual);
     }
 
     @Test
     void testSolve02() {
         int expected = 4361;
         String filepath = "day03/day03_test_input_02.txt";
-        assertEquals(expected, FileReaderUtil.processFile(filepath, solver::processLine));
+        Object result = solver.solve(filepath);
+
+        // Verify that the result is an Integer before casting
+        assertTrue(result instanceof Integer, "Result should be an integer");
+        int actual = (Integer) result;
+
+        assertEquals(expected, actual);
     }
 
 }

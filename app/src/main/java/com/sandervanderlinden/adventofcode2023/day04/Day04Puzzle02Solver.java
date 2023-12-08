@@ -1,10 +1,9 @@
 package com.sandervanderlinden.adventofcode2023.day04;
 
 
-import com.sandervanderlinden.adventofcode2023.utils.IntegerHolder;
+import com.sandervanderlinden.adventofcode2023.util.IntegerHolder;
 
 import java.util.LinkedList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -24,10 +23,9 @@ public class Day04Puzzle02Solver extends Day04PuzzleSolver {
      * @param args The command-line arguments (not used in this implementation).
      */
     public static void main(String[] args) {
-        Day04Puzzle02Solver solver = new Day04Puzzle02Solver();
-        int sum = solver.solve("day04/day04_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Day04PuzzleSolver solver = new Day04Puzzle01Solver();
+        Object result = solver.solve("day04/day04_input.txt");
+        checkResult(result, logger);
     }
 
     /**
@@ -39,7 +37,7 @@ public class Day04Puzzle02Solver extends Day04PuzzleSolver {
      * @return The calculated value based on the line's data.
      */
     @Override
-    public int processLine(String line) {
+    public int extractValueFromLine(String line) {
         ensureBonusCardsListInitialized();
 
         int amountOfCards = 1 + amountOfBonusCards.poll().getValue();

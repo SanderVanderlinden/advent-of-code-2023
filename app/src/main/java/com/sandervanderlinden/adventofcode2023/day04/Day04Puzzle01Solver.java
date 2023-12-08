@@ -1,7 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day04;
 
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -21,10 +20,9 @@ public class Day04Puzzle01Solver extends Day04PuzzleSolver {
      * @param args The command-line arguments (not used in this implementation).
      */
     public static void main(String[] args) {
-        Day04Puzzle01Solver solver = new Day04Puzzle01Solver();
-        int sum = solver.solve("day04/day04_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Day04PuzzleSolver solver = new Day04Puzzle01Solver();
+        Object result = solver.solve("day04/day04_input.txt");
+        checkResult(result, logger);
     }
 
     /**
@@ -36,8 +34,9 @@ public class Day04Puzzle01Solver extends Day04PuzzleSolver {
      * @return The calculated value based on the line's data.
      */
     @Override
-    public int processLine(String line) {
+    public int extractValueFromLine(String line) {
         int amountOfMatchingNumbers = getAmountOfMatchingNumbers(line);
         return (int) Math.pow(2, amountOfMatchingNumbers - 1.0);
     }
+
 }

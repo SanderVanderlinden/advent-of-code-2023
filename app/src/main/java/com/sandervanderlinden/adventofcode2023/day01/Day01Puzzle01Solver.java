@@ -1,9 +1,8 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
-import com.sandervanderlinden.adventofcode2023.utils.DigitExtractionUtility;
+import com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -19,19 +18,18 @@ public class Day01Puzzle01Solver extends Day01PuzzleSolver {
      */
     public static void main(String[] args) {
         Day01PuzzleSolver solver = new Day01Puzzle01Solver();
-        int sum = solver.solve("day01/day01_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Object result = solver.solve("day01/day01_input.txt");
+        checkResult(result, logger);
     }
 
     @Override
     public int extractFirstDigit(String line) throws NoDigitFoundException {
-        return DigitExtractionUtility.extractFirstDigit(line);
+        return NumberExtractionUtility.extractFirstDigit(line);
     }
 
     @Override
     public int extractLastDigit(String line) {
-        return DigitExtractionUtility.extractLastDigit(line);
+        return NumberExtractionUtility.extractLastDigit(line);
     }
 
 

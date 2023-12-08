@@ -24,10 +24,10 @@ public abstract class Day01PuzzleSolverTest {
 
 
     @Test
-    void processLine_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
+    void extractValueFromLine_whenTypicalLine_shouldReturnSumOfFirstAndLastDigit() {
         String line = linePresentingLettersAndDigits_FirstDigitIs1_LastDigitIs2();
         int expected = 12;
-        assertEquals(expected, solver.processLine(line));
+        assertEquals(expected, solver.extractValueFromLine(line));
     }
 
     @ParameterizedTest(name = "{0} should return {1}")

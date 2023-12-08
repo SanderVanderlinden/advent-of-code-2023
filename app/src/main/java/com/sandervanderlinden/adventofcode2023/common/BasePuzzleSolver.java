@@ -1,30 +1,42 @@
 package com.sandervanderlinden.adventofcode2023.common;
 
-import com.sandervanderlinden.adventofcode2023.utils.FileReaderUtil;
+import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 
-/**
- * Defines the basic structure and functionality for puzzle solvers in Advent of Code 2023.
- * It provides a common interface for all puzzle-solving classes.
- */
 public interface BasePuzzleSolver {
 
     /**
-     * Abstract method to process a line from the input file.
+     * Initializes or sets up the puzzle solver with necessary data or state.
+     * This method can be used to perform any pre-processing before the main solving logic.
+     */
+    default void initializeSolver() {
+    }
+
+    /**
+     * Processes a single line from the input file.
      * Each solver class will implement this method based on its specific logic.
      *
      * @param line A string representing a line from the puzzle input.
-     * @return An integer value processed from the line.
      */
-    int processLine(String line);
+    void processLine(String line);
 
     /**
-     * Processes the input file and aggregates results from each line.
+     * Executes the main logic of the puzzle solver.
+     * This method can be overridden to implement the puzzle-specific solving strategy.
      *
      * @param filePath The path to the input file.
-     * @return The aggregated result of processing all lines in the file.
+     * @return The result of the puzzle solving process.
      */
-    default int solve(String filePath) {
-        return FileReaderUtil.processFile(filePath, this::processLine);
+    default Object solve(String filePath) {
+        initializeSolver();
+        FileReaderUtil.processFile(filePath, this::processLine);
+        return finalizeSolver();
     }
-}
 
+    /**
+     * Finalizes the solving process and returns the result.
+     * This method can be used to perform any post-processing or to return the final result.
+     *
+     * @return The final result of the puzzle solving process.
+     */
+    Object finalizeSolver();
+}

@@ -1,6 +1,6 @@
 package com.sandervanderlinden.adventofcode2023.day02;
 
-import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
+import com.sandervanderlinden.adventofcode2023.common.LineSumPuzzleSolver;
 import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.CubeReveal;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
@@ -14,7 +14,7 @@ import java.util.Set;
  * Abstract class representing a solver for Day 2 puzzles of Advent of Code 2023.
  * This class provides common methods to process input data related to games and cubes.
  */
-public abstract class Day02PuzzleSolver implements BasePuzzleSolver {
+public abstract class Day02PuzzleSolver extends LineSumPuzzleSolver {
 
     /**
      * Provides a map of the maximum number of cubes of each color available in the bag.

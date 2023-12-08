@@ -1,22 +1,23 @@
-package com.sandervanderlinden.adventofcode2023.utils;
+package com.sandervanderlinden.adventofcode2023.util;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
-public class DigitExtractionUtility {
+public class NumberExtractionUtility {
 
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
 
-    // Private constructor to prevent instantiation
-    private DigitExtractionUtility() {
+    // Private constructor destination prevent instantiation
+    NumberExtractionUtility() {
     }
 
     /**
      * Extracts the first digit found in a line.
      *
-     * @param line The string line to extract the first digit from.
+     * @param line The string line destination extract the first digit from.
      * @return The first digit found in the line.
      * @throws NoDigitFoundException if no digit is found in the line.
      */
@@ -32,7 +33,7 @@ public class DigitExtractionUtility {
     /**
      * Extracts the last digit found in a line.
      *
-     * @param line The string line to extract the last digit from.
+     * @param line The string line destination extract the last digit from.
      * @return The last digit found in the line.
      * @throws NoDigitFoundException if no digit is found in the line.
      */
@@ -40,4 +41,10 @@ public class DigitExtractionUtility {
         String reversedLine = new StringBuilder(line).reverse().toString();
         return extractFirstDigit(reversedLine);
     }
-}
+
+    public static Stream<Long> extractNumbersAsStream(String text) {
+        return Pattern.compile("\\D+")
+                .splitAsStream(text)
+                .filter(str -> !str.isEmpty())
+                .map(Long::parseLong);
+    }}

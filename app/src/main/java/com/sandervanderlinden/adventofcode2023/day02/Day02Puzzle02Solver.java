@@ -3,7 +3,6 @@ package com.sandervanderlinden.adventofcode2023.day02;
 import com.sandervanderlinden.adventofcode2023.day02.game.Color;
 import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
@@ -21,10 +20,9 @@ public class Day02Puzzle02Solver extends Day02PuzzleSolver {
      * Processes the input file and calculates the total sum of the IDs of possible games.
      */
     public static void main(String[] args) {
-        Day02Puzzle02Solver solver = new Day02Puzzle02Solver();
-        int sum = solver.solve("day02/day02_input.txt");
-        String message = String.format("Total sum: %d", sum);
-        logger.log(Level.INFO, message);
+        Day02PuzzleSolver solver = new Day02Puzzle02Solver();
+        Object result = solver.solve("day02/day02_input.txt");
+        checkResult(result, logger);
     }
 
 
@@ -34,7 +32,7 @@ public class Day02Puzzle02Solver extends Day02PuzzleSolver {
      * @param line A string representing a line from the puzzle input.
      * @return The power value of the game.
      */
-    public int processLine(String line) {
+    public int extractValueFromLine(String line) {
         Game game = createGameFromLine(line);
 
         return Stream.of(Color.values())
