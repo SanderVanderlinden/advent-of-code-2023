@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Day05Puzzle02SolverTest {
 
-    private final Day05Puzzle01Solver solver = new Day05Puzzle01Solver();
+    private final Day05Puzzle02Solver solver = new Day05Puzzle02Solver();
 
 
     @Test

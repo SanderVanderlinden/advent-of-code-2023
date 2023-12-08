@@ -1,7 +1,11 @@
 package com.sandervanderlinden.adventofcode2023.day05;
 
 
+import java.util.LinkedList;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsStream;
 
 /**
  * This class solves the first puzzle of Day 4 in the Advent of Code 2023.
@@ -27,10 +31,18 @@ public class Day05Puzzle02Solver extends Day05PuzzleSolver {
 
     @Override
     void createSeedSet(String line) {
-        //todo implement
-//        currentSet = extractNumbersAsStream(line)
-//                .collect(toSet());
-//        but then, startrange, endrange, startrange, endrange, ...
+        LinkedList<Long> lineNumbers = extractNumbersAsStream(line)
+                .collect(Collectors.toCollection(LinkedList::new));
+        while (!lineNumbers.isEmpty()) {
+            System.out.println(lineNumbers);
+            long rangeStart = lineNumbers.poll();
+            long rangeLength = lineNumbers.poll();
+
+            for (long i = 0; i < rangeLength; i++) {
+                currentSet.add(rangeStart + i);
+            }
+        }
+
     }
 
 }
