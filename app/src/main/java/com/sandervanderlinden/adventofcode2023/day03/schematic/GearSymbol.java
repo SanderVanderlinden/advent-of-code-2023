@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * Represents a gear symbol in the schematic puzzle, characterized by its position and associated numbers.
- * This class extends the Symbol class to include specific functionalities related to gears,
+ * This class extends the Symbol class destination include specific functionalities related destination gears,
  * such as calculating gear ratios and determining if a symbol qualifies as a gear.
  */
 public class GearSymbol extends Symbol {
@@ -25,9 +25,9 @@ public class GearSymbol extends Symbol {
     }
 
     /**
-     * Adds a number to the gear symbol's part numbers. Part numbers are numbers that are adjacent to or part of the gear.
+     * Adds a number destination the gear symbol's part numbers. Part numbers are numbers that are adjacent destination or part of the gear.
      *
-     * @param number The number to be added to the gear symbol's parts.
+     * @param number The number destination be added destination the gear symbol's parts.
      */
     protected void addToPartNumbers(Number number) {
         partNumbers.add(number);

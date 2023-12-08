@@ -1,10 +1,10 @@
 package com.sandervanderlinden.adventofcode2023.day05;
 
+import com.sandervanderlinden.adventofcode2023.day05.resources.ResourceInterval;
 import com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,63 +31,48 @@ class Day05Puzzle01SolverTest {
     void testCreateSeedMap() {
         String exampleLine = "1366623789 166330978 138490835 1175000149 927454202 5492211";
 
-        solver.createSeedSet(exampleLine);
+        solver.initializeResourceState(exampleLine);
 
-        Set<Long> expected = Set.of(1366623789L, 166330978L, 138490835L, 1175000149L, 927454202L, 5492211L);
+        Deque<ResourceInterval> expected = new ArrayDeque<>();
+        expected.add(new ResourceInterval(1366623789L, 1L));
+        expected.add(new ResourceInterval(166330978L, 1L));
+        expected.add(new ResourceInterval(138490835L, 1L));
+        expected.add(new ResourceInterval(1175000149L, 1L));
+        expected.add(new ResourceInterval(927454202L, 1L));
+        expected.add(new ResourceInterval(5492211L, 1L));
 
-        assertEquals(expected, solver.currentSet, "The created seed map should match the expected map");
-    }
+        var actual = solver.currentResourceState.getIntervals();
+        assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
-    @Test
-    void testBuildNextSet() {
-        solver.initializeSolver();
-        solver.createSeedSet(("79 14 55 13"));
-
-        String firstLine = "50 98 2";
-        String secondLine = "52 50 48";
-        solver.buildNextSet(NumberExtractionUtility.extractNumbersAsStream(firstLine).toList());
-        solver.buildNextSet(NumberExtractionUtility.extractNumbersAsStream(secondLine).toList());
-        solver.transferToNextSet();
-
-        Set<Long> expected = Set.of(13L, 14L, 57L, 81L);
-
-        assertEquals(expected, solver.currentSet);
     }
 
     @Test
     void testMapSeedsValues() {
         solver.initializeSolver();
-        solver.createSeedSet("seeds: 79 14 55 13");
+        solver.initializeResourceState("seeds: 79 14 55 13");
 
-        String firstLine = "50 98 2";
-        List<Long> firstLineList = NumberExtractionUtility.extractNumbersAsStream(firstLine).toList();
-        solver.buildNextSet(firstLineList);
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("50 98 2").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("52 50 48").toList());
+        solver.prepareNextResourceState();
 
-        String secondLine = "52 50 48";
-        List<Long> secondLineList = NumberExtractionUtility.extractNumbersAsStream(secondLine).toList();
-        solver.buildNextSet(secondLineList);
-        solver.transferToNextSet();
+        Deque<ResourceInterval> expected = new ArrayDeque<>();
+        expected.add(new ResourceInterval(81L, 1L));
+        expected.add(new ResourceInterval(14L, 1L));
+        expected.add(new ResourceInterval(57L, 1L));
+        expected.add(new ResourceInterval(13L, 1L));
+        var actual = solver.currentResourceState.getIntervals();
+        assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
-        Set<Long> expected = Set.of(81L, 14L, 57L, 13L);
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("0 15 37").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("37 52 2").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("39 0 15").toList());
+        solver.prepareNextResourceState();
 
-        assertEquals(expected, solver.currentSet);
-
-
-        String secondMapFirstLine = "0 15 37";
-        List<Long> secondMapFirstLineList = NumberExtractionUtility.extractNumbersAsStream(secondMapFirstLine).toList();
-        solver.buildNextSet(secondMapFirstLineList);
-
-        String secondMapSecondLine = "37 52 2";
-        List<Long> secondMapSecondLineList = NumberExtractionUtility.extractNumbersAsStream(secondMapSecondLine).toList();
-        solver.buildNextSet(secondMapSecondLineList);
-
-        String secondMapThirdLine = "39 0 15";
-        List<Long> secondMapThirdLineList = NumberExtractionUtility.extractNumbersAsStream(secondMapThirdLine).toList();
-        solver.buildNextSet(secondMapThirdLineList);
-        solver.transferToNextSet();
-
-        Set<Long> expectedAfterSecondMapping = Set.of(81L, 53L, 57L, 52L);
-
-        assertEquals(expectedAfterSecondMapping, solver.currentSet);
-    }
+        expected = new ArrayDeque<>();
+        expected.add(new ResourceInterval(81L, 1L));
+        expected.add(new ResourceInterval(53L, 1L));
+        expected.add(new ResourceInterval(57L, 1L));
+        expected.add(new ResourceInterval(52L, 1L));
+        actual = solver.currentResourceState.getIntervals();
+        assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));    }
 }

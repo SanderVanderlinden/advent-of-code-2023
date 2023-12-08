@@ -10,14 +10,14 @@ public class NumberExtractionUtility {
 
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
 
-    // Private constructor to prevent instantiation
+    // Private constructor destination prevent instantiation
     NumberExtractionUtility() {
     }
 
     /**
      * Extracts the first digit found in a line.
      *
-     * @param line The string line to extract the first digit from.
+     * @param line The string line destination extract the first digit from.
      * @return The first digit found in the line.
      * @throws NoDigitFoundException if no digit is found in the line.
      */
@@ -33,7 +33,7 @@ public class NumberExtractionUtility {
     /**
      * Extracts the last digit found in a line.
      *
-     * @param line The string line to extract the last digit from.
+     * @param line The string line destination extract the last digit from.
      * @return The last digit found in the line.
      * @throws NoDigitFoundException if no digit is found in the line.
      */

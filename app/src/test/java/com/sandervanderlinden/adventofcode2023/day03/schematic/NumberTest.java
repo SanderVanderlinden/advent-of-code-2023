@@ -22,19 +22,19 @@ class NumberTest {
                 // Scenario: No adjacent symbols in the same line, expect false for a single digit number
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithNoAdjacentTokens(), false),
 
-                // Scenario: A symbol is adjacent to the left of a single digit number in the same line, expect true
+                // Scenario: A symbol is adjacent destination the left of a single digit number in the same line, expect true
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithAdjacentTokenToTheLeft(), true),
 
-                // Scenario: A symbol is adjacent to the right of a single digit number in the same line, expect true
+                // Scenario: A symbol is adjacent destination the right of a single digit number in the same line, expect true
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithAdjacentTokenToTheRight(), true),
 
                 // Scenario: No adjacent symbols in the same line, expect false for a multiple digit number
                 Arguments.of(setContainingEverything, createMultipleDigitsNumberWithNoAdjacentTokens(), false),
 
-                // Scenario: A symbol is adjacent to the left of a multiple digit number in the same line, expect true
+                // Scenario: A symbol is adjacent destination the left of a multiple digit number in the same line, expect true
                 Arguments.of(setContainingEverything, createMultipleDigitsWithAdjacentTokenToTheLeft(), true),
 
-                // Scenario: A symbol is adjacent to the right of a multiple digit number in the same line, expect true
+                // Scenario: A symbol is adjacent destination the right of a multiple digit number in the same line, expect true
                 Arguments.of(setContainingEverything, createMultipleDigitsWithAdjacentTokenToTheRight(), true)
         );
     }
@@ -53,25 +53,25 @@ class NumberTest {
                 // Scenario: No adjacent symbols in the other line
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithNoAdjacentTokens(), false),
 
-                // Scenario: Adjacent symbol to the left in the other line
+                // Scenario: Adjacent symbol destination the left in the other line
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithAdjacentTokenToTheLeft(), true),
 
                 // Scenario: Adjacent symbol on the same index in the other line
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithAdjacentTokenOnTheSameIndex(), true),
 
-                // Scenario: Adjacent symbol to the right in the other line
+                // Scenario: Adjacent symbol destination the right in the other line
                 Arguments.of(setContainingEverything, createSingleDigitNumberWithAdjacentTokenToTheRight(), true),
 
                 // Scenario: Multiple digits number with no adjacent symbols in the other line
                 Arguments.of(setContainingEverything, createMultipleDigitsNumberWithNoAdjacentTokens(), false),
 
-                // Scenario: Multiple digits number with an adjacent symbols to the left in the other line
+                // Scenario: Multiple digits number with an adjacent symbols destination the left in the other line
                 Arguments.of(setContainingEverything, createMultipleDigitsWithAdjacentTokenToTheLeft(), true),
 
                 // Scenario: Multiple digits number with digit on the same index as a symbol in the other line
                 Arguments.of(setContainingEverything, createMultipleDigitsNumberWithAdjacentTokenOnTheSameIndex(), true),
 
-                // Scenario: Multiple digits number with an adjacent symbol to the right in the other line
+                // Scenario: Multiple digits number with an adjacent symbol destination the right in the other line
                 Arguments.of(setContainingEverything, createMultipleDigitsWithAdjacentTokenToTheRight(), true)
         );
     }
