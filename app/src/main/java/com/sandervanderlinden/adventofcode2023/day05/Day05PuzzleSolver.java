@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsStream;
+import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsLongStream;
 
 /**
  * Abstract class for solving Day 5 puzzles in the Advent of Code 2023.
@@ -58,7 +58,7 @@ public abstract class Day05PuzzleSolver implements BasePuzzleSolver {
             prepareNextResourceState();
         }
         else {
-            addConversionRange(extractNumbersAsStream(line).toList());
+            addConversionRange(extractNumbersAsLongStream(line).toList());
         }
     }
 

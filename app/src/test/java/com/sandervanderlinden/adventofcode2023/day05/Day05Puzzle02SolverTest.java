@@ -50,8 +50,8 @@ class Day05Puzzle02SolverTest {
         solver.initializeResourceState("seeds: 79 14 55 13");
 
         // seed-to-soil map:
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("50 98 2").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("52 50 48").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("50 98 2").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("52 50 48").toList());
         solver.prepareNextResourceState();
 
         Deque<ResourceInterval> expected = new ArrayDeque<>();
@@ -61,9 +61,9 @@ class Day05Puzzle02SolverTest {
         assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
         // soil-to-fertilizer map:
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("0 15 37").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("37 52 2").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("39 0 15").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("0 15 37").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("37 52 2").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("39 0 15").toList());
         solver.prepareNextResourceState();
 
         expected = new ArrayDeque<>();
@@ -73,10 +73,10 @@ class Day05Puzzle02SolverTest {
         assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
         // fertilizer-to-water map:
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("49 53 8").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("0 11 42").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("42 0 7").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("57 7 4").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("49 53 8").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("0 11 42").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("42 0 7").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("57 7 4").toList());
         solver.prepareNextResourceState();
 
         expected = new ArrayDeque<>();
@@ -87,8 +87,8 @@ class Day05Puzzle02SolverTest {
         assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
         // water-to-light map:
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("88 18 7").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("18 25 70").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("88 18 7").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("18 25 70").toList());
         solver.prepareNextResourceState();
 
         expected = new ArrayDeque<>();
@@ -99,9 +99,9 @@ class Day05Puzzle02SolverTest {
         assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
         // light-to-temperature map:
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("45 77 23").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("81 45 19").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsStream("68 64 13").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("45 77 23").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("81 45 19").toList());
+        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("68 64 13").toList());
         solver.prepareNextResourceState();
 
         expected = new ArrayDeque<>();

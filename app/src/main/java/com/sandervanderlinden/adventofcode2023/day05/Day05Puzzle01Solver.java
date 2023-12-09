@@ -5,7 +5,7 @@ import com.sandervanderlinden.adventofcode2023.day05.resources.ResourceInterval;
 
 import java.util.logging.Logger;
 
-import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsStream;
+import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsLongStream;
 
 /**
  * This class solves the first puzzle of Day 4 in the Advent of Code 2023.
@@ -29,8 +29,7 @@ public class Day05Puzzle01Solver extends Day05PuzzleSolver {
     }
 
     void initializeResourceState(String line) {
-        extractNumbersAsStream(line)
-                .forEach(number -> currentResourceState.addInterval(new ResourceInterval(number, 1)));
+        extractNumbersAsLongStream(line).forEach(number -> currentResourceState.addInterval(new ResourceInterval(number, 1)));
 
     }
 
