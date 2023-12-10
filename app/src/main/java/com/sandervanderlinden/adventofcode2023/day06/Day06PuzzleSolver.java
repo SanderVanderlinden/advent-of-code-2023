@@ -2,6 +2,7 @@ package com.sandervanderlinden.adventofcode2023.day06;
 
 import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,8 +12,8 @@ import java.util.logging.Logger;
 public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
 
 
-    List<Long> times;
-    List<Long> distances;
+    List<Long> times = new ArrayList<>();
+    List<Long> distances = new ArrayList<>();
 
 
     static void calculateAndLogResult(Day06Puzzle01Solver solver, Logger logger, String filePath) {
