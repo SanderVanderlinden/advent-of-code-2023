@@ -48,13 +48,19 @@ public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
     }
 
     private long findTimeWinWithSmallestButtonTime(long timeTotal, long distanceToBeat) {
-        //Can be more efficient by making use of symmetry
-        for (int timeButton = 0; timeButton <= timeTotal; timeButton++) {
-            if (calculateDistance(timeTotal, timeButton) > distanceToBeat) {
-                return timeButton;
+        long lowerBoundButtonTime = 1;
+        long upperBoundButtonTime = timeTotal / 2;
+        long midOfBoundsButtonTime = upperBoundButtonTime - (upperBoundButtonTime - lowerBoundButtonTime) / 2;
+        while (lowerBoundButtonTime < upperBoundButtonTime - 1) {
+            if (calculateDistance(timeTotal, midOfBoundsButtonTime) > distanceToBeat) {
+                upperBoundButtonTime = midOfBoundsButtonTime;
             }
+            else {
+                lowerBoundButtonTime = midOfBoundsButtonTime;
+            }
+            midOfBoundsButtonTime = upperBoundButtonTime - (upperBoundButtonTime - lowerBoundButtonTime) / 2;
         }
-        return 0;
+        return midOfBoundsButtonTime;
     }
 
     private long calculateDistance(long timeTotal, long timeButton) {
