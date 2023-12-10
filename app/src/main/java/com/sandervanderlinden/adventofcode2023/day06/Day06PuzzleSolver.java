@@ -5,19 +5,23 @@ import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsList;
-
 /**
  * Abstract class for solving Day 6 puzzles in the Advent of Code 2023.
  */
 public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
 
 
-    private List<Integer> times;
-    private List<Integer> distances;
+    List<Long> times;
+    List<Long> distances;
+
+
+    static void calculateAndLogResult(Day06Puzzle01Solver solver, Logger logger, String filePath) {
+        Object result = solver.solve(filePath);
+        logResult(result, logger);
+    }
 
     static void logResult(Object result, Logger logger) {
-        if (result instanceof Integer wins) {
+        if (result instanceof Long wins) {
             String message = String.format("Number of possible wins: %d", wins);
             logger.info(message);
         }
@@ -27,38 +31,29 @@ public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
         }
     }
 
-    @Override
-    public void processLine(String line) {
-        if (line.startsWith("Time:")) {
-            times = extractNumbersAsList(line);
-        }
-        else if (line.startsWith("Distance:")) {
-            distances = extractNumbersAsList(line);
-        }
-    }
 
     @Override
     public Object finalizeSolver() {
-        int solution = 1;
+        long solution = 1;
         for (int i = 0; i < times.size(); i++) {
             solution *= numberOfPossibleWins(times.get(i), distances.get(i));
         }
         return solution;
     }
 
-    private int numberOfPossibleWins(Integer time, Integer distanceToBeat) {
+    private int numberOfPossibleWins(long totalTime, long distanceToBeat) {
         int result = 0;
         //Can be more efficient by making use of symmetry and finding the first possible win by halving the interval repeatedly.
-        for (int i = 0; i <= time; i++) {
-            if (calculateDistance(time, i) > distanceToBeat) {
+        for (int timeButtonHeld = 0; timeButtonHeld <= totalTime; timeButtonHeld++) {
+            if (calculateDistance(totalTime, timeButtonHeld) > distanceToBeat) {
                 result += 1;
             }
         }
         return result;
     }
 
-    private int calculateDistance(int time, int i) {
-        return i * (time - i);
+    private long calculateDistance(long totalTime, long timeButtonHeld) {
+        return timeButtonHeld * (totalTime - timeButtonHeld);
     }
 
 

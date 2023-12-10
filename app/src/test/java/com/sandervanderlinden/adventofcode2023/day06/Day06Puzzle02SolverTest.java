@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Day06Puzzle01SolverTest {
+class Day06Puzzle02SolverTest {
 
-    private final Day06Puzzle01Solver solver = new Day06Puzzle01Solver();
+    private final Day06Puzzle02Solver solver = new Day06Puzzle02Solver();
 
 
     @Test
     void testSolve() {
-        int expected = 288;
+        int expected = 71503;
         String filepath = "day06/day06_test_input.txt";
         Object result = solver.solve(filepath);
 
-        assertTrue(result instanceof Long, "Result should be a int");
-        long actual = (Long) result;
+        assertTrue(result instanceof Integer, "Result should be a int");
+        int actual = (Integer) result;
 
         assertEquals(expected, actual);
     }

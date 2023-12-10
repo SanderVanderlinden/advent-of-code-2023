@@ -3,14 +3,14 @@ package com.sandervanderlinden.adventofcode2023.day06;
 
 import java.util.logging.Logger;
 
-import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsList;
+import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsOneNumber;
 
 /**
  * This class solves the first puzzle of Day 6 in the Advent of Code 2023.
  */
-public class Day06Puzzle01Solver extends Day06PuzzleSolver {
+public class Day06Puzzle02Solver extends Day06PuzzleSolver {
 
-    private static final Logger logger = Logger.getLogger(Day06Puzzle01Solver.class.getName());
+    private static final Logger logger = Logger.getLogger(Day06Puzzle02Solver.class.getName());
 
     /**
      * The main method that initializes the solver, processes the input file,
@@ -18,18 +18,18 @@ public class Day06Puzzle01Solver extends Day06PuzzleSolver {
      * @param args The command-line arguments (not used in this implementation).
      */
     public static void main(String[] args) {
-        Day06Puzzle01Solver solver = new Day06Puzzle01Solver();
-        String filePath = "day06/day06_input.txt";
-        calculateAndLogResult(solver, logger, filePath);
+        Day06Puzzle02Solver solver = new Day06Puzzle02Solver();
+        Object result = solver.solve("day06/day06_input.txt");
+        logResult(result, logger);
     }
 
     @Override
     public void processLine(String line) {
         if (line.startsWith("Time:")) {
-            times = extractNumbersAsList(line);
+            times.add(extractNumbersAsOneNumber(line));
         }
         else if (line.startsWith("Distance:")) {
-            distances = extractNumbersAsList(line);
+            distances.add(extractNumbersAsOneNumber(line));
         }
     }
 

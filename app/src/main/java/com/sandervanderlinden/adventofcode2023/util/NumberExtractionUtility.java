@@ -50,11 +50,27 @@ public class NumberExtractionUtility {
                 .map(Long::parseLong);
     }
 
-    public static List<Integer> extractNumbersAsList(String text) {
+    public static long extractNumbersAsOneNumber(String text) {
+        var numbersStringList =  Pattern.compile("\\D+")
+                .splitAsStream(text)
+                .filter(str -> !str.isEmpty())
+                .toList();
+
+        StringBuilder outputString = new StringBuilder();
+
+        for (String numberString : numbersStringList){
+            outputString.append(numberString);
+        }
+        return Long.parseLong(outputString.toString());
+    }
+
+    public static List<Long> extractNumbersAsList(String text) {
         return Pattern.compile("\\D+")
                 .splitAsStream(text)
                 .filter(str -> !str.isEmpty())
-                .map(Integer::parseInt)
+                .map(Long::parseLong)
                 .toList();
     }
+
+
 }

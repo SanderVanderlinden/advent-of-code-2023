@@ -18,4 +18,14 @@ class NumberExtractionUtilityTest {
 
         assertEquals(expected, actual, "The extracted numbers should match the expected list");
     }
+
+    @Test
+    void extractNumbersAsOneNumber() {
+        String exampleLine = "Distance:  9  40  200";
+        long expected = 940200L;
+
+        long actual = NumberExtractionUtility.extractNumbersAsOneNumber(exampleLine);
+
+        assertEquals(expected, actual);
+    }
 }
