@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NumberExtractionUtilityTest {
+class LineProcessingUtilityTest {
 
 
     @Test
@@ -14,7 +14,7 @@ class NumberExtractionUtilityTest {
         String exampleLine = "1366623789 166330978 138490835 1175000149 927454202 5492211";
         List<Long> expected = List.of(1366623789L, 166330978L, 138490835L, 1175000149L, 927454202L, 5492211L);
 
-        List<Long> actual = NumberExtractionUtility.extractNumbersAsLongStream(exampleLine).toList();
+        List<Long> actual = LineProcessingUtility.extractNumbersAsLongStream(exampleLine).toList();
 
         assertEquals(expected, actual, "The extracted numbers should match the expected list");
     }
@@ -24,7 +24,7 @@ class NumberExtractionUtilityTest {
         String exampleLine = "Distance:  9  40  200";
         long expected = 940200L;
 
-        long actual = NumberExtractionUtility.extractNumbersAsOneNumber(exampleLine);
+        long actual = LineProcessingUtility.extractNumbersAsOneNumber(exampleLine);
 
         assertEquals(expected, actual);
     }

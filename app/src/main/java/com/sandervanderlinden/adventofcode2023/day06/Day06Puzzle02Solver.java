@@ -4,7 +4,7 @@ package com.sandervanderlinden.adventofcode2023.day06;
 import java.util.logging.Logger;
 
 import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
-import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsOneNumber;
+import static com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility.extractNumbersAsOneNumber;
 
 /**
  * This class solves the first puzzle of Day 6 in the Advent of Code 2023.

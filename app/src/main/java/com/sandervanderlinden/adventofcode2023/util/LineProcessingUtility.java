@@ -7,11 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-public class NumberExtractionUtility {
+public class LineProcessingUtility {
 
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
 
-    NumberExtractionUtility() {
+    LineProcessingUtility() {
     }
 
     /**
@@ -68,6 +68,13 @@ public class NumberExtractionUtility {
                 .splitAsStream(text)
                 .filter(str -> !str.isEmpty())
                 .map(Long::parseLong)
+                .toList();
+    }
+
+    public static List<String> spaceSeparatedStringToList(String text) {
+        return Pattern.compile("\\s+")
+                .splitAsStream(text)
+                .filter(str -> !str.isEmpty())
                 .toList();
     }
 
