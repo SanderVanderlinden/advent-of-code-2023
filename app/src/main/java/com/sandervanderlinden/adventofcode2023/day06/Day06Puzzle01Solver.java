@@ -20,7 +20,7 @@ public class Day06Puzzle01Solver extends Day06PuzzleSolver {
     public static void main(String[] args) {
         Day06Puzzle01Solver solver = new Day06Puzzle01Solver();
         String filePath = "day06/day06_input.txt";
-        calculateAndLogResult(solver, logger, filePath);
+        calculateAndLogResult(solver, logger, filePath, Long.class);
     }
 
     @Override

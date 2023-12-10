@@ -16,18 +16,18 @@ public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
     List<Long> distances = new ArrayList<>();
 
 
-    static void calculateAndLogResult(Day06Puzzle01Solver solver, Logger logger, String filePath) {
+    static void calculateAndLogResult(Day06Puzzle01Solver solver, Logger logger, String filePath, Class<?> resultType) {
         Object result = solver.solve(filePath);
-        logResult(result, logger);
+        logResult(result, resultType, logger);
     }
 
-    static void logResult(Object result, Logger logger) {
-        if (result instanceof Long wins) {
-            String message = String.format("Number of possible wins: %d", wins);
+    static void logResult(Object result, Class<?> resultType, Logger logger) {
+        if (resultType.isInstance(result)) {
+            Object r = resultType.cast(result);
+            String message = String.format("Result: %s", r);
             logger.info(message);
-        }
-        else {
-            String message = "Unexpected result type:" + result.getClass();
+        } else {
+            String message = "Unexpected result type: " + result.getClass().getSimpleName();
             logger.warning(message);
         }
     }
