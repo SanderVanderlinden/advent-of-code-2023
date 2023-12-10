@@ -42,19 +42,23 @@ public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
         return solution;
     }
 
-    private int numberOfPossibleWins(long totalTime, long distanceToBeat) {
-        int result = 0;
-        //Can be more efficient by making use of symmetry and finding the first possible win by halving the interval repeatedly.
-        for (int timeButtonHeld = 0; timeButtonHeld <= totalTime; timeButtonHeld++) {
-            if (calculateDistance(totalTime, timeButtonHeld) > distanceToBeat) {
-                result += 1;
-            }
-        }
-        return result;
+    private long numberOfPossibleWins(long timeTotal, long distanceToBeat) {
+        long timeWinWithSmallestButtonTime = findTimeWinWithSmallestButtonTime(timeTotal, distanceToBeat);
+        return timeTotal + 1 - 2 * timeWinWithSmallestButtonTime;
     }
 
-    private long calculateDistance(long totalTime, long timeButtonHeld) {
-        return timeButtonHeld * (totalTime - timeButtonHeld);
+    private long findTimeWinWithSmallestButtonTime(long timeTotal, long distanceToBeat) {
+        //Can be more efficient by making use of symmetry
+        for (int timeButton = 0; timeButton <= timeTotal; timeButton++) {
+            if (calculateDistance(timeTotal, timeButton) > distanceToBeat) {
+                return timeButton;
+            }
+        }
+        return 0;
+    }
+
+    private long calculateDistance(long timeTotal, long timeButton) {
+        return timeButton * (timeTotal - timeButton);
     }
 
 
