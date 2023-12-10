@@ -2,6 +2,7 @@ package com.sandervanderlinden.adventofcode2023.util;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -10,7 +11,6 @@ public class NumberExtractionUtility {
 
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
 
-    // Private constructor destination prevent instantiation
     NumberExtractionUtility() {
     }
 
@@ -42,9 +42,34 @@ public class NumberExtractionUtility {
         return extractFirstDigit(reversedLine);
     }
 
-    public static Stream<Long> extractNumbersAsStream(String text) {
+    public static Stream<Long> extractNumbersAsLongStream(String text) {
         return Pattern.compile("\\D+")
                 .splitAsStream(text)
                 .filter(str -> !str.isEmpty())
                 .map(Long::parseLong);
-    }}
+    }
+
+    public static long extractNumbersAsOneNumber(String text) {
+        var numbersStringList =  Pattern.compile("\\D+")
+                .splitAsStream(text)
+                .filter(str -> !str.isEmpty())
+                .toList();
+
+        StringBuilder outputString = new StringBuilder();
+
+        for (String numberString : numbersStringList){
+            outputString.append(numberString);
+        }
+        return Long.parseLong(outputString.toString());
+    }
+
+    public static List<Long> extractNumbersAsList(String text) {
+        return Pattern.compile("\\D+")
+                .splitAsStream(text)
+                .filter(str -> !str.isEmpty())
+                .map(Long::parseLong)
+                .toList();
+    }
+
+
+}

@@ -1,21 +1,8 @@
 package com.sandervanderlinden.adventofcode2023.common;
 
-import java.util.logging.Logger;
-
 public abstract class LineSumPuzzleSolver implements BasePuzzleSolver {
 
     protected int sum;
-
-    protected static void checkResult(Object result, Logger logger) {
-        if (result instanceof Integer sum) {
-            String message = String.format("Total sum: %d", sum);
-            logger.info(message);
-        }
-        else {
-            String message = "Unexpected result type:" + result;
-            logger.warning(message);
-        }
-    }
 
     @Override
     public void initializeSolver() {

@@ -1,10 +1,11 @@
 package com.sandervanderlinden.adventofcode2023.day04;
 
-
 import com.sandervanderlinden.adventofcode2023.util.IntegerHolder;
 
 import java.util.LinkedList;
 import java.util.logging.Logger;
+
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
 
 /**
  * This class solves the second puzzle of Day 4 in the Advent of Code 2023.
@@ -24,8 +25,8 @@ public class Day04Puzzle02Solver extends Day04PuzzleSolver {
      */
     public static void main(String[] args) {
         Day04PuzzleSolver solver = new Day04Puzzle01Solver();
-        Object result = solver.solve("day04/day04_input.txt");
-        checkResult(result, logger);
+        String filePath = "day04/day04_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Integer.class);
     }
 
     /**
@@ -48,7 +49,6 @@ public class Day04Puzzle02Solver extends Day04PuzzleSolver {
         return amountOfCards;
     }
 
-
     private void ensureBonusCardsListInitialized() {
         if (amountOfBonusCards.isEmpty()) {
             amountOfBonusCards.add(new IntegerHolder(0));
@@ -65,5 +65,4 @@ public class Day04Puzzle02Solver extends Day04PuzzleSolver {
             amountOfBonusCards.get(i).increaseValue(amountOfCards);
         }
     }
-
 }

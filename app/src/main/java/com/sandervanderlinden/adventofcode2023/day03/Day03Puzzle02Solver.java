@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
+
 /**
  * Solver for Day 3 Puzzle 2 of Advent of Code 2023.
  * This class extends the functionality of Day03PuzzleSolver to process input lines of schematic data.
@@ -27,8 +29,8 @@ public class Day03Puzzle02Solver extends Day03PuzzleSolver {
      */
     public static void main(String[] args) {
         Day03PuzzleSolver solver = new Day03Puzzle02Solver();
-        Object result = solver.solve("day03/day03_input.txt");
-        checkResult(result, logger);
+        String filePath = "day03/day03_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Integer.class);
     }
 
     @Override
