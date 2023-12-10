@@ -3,6 +3,7 @@ package com.sandervanderlinden.adventofcode2023.day06;
 
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
 import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsOneNumber;
 
 /**
@@ -19,8 +20,8 @@ public class Day06Puzzle02Solver extends Day06PuzzleSolver {
      */
     public static void main(String[] args) {
         Day06Puzzle02Solver solver = new Day06Puzzle02Solver();
-        Object result = solver.solve("day06/day06_input.txt");
-        logResult(result, Long.class, logger);
+        String filePath = "day06/day06_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Long.class);
     }
 
     @Override

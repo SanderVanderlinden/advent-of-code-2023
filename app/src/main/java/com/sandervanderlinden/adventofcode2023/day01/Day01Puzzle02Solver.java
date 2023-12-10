@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
+
 /**
  * Concrete implementation of Day01PuzzleSolver for the second puzzle of Day 1.
  * This class provides specialized digit extraction methods and uses maps for digit conversion.
@@ -41,9 +43,9 @@ public class Day01Puzzle02Solver extends Day01PuzzleSolver {
      * Main method for running the solver.
      */
     public static void main(String[] args) {
-        Day01PuzzleSolver solver = new Day01Puzzle02Solver();
-        Object result = solver.solve("day01/day01_input.txt");
-        checkResult(result, logger);
+        Day01Puzzle02Solver solver = new Day01Puzzle02Solver();
+        String filePath = "day01/day01_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Integer.class);
     }
 
     @Override

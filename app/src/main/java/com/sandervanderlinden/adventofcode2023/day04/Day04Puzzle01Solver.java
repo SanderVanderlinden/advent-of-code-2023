@@ -3,6 +3,8 @@ package com.sandervanderlinden.adventofcode2023.day04;
 
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
+
 /**
  * This class solves the first puzzle of Day 4 in the Advent of Code 2023.
  * It extends the abstract Day04PuzzleSolver class, providing specific logic to process lines of input
@@ -21,9 +23,8 @@ public class Day04Puzzle01Solver extends Day04PuzzleSolver {
      */
     public static void main(String[] args) {
         Day04PuzzleSolver solver = new Day04Puzzle01Solver();
-        Object result = solver.solve("day04/day04_input.txt");
-        checkResult(result, logger);
-    }
+        String filePath = "day04/day04_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Integer.class);    }
 
     /**
      * Processes a single line of the input file and calculates a value based on the puzzle logic.

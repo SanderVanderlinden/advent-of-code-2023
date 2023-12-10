@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsLongStream;
 
@@ -24,23 +23,6 @@ public abstract class Day05PuzzleSolver implements BasePuzzleSolver {
 
     ResourceState currentResourceState = new ResourceState();
     ResourceState nextResourceState = new ResourceState();
-
-    /**
-     * Logs the result of the puzzle solution.
-     *
-     * @param result The result object to be logged.
-     * @param logger The logger used for logging the result.
-     */
-    static void logResult(Object result, Logger logger) {
-        if (result instanceof Long locationNumber) {
-            String message = String.format("Lowest location number: %d", locationNumber);
-            logger.info(message);
-        }
-        else {
-            String message = "Unexpected result type:" + result.getClass();
-            logger.warning(message);
-        }
-    }
 
     /**
      * Processes a single line of input from the puzzle.

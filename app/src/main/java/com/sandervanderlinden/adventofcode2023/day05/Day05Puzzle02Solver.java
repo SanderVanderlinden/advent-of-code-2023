@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
 import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsLongStream;
 
 /**
@@ -27,8 +28,8 @@ public class Day05Puzzle02Solver extends Day05PuzzleSolver {
      */
     public static void main(String[] args) {
         Day05Puzzle02Solver solver = new Day05Puzzle02Solver();
-        Object result = solver.solve("day05/day05_input.txt");
-        logResult(result, logger);
+        String filePath = "day05/day05_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Long.class);
     }
 
     @Override

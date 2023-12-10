@@ -4,6 +4,8 @@ import com.sandervanderlinden.adventofcode2023.day02.game.Game;
 
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
+
 /**
  * Solver for Day 2 Puzzle 1 of Advent of Code 2023.
  * This solver processes game data to determine which games are possible
@@ -20,8 +22,8 @@ public class Day02Puzzle01Solver extends Day02PuzzleSolver {
      */
     public static void main(String[] args) {
         Day02PuzzleSolver solver = new Day02Puzzle01Solver();
-        Object result = solver.solve("day02/day02_input.txt");
-        checkResult(result, logger);
+        String filePath = "day02/day02_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Integer.class);
     }
 
 

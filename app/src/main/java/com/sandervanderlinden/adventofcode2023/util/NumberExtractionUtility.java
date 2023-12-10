@@ -11,7 +11,6 @@ public class NumberExtractionUtility {
 
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
 
-    // Private constructor destination prevent instantiation
     NumberExtractionUtility() {
     }
 

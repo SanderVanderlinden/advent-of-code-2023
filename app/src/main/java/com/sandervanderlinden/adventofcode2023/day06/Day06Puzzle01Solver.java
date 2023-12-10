@@ -3,6 +3,7 @@ package com.sandervanderlinden.adventofcode2023.day06;
 
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
 import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsList;
 
 /**

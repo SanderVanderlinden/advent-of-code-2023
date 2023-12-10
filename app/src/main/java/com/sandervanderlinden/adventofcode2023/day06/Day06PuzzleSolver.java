@@ -4,7 +4,6 @@ import com.sandervanderlinden.adventofcode2023.common.BasePuzzleSolver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Abstract class for solving Day 6 puzzles in the Advent of Code 2023.
@@ -14,23 +13,6 @@ public abstract class Day06PuzzleSolver implements BasePuzzleSolver {
 
     List<Long> times = new ArrayList<>();
     List<Long> distances = new ArrayList<>();
-
-
-    static void calculateAndLogResult(Day06Puzzle01Solver solver, Logger logger, String filePath, Class<?> resultType) {
-        Object result = solver.solve(filePath);
-        logResult(result, resultType, logger);
-    }
-
-    static void logResult(Object result, Class<?> resultType, Logger logger) {
-        if (resultType.isInstance(result)) {
-            Object r = resultType.cast(result);
-            String message = String.format("Result: %s", r);
-            logger.info(message);
-        } else {
-            String message = "Unexpected result type: " + result.getClass().getSimpleName();
-            logger.warning(message);
-        }
-    }
 
 
     @Override

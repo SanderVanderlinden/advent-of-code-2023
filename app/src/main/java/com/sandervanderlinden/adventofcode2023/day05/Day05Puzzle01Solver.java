@@ -1,10 +1,10 @@
 package com.sandervanderlinden.adventofcode2023.day05;
 
-
 import com.sandervanderlinden.adventofcode2023.day05.resources.ResourceInterval;
 
 import java.util.logging.Logger;
 
+import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
 import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsLongStream;
 
 /**
@@ -24,13 +24,11 @@ public class Day05Puzzle01Solver extends Day05PuzzleSolver {
      */
     public static void main(String[] args) {
         Day05Puzzle01Solver solver = new Day05Puzzle01Solver();
-        Object result = solver.solve("day05/day05_input.txt");
-        logResult(result, logger);
+        String filePath = "day05/day05_input.txt";
+        calculateAndLogResult(solver, logger, filePath, Long.class);
     }
 
     void initializeResourceState(String line) {
         extractNumbersAsLongStream(line).forEach(number -> currentResourceState.addInterval(new ResourceInterval(number, 1)));
-
     }
-
 }
