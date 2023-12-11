@@ -1,7 +1,7 @@
 package com.sandervanderlinden.adventofcode2023.day01;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
-import com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility;
+import com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility;
 
 import java.util.logging.Logger;
 
@@ -26,11 +26,11 @@ public class Day01Puzzle01Solver extends Day01PuzzleSolver {
 
     @Override
     public int extractFirstDigit(String line) throws NoDigitFoundException {
-        return NumberExtractionUtility.extractFirstDigit(line);
+        return LineProcessingUtility.extractFirstDigit(line);
     }
 
     @Override
     public int extractLastDigit(String line) {
-        return NumberExtractionUtility.extractLastDigit(line);
+        return LineProcessingUtility.extractLastDigit(line);
     }
 }

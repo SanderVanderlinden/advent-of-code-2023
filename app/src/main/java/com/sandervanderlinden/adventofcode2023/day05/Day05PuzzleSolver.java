@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility.extractNumbersAsLongStream;
+import static com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility.extractNumbersAsLongStream;
 
 /**
  * Abstract class for solving Day 5 puzzles in the Advent of Code 2023.

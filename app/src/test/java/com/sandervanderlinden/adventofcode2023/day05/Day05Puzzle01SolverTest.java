@@ -1,7 +1,7 @@
 package com.sandervanderlinden.adventofcode2023.day05;
 
 import com.sandervanderlinden.adventofcode2023.day05.resources.ResourceInterval;
-import com.sandervanderlinden.adventofcode2023.util.NumberExtractionUtility;
+import com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -51,8 +51,8 @@ class Day05Puzzle01SolverTest {
         solver.initializeSolver();
         solver.initializeResourceState("seeds: 79 14 55 13");
 
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("50 98 2").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("52 50 48").toList());
+        solver.addConversionRange(LineProcessingUtility.extractNumbersAsLongStream("50 98 2").toList());
+        solver.addConversionRange(LineProcessingUtility.extractNumbersAsLongStream("52 50 48").toList());
         solver.prepareNextResourceState();
 
         Deque<ResourceInterval> expected = new ArrayDeque<>();
@@ -63,9 +63,9 @@ class Day05Puzzle01SolverTest {
         var actual = solver.currentResourceState.getIntervals();
         assertEquals(new ArrayList<>(expected), new ArrayList<>(actual));
 
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("0 15 37").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("37 52 2").toList());
-        solver.addConversionRange(NumberExtractionUtility.extractNumbersAsLongStream("39 0 15").toList());
+        solver.addConversionRange(LineProcessingUtility.extractNumbersAsLongStream("0 15 37").toList());
+        solver.addConversionRange(LineProcessingUtility.extractNumbersAsLongStream("37 52 2").toList());
+        solver.addConversionRange(LineProcessingUtility.extractNumbersAsLongStream("39 0 15").toList());
         solver.prepareNextResourceState();
 
         expected = new ArrayDeque<>();

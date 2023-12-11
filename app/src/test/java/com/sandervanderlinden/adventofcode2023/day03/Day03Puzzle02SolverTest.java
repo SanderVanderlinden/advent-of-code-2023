@@ -43,8 +43,6 @@ class Day03Puzzle02SolverTest {
 
         Set<SchematicToken> actual = solver.convertLineToSchematicTokens(lineContainingGears());
         solver.processTokens(actual);
-        System.out.println(expected);
-        System.out.println(actual);
         assertEquals(expected.size(), actual.size(), "Sets should be the same size");
 
         for (SchematicToken expectedToken : expected) {
