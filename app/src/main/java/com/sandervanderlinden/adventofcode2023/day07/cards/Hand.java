@@ -1,16 +1,15 @@
 package com.sandervanderlinden.adventofcode2023.day07.cards;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.EnumMap;
 import java.util.stream.Collectors;
 
 /**
  * Represents a hand of cards in the game.
  * Each hand consists of five cards and is associated with a bid.
  */
-public class Hand implements Comparable<Hand> {
-    private final CardValue[] cards = new CardValue[5];
+public abstract class Hand implements Comparable<Hand> {
+    final CardValue[] cards = new CardValue[5];
     private final int bid;
 
     /**
@@ -19,7 +18,7 @@ public class Hand implements Comparable<Hand> {
      * @param cardsString the string representation of the cards
      * @param bid         the bid associated with this hand
      */
-    public Hand(String cardsString, int bid) {
+    protected Hand(String cardsString, int bid) {
         setCardsFromString(cardsString);
         this.bid = bid;
     }
@@ -38,9 +37,16 @@ public class Hand implements Comparable<Hand> {
      *
      * @param cardsString the string representation of the cards
      */
-    private void setCardsFromString(String cardsString) {
+    void setCardsFromString(String cardsString) {
         for (int i = 0; i < 5; i++) {
-            cards[i] = CardValue.fromChar(cardsString.charAt(i));
+            char symbol = cardsString.charAt(i);
+            if (symbol == 'J') {
+                cards[i] = getCardValueForSymbolJ();
+            }
+            else {
+
+                cards[i] = CardValue.fromChar(symbol);
+            }
         }
     }
 
@@ -100,40 +106,38 @@ public class Hand implements Comparable<Hand> {
     }
 
 
+    @Override
+    public String toString() {
+        return "Hand{" +
+                "cards=" + Arrays.toString(cards) +
+                ", bid=" + bid +
+                ", type=" + getType() +
+                '}';
+    }
+
     /**
      * Determines the type of this hand based on the rules of the game.
      * The type is determined by the occurrences of card values.
      *
      * @return an integer representing the type of the hand
      */
-    private int getType() {
-        List<Long> cardOccurrences = getSortedOccurrencesList();
+    abstract int getType();
 
-        int mostOccurringCardAmount = cardOccurrences.isEmpty() ? 0 : Math.toIntExact(cardOccurrences.get(0));
-        int secondMostOccurringCardAmount = cardOccurrences.size() > 1 ? Math.toIntExact(cardOccurrences.get(1)) : 0;
-
-        return switch (mostOccurringCardAmount) {
-            case 5 -> 7; // Five of a kind
-            case 4 -> 6; // Four of a kind
-            case 3 -> (secondMostOccurringCardAmount == 2) ? 5 : 4; // Full house or Three of a kind
-            case 2 -> (secondMostOccurringCardAmount == 2) ? 3 : 2; // Two pair or One pair
-            default -> 1; // High card
-        };
-    }
 
     /**
-     * Gets a sorted list of the occurrences of each card value in this hand.
-     * The list is sorted in descending order based on the number of occurrences.
+     * Gets a map of the occurrences of each card value in this hand, with each occurrence count as an Integer.
      *
-     * @return a sorted list of occurrences
+     * @return an EnumMap of CardValue to Integer, representing the occurrences of each card
      */
-    private List<Long> getSortedOccurrencesList() {
+    EnumMap<CardValue, Integer> getSortedOccurrencesMap() {
         return Arrays.stream(cards)
-                .collect(Collectors.groupingBy(card -> card, Collectors.counting()))
-                .values()
-                .stream()
-                .sorted(Comparator.reverseOrder()) // Sort in descending order
-                .toList();
+                .collect(Collectors.groupingBy(
+                        card -> card,
+                        () -> new EnumMap<>(CardValue.class),
+                        Collectors.reducing(0, e -> 1, Integer::sum)
+                ));
     }
 
+
+    abstract CardValue getCardValueForSymbolJ();
 }

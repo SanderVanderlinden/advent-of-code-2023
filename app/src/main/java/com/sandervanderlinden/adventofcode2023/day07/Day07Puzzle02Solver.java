@@ -1,12 +1,15 @@
 package com.sandervanderlinden.adventofcode2023.day07;
 
 
+import com.sandervanderlinden.adventofcode2023.day07.cards.Puzzle02Hand;
+
 import java.util.logging.Logger;
 
 import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calculateAndLogResult;
+import static com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility.spaceSeparatedStringToList;
 
 /**
- * This class solves the first puzzle of Day 6 in the Advent of Code 2023.
+ * This class solves the first puzzle of Day 7 in the Advent of Code 2023.
  */
 public class Day07Puzzle02Solver extends Day07PuzzleSolver {
 
@@ -20,16 +23,13 @@ public class Day07Puzzle02Solver extends Day07PuzzleSolver {
     public static void main(String[] args) {
         Day07Puzzle02Solver solver = new Day07Puzzle02Solver();
         String filePath = "day07/day07_input.txt";
-        calculateAndLogResult(solver, logger, filePath, Long.class);
+        calculateAndLogResult(solver, logger, filePath, Integer.class);
     }
 
     @Override
     public void processLine(String line) {
-
+        var lineContents = spaceSeparatedStringToList(line);
+        hands.add(new Puzzle02Hand(lineContents.get(0), Integer.parseInt(lineContents.get(1))));
     }
 
-    @Override
-    public Object finalizeSolver() {
-        return null;
-    }
 }
