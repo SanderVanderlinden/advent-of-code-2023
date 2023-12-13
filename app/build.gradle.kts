@@ -8,6 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 repositories {
@@ -40,4 +42,14 @@ application {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+sonarqube {
+    properties {
+        property("sonar.gradle.skipCompile", true)
+        property("sonar.projectKey", "AdventOfCode2023")
+        property("sonar.projectName", "adventofcode2023")
+        property("sonar.host.url", System.getenv("SONARQUBE_URL"))
+        property("sonar.token", System.getenv("SONARQUBE_TOKEN"))
+    }
 }
