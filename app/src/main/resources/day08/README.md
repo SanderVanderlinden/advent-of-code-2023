@@ -5,29 +5,52 @@
 
 ### Problem Description
 
-Caught in a sandstorm on Desert Island, you come across a set of maps and instructions. Your task is to navigate a network of labeled nodes using left/right instructions to reach the destination node, ZZZ.
+Caught in a sandstorm on Desert Island, you find a set of maps and instructions to navigate a network of labeled nodes. The objective is to follow left/right instructions to move from node AAA to ZZZ.
 
 ### Network Example
 
 - Instructions: RL
 - Nodes:
-    - AAA = (BBB, CCC)
-    - BBB = (DDD, EEE)
-    - CCC = (ZZZ, GGG)
-    - DDD = (DDD, DDD)
-    - EEE = (EEE, EEE)
-    - GGG = (GGG, GGG)
-    - ZZZ = (ZZZ, ZZZ)
+  - AAA = (BBB, CCC)
+  - BBB = (DDD, EEE)
+  - CCC = (ZZZ, GGG)
+  - DDD = (DDD, DDD)
+  - EEE = (EEE, EEE)
+  - GGG = (GGG, GGG)
+  - ZZZ = (ZZZ, ZZZ)
 
-Follow the left/right instructions, repeating them as necessary, to reach the node ZZZ.
+Follow the instructions, repeating them if necessary, to reach ZZZ.
 
 ### Task
 
-Determine the number of steps required to reach the node ZZZ following the left/right instructions.
+Determine the number of steps required to reach ZZZ.
 
 ---
 
-[Placeholder for Part Two - Once details are provided, this section can be updated accordingly.]
+## --- Part Two ---
+
+### Enhanced Challenge: Ghost Navigation
+
+Reinterpreting the maps for ghost navigation, you realize you must start at every node ending with A and follow the paths until all paths end at nodes ending with Z.
+
+### Enhanced Example
+
+- Instructions: LR
+- Nodes:
+  - 11A = (11B, XXX)
+  - 11B = (XXX, 11Z)
+  - 11Z = (11B, XXX)
+  - 22A = (22B, XXX)
+  - 22B = (22C, 22C)
+  - 22C = (22Z, 22Z)
+  - 22Z = (22B, 22B)
+  - XXX = (XXX, XXX)
+
+Simultaneously navigate from all A-ending nodes and track the number of steps until only Z-ending nodes are reached.
+
+### Enhanced Task
+
+Calculate the steps required until you're only on nodes that end with Z.
 
 ---
 

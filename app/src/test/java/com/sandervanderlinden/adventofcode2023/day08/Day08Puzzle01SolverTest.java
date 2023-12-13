@@ -23,7 +23,7 @@ class Day08Puzzle01SolverTest {
 
 
         expected = 6;
-        filepath = "day08/day08_test_input.txt_02";
+        filepath = "day08/day08_test_input_02.txt";
         result = solver.solve(filepath);
 
         assertTrue(result instanceof Integer, "Result should be a int, but was: " + result.getClass());
