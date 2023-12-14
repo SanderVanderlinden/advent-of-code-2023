@@ -2,7 +2,7 @@ package com.sandervanderlinden.adventofcode2023.util;
 
 import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -104,5 +104,34 @@ public class LineProcessingUtility {
         return SPACE_PATTERN.splitAsStream(text)
                 .filter(str -> !str.isEmpty())
                 .toList();
+    }
+
+    /**
+     * Extracts lottery numbers from a line of the input file. Assumes the format includes a colon and a pipe symbol to separate the numbers.
+     *
+     * @param line A single line from the input file.
+     * @return An array of two strings: the first element is the string of winning numbers,
+     * and the second is the string of player's numbers.
+     */
+    public static Map<String, Set<Integer>> extractLotteryNumbers(String line) {
+        Map<String, Set<Integer>> output = new HashMap<>();
+        var numbersPart = line.substring(line.indexOf(":") + 1).trim();
+        var numbersParts = numbersPart.split("\\|");
+        output.put("winningNumbers", convertStringToIntegerSet(numbersParts[0]));
+        output.put("ownNumbers", convertStringToIntegerSet(numbersParts[1]));
+        return output;
+    }
+
+    /**
+     * Converts a string of space-separated numbers into a Set of Integers.
+     *
+     * @param numberString A string containing numbers separated by spaces.
+     * @return A Set of integers parsed from the input string.
+     */
+    public static Set<Integer> convertStringToIntegerSet(String numberString) {
+        return Arrays.stream(numberString.split("\\s+"))
+                .filter(s -> !s.isEmpty())
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
     }
 }
