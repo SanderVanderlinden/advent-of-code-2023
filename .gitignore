@@ -42,3 +42,7 @@ gradle.properties
 
 # Directory for output files
 out/
+
+
+# File containing secrets for docker.compose.yml file
+.env
