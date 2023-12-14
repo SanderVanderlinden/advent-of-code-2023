@@ -4,13 +4,15 @@
  * This generated file contains a sample Java application project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.4/userguide/building_java_projects.html in the Gradle documentation.
  */
-
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 
     id("org.sonarqube") version "4.4.1.3373"
 }
+
+val jUnitJupiterVersion = "5.9.3"
+val guavaVersion = "32.1.1"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -19,12 +21,12 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:$jUnitJupiterVersion")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:32.1.1-jre")
+    implementation("com.google.guava:guava:$guavaVersion-jre")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

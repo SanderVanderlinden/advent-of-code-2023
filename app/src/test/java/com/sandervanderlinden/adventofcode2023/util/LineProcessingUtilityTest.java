@@ -2,12 +2,14 @@ package com.sandervanderlinden.adventofcode2023.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LineProcessingUtilityTest {
-
 
     @Test
     void testExtractNumbersAsStream() {
@@ -25,6 +27,17 @@ class LineProcessingUtilityTest {
         long expected = 940200L;
 
         long actual = LineProcessingUtility.extractNumbersAsOneNumber(exampleLine);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void extractLotteryNumbers() {
+        String exampleLine = "Card   1: 69 24 51 87  9 49 17 16 21 48 |  5 52 86 35 57 18 60 84 50 76 96 47 38 41 34 36 55 20 25 37  6 70 66 45  3\n";
+        Map<String, Set<Integer>> expected = new HashMap<>();
+        expected.put("winningNumbers", Set.of(16, 48, 49, 17, 51, 69, 21, 87, 24, 9));
+        expected.put("ownNumbers", Set.of(66, 3, 5, 6, 70, 76, 18, 84, 20, 86, 25, 96, 34, 35, 36, 37, 38, 41, 45, 47, 50, 52, 55, 57, 60));
+
+        Map<String, Set<Integer>> actual = LineProcessingUtility.extractLotteryNumbers(exampleLine);
 
         assertEquals(expected, actual);
     }
