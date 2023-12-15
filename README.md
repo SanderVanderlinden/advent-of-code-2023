@@ -30,7 +30,7 @@ Please feel free to fork the repository and submit pull requests.
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and available under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
 
 ## Acknowledgments
 
@@ -40,6 +40,72 @@ This project is open-source and available under the [MIT License](LICENSE).
 Happy coding!
 
 Sander
+
+---
+
+
+## Setting Up SonarQube with Docker for AdventOfCode2023
+
+To set up SonarQube for the AdventOfCode2023 project, follow these steps:
+
+### Prerequisites
+- Docker and Docker Compose installed on your machine.
+- Access to a terminal or command-line interface.
+
+### Step 1: Create a .env File
+1. In the root directory of your project, create a `.env` file.
+2. Add the following line to the file, replacing `xxxx` with your desired port number:
+
+   ```
+   DOCKER_PORT=xxxx
+   ```
+
+### Step 2: Start SonarQube with Docker Compose
+Run the following command in your terminal:
+
+```
+docker-compose up
+```
+
+This command starts SonarQube and binds it to the port specified in the `.env` file.
+
+### Step 3: Create a SonarQube Account
+1. Open your web browser and go to `http://localhost:xxxx`, where `xxxx` is the port number you set in the `.env` file.
+2. Follow the instructions to create a SonarQube account.
+3. Once logged in, set up a new project for local analysis and name it `AdventOfCode2023`.
+4. Generate a token for project analysis.
+
+### Step 4: Set Environment Variables
+Set the SonarQube URL and token as environment variables on your machine. These variables will be used by the Gradle build script.
+
+For Windows:
+```cmd
+set SONARQUBE_URL=http://localhost:xxxx
+set SONARQUBE_TOKEN=your_generated_token
+```
+
+For macOS/Linux:
+```bash
+export SONARQUBE_URL=http://localhost:xxxx
+export SONARQUBE_TOKEN=your_generated_token
+```
+
+### Step 5: Execute Tests and Generate Reports
+Run the following Gradle commands to execute tests and generate test coverage reports:
+
+```
+./gradlew test jacocoTestReport
+```
+
+### Step 6: Run SonarQube Analysis
+Finally, execute the SonarQube analysis with the following command:
+
+```
+./gradlew sonarqube
+```
+
+After this step, SonarQube will process the code analysis and coverage reports. You can view the results on your SonarQube dashboard.
+
 
 ---
 
