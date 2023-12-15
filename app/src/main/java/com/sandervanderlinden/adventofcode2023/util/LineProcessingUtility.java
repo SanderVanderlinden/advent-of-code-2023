@@ -17,7 +17,7 @@ public class LineProcessingUtility {
     private static final Pattern NON_DIGIT_PATTERN = Pattern.compile("\\D+");
     private static final Pattern SPACE_PATTERN = Pattern.compile("\\s+");
 
-    LineProcessingUtility() {
+    private LineProcessingUtility() {
     }
 
     /**

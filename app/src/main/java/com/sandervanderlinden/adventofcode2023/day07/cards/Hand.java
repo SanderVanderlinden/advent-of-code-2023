@@ -100,7 +100,7 @@ public abstract class Hand implements Comparable<Hand> {
     public int hashCode() {
         int result = 0;
         for (CardValue card : cards) {
-            result = 31 * result + (card != null ? card.hashCode() : 0);
+            result = 31 * result + card.hashCode();
         }
         return result;
     }
