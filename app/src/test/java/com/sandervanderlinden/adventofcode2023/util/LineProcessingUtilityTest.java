@@ -2,14 +2,22 @@ package com.sandervanderlinden.adventofcode2023.util;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LineProcessingUtilityTest {
+
+    @Test
+    void testPrivateConstructor() throws Exception {
+        Constructor<LineProcessingUtility> constructor = LineProcessingUtility.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+
+        constructor.setAccessible(true);
+        assertNotNull(constructor.newInstance());
+    }
 
     @Test
     void testExtractNumbersAsStream() {
@@ -40,5 +48,17 @@ class LineProcessingUtilityTest {
         Map<String, Set<Integer>> actual = LineProcessingUtility.extractLotteryNumbers(exampleLine);
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void extractNumbersAsList_withNoEmptyStrings() {
+        List<Long> result = LineProcessingUtility.extractNumbersAsList("12 34 56");
+        assertEquals(Arrays.asList(12L, 34L, 56L), result);
+    }
+
+    @Test
+    void extractNumbersAsList_withEmptyStrings() {
+        List<Long> result = LineProcessingUtility.extractNumbersAsList("12  34   56");
+        assertEquals(Arrays.asList(12L, 34L, 56L), result);
     }
 }

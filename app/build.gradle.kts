@@ -8,6 +8,7 @@ plugins {
 val jUnitJupiterVersion = "5.9.3"
 val guavaVersion = "32.1.1"
 val javaVersion = "21"
+val mockitoVersion = "5.8.0"
 
 // Configure repositories used for resolving dependencies
 repositories {
@@ -17,7 +18,10 @@ repositories {
 // Dependency declarations
 dependencies {
     implementation("com.google.guava:guava:$guavaVersion-jre")
+
     testImplementation("org.junit.jupiter:junit-jupiter:$jUnitJupiterVersion")
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

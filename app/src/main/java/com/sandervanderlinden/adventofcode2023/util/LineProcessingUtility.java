@@ -19,7 +19,7 @@ public class LineProcessingUtility {
     private static final Pattern NON_LETTER_PATTERN = Pattern.compile("\\P{L}+");
 
 
-    LineProcessingUtility() {
+    private LineProcessingUtility() {
     }
 
     /**
