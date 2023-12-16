@@ -3,6 +3,7 @@ package com.sandervanderlinden.adventofcode2023.day08;
 import com.sandervanderlinden.adventofcode2023.day08.nodes.Node;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import static com.sandervanderlinden.adventofcode2023.util.CalculationUtil.calcu
 public class Day08Puzzle02Solver extends Day08PuzzleSolver {
 
     private static final Logger logger = Logger.getLogger(Day08Puzzle02Solver.class.getName());
+    Set<Long> amountOfStepsPerNode = new HashSet<>();
 
     /**
      * The main method that initializes the solver, processes the input file,
@@ -25,28 +27,38 @@ public class Day08Puzzle02Solver extends Day08PuzzleSolver {
     public static void main(String[] args) {
         Day08Puzzle02Solver solver = new Day08Puzzle02Solver();
         String filePath = "day08/day08_input.txt";
-        calculateAndLogResult(solver, logger, filePath, Integer.class);
+        calculateAndLogResult(solver, logger, filePath, Long.class);
     }
 
     @Override
     public Object finalizeSolver() {
-        int counter = 0;
-        int instructionsLength = instructions.length();
-        Set<Node> currentNodes = getStartingNodes(nodes);
+        Set<Node> startingNodes = getStartingNodes(nodes);
 
-        while (!isFinalPosition(currentNodes)) {
-            char instruction = instructions.charAt(counter % instructionsLength);
-
-            Set<Node> nextNodes = new HashSet<>();
-            for (Node node : currentNodes) {
-                nextNodes.add(instruction == 'L' ? nodes.get(node.left()) : nodes.get(node.right()));
-            }
-
-            currentNodes = nextNodes;
-            counter++;
+        for (Node startingNode : startingNodes) {
+            amountOfStepsPerNode.add(amountOfStepsToReachEndNode(startingNode));
         }
 
-        return counter;
+        return leastCommonMultiple(amountOfStepsPerNode);
+    }
+
+    private long leastCommonMultiple(Set<Long> amountOfStepsPerNode) {
+        Iterator<Long> iterator = amountOfStepsPerNode.iterator();
+        long leastCommonMultiple = iterator.next();
+
+        while (iterator.hasNext()) {
+            long nextNumber = iterator.next();
+            leastCommonMultiple = (leastCommonMultiple * nextNumber) / greatestCommonDivisor(leastCommonMultiple, nextNumber);
+        }
+
+        return leastCommonMultiple;
+    }
+
+
+    private long greatestCommonDivisor(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return greatestCommonDivisor(b, a % b);
     }
 
     Set<Node> getStartingNodes(Map<String, Node> nodes) {
@@ -58,7 +70,21 @@ public class Day08Puzzle02Solver extends Day08PuzzleSolver {
                 .collect(Collectors.toSet());
     }
 
-    private boolean isFinalPosition(Set<Node> currentNodes) {
-        return currentNodes.stream().allMatch(node -> node.location().endsWith("Z"));
+    private long amountOfStepsToReachEndNode(Node startingNode) {
+        int counter = 0;
+        Node currentNode = startingNode;
+        int instructionsLength = instructions.length();
+
+        while (!isFinalPosition(currentNode)) {
+            char instruction = instructions.charAt(counter % instructionsLength);
+            currentNode = instruction == 'L' ? nodes.get(currentNode.left()) : nodes.get(currentNode.right());
+            counter++;
+        }
+
+        return counter;
+    }
+
+    private boolean isFinalPosition(Node node) {
+        return node.location().endsWith("Z");
     }
 }
