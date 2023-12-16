@@ -14,8 +14,8 @@ import static com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility
  */
 public abstract class Day08PuzzleSolver implements BasePuzzleSolver {
 
-    private final Map<String, Node> nodes = new HashMap<>();
-    private String instructions;
+    final Map<String, Node> nodes = new HashMap<>();
+    String instructions;
 
     @Override
     public void processLine(String line) {
@@ -26,25 +26,5 @@ public abstract class Day08PuzzleSolver implements BasePuzzleSolver {
         else if (!line.isEmpty()) {
             instructions = line;
         }
-    }
-
-    @Override
-    public Object finalizeSolver() {
-        int counter = 0;
-        Node currentNode = nodes.get("AAA");
-        Node endNode = nodes.get("ZZZ");
-        while (!currentNode.equals(endNode)) {
-            if (instructions.charAt(counter % instructions.length()) == 'L') {
-                currentNode = nodes.get(currentNode.left());
-            }
-            else {
-                currentNode = nodes.get(currentNode.right());
-            }
-            counter += 1;
-        }
-        //while niet zzz
-        //return counter
-        // var firstNode = nodes.stream().findFirst().
-        return counter;
     }
 }
