@@ -17,12 +17,12 @@ class Day08Puzzle02SolverTest {
 
     @Test
     void testSolve() {
-        int expected = 6;
+        long expected = 6;
         String filepath = "day08/day08_test_input_03.txt";
         Object result = solver.solve(filepath);
 
-        assertTrue(result instanceof Integer, "Result should be a int, but was: " + result.getClass());
-        long actual = (Integer) result;
+        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
+        long actual = (Long) result;
 
         assertEquals(expected, actual);
     }
