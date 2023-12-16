@@ -11,7 +11,7 @@ public abstract class LineSumPuzzleSolver implements BasePuzzleSolver {
 
     @Override
     public void processLine(String line) {
-        int value = extractValueFromLine(line);
+        long value = extractValueFromLine(line);
         sum += value;
     }
 

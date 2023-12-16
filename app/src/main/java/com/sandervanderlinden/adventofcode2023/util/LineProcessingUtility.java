@@ -5,6 +5,7 @@ import com.sandervanderlinden.adventofcode2023.exceptions.NoDigitFoundException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.MatchResult;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -89,11 +90,14 @@ public class LineProcessingUtility {
      * @return a list of longs representing the numbers found in the string
      */
     public static List<Long> extractNumbersAsList(String text) {
-        return NON_DIGIT_PATTERN.splitAsStream(text)
-                .filter(str -> !str.isEmpty())
+        Pattern pattern = Pattern.compile("-?\\d+"); // This regex matches negative numbers as well
+        return pattern.matcher(text)
+                .results()
+                .map(MatchResult::group)
                 .map(Long::parseLong)
                 .toList();
     }
+
 
     /**
      * Converts a space-separated string into a list of strings.
