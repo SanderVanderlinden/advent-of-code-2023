@@ -16,6 +16,7 @@ public class LineProcessingUtility {
     private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d");
     private static final Pattern NON_DIGIT_PATTERN = Pattern.compile("\\D+");
     private static final Pattern SPACE_PATTERN = Pattern.compile("\\s+");
+    private static final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^\\p{Alnum}]+");
 
     private LineProcessingUtility() {
     }
@@ -102,6 +103,18 @@ public class LineProcessingUtility {
      */
     public static List<String> spaceSeparatedStringToList(String text) {
         return SPACE_PATTERN.splitAsStream(text)
+                .filter(str -> !str.isEmpty())
+                .toList();
+    }
+
+    /**
+     * Extracts all words from a string and returns them as a list of strings.
+     *
+     * @param text the string to extract words from
+     * @return a list of strings representing the words found in the string
+     */
+    public static List<String> extractWordsAsList(String text) {
+        return NON_ALPHANUMERIC_PATTERN.splitAsStream(text)
                 .filter(str -> !str.isEmpty())
                 .toList();
     }
