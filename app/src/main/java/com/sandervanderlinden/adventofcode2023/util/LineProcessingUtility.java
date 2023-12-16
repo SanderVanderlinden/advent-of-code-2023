@@ -18,8 +18,6 @@ public class LineProcessingUtility {
     private static final Pattern SPACE_PATTERN = Pattern.compile("\\s+");
     private static final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^\\p{Alnum}]+");
 
-
-
     private LineProcessingUtility() {
     }
 
