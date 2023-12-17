@@ -15,18 +15,18 @@ class Day03PuzzleSolverTest {
     @Test
     void Day03Puzzle01Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
         Object result = solver01.solve("day03/day03_input.txt");
-        assertTrue(result instanceof Integer, "Result should be an integer");
+        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
 
-        int actual = (Integer) result;
+        long actual = (long) result;
         int expectedSum = 512794;
         assertEquals(expectedSum, actual);
     }
     @Test
     void Day03Puzzle02Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
         Object result = solver02.solve("day03/day03_input.txt");
-        assertTrue(result instanceof Integer, "Result should be an integer");
+        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
 
-        int actual = (Integer) result;
+        long actual = (long) result;
         int expectedSum = 67779080;
         assertEquals(expectedSum, actual);
     }

@@ -13,8 +13,8 @@ import static com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility
 public abstract class Day09PuzzleSolver extends LineSumPuzzleSolver {
 
     @Override
-    protected int extractValueFromLine(String line) {
-        int sum = 0;
+    protected long extractValueFromLine(String line) {
+        long sum = 0;
         List<Long> currentSequence = extractNumbersAsList(line);
         while (!allZeros(currentSequence)) {
             sum += currentSequence.get(currentSequence.size() - 1);
@@ -27,7 +27,7 @@ public abstract class Day09PuzzleSolver extends LineSumPuzzleSolver {
         ArrayList<Long> nextSequence = new ArrayList<>();
         int index = 0;
         while (index < currentSequence.size() - 1) {
-            nextSequence.add(Math.abs(currentSequence.get(index) - currentSequence.get(index + 1)));
+            nextSequence.add(currentSequence.get(index + 1) - currentSequence.get(index));
             index += 1;
         }
         return nextSequence;

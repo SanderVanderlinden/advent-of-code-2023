@@ -40,13 +40,13 @@ public class Day03Puzzle01Solver extends Day03PuzzleSolver {
      * @return The sum of values as per the puzzle's logic.
      */
     @Override
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         Set<SchematicToken> tokensInPreviousLine = tokensInCurrentLine;
         tokensInCurrentLine = convertLineToSchematicTokens(line);
         int sumNumbersInCurrentLineSymbolsInCurrentLine = sumNumbersInCurrentLineSymbolsInCurrentLine(tokensInCurrentLine);
         int sumNumbersInCurrentLineSymbolsInPreviousLine = sumNumbersInCurrentLineSymbolsInPreviousLine(tokensInPreviousLine, tokensInCurrentLine);
         int sumNumbersInPreviousLineSymbolsInCurrentLine = sumNumbersInPreviousLineSymbolsInCurrentLine(tokensInPreviousLine, tokensInCurrentLine);
-        return sumNumbersInCurrentLineSymbolsInCurrentLine + sumNumbersInCurrentLineSymbolsInPreviousLine + sumNumbersInPreviousLineSymbolsInCurrentLine;
+        return (long)(sumNumbersInCurrentLineSymbolsInCurrentLine) + sumNumbersInCurrentLineSymbolsInPreviousLine + sumNumbersInPreviousLineSymbolsInCurrentLine;
     }
 
     int sumNumbersInCurrentLineSymbolsInCurrentLine(Set<SchematicToken> tokensInCurrentLine) {

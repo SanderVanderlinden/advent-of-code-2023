@@ -34,7 +34,7 @@ public class Day02Puzzle01Solver extends Day02PuzzleSolver {
      * @return The ID of the game if it is possible, or 0 otherwise.
      */
     @Override
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         Game game = createGameFromLine(line);
         if (game.isPossible()) {
             return game.getId();

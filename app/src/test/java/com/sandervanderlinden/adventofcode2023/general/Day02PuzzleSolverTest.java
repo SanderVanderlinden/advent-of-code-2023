@@ -15,9 +15,9 @@ class Day02PuzzleSolverTest {
     @Test
     void Day02Puzzle01Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
         Object result = solver01.solve("day02/day02_input.txt");
-        assertTrue(result instanceof Integer, "Result should be an integer");
+        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
 
-        int actual = (Integer) result;
+        long actual = (long) result;
         int expectedSum = 2369;
         assertEquals(expectedSum, actual);
 
@@ -26,9 +26,9 @@ class Day02PuzzleSolverTest {
     @Test
     void Day02Puzzle02Solver_whenGivenAdventOfCodeProblem_shouldReturnCorrectSolution() {
         Object result = solver02.solve("day02/day02_input.txt");
-        assertTrue(result instanceof Integer, "Result should be an integer");
+        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
 
-        int actual = (Integer) result;
+        long actual = (long) result;
         int expectedSum = 66363;
         assertEquals(expectedSum, actual);
     }

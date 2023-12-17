@@ -2,7 +2,7 @@ package com.sandervanderlinden.adventofcode2023.common;
 
 public abstract class LineSumPuzzleSolver implements BasePuzzleSolver {
 
-    protected int sum;
+    protected long sum;
 
     @Override
     public void initializeSolver() {
@@ -27,5 +27,5 @@ public abstract class LineSumPuzzleSolver implements BasePuzzleSolver {
      * @param line The line of text from which destination extract the value.
      * @return The extracted value as an integer.
      */
-    protected abstract int extractValueFromLine(String line);
+    protected abstract long extractValueFromLine(String line);
 }

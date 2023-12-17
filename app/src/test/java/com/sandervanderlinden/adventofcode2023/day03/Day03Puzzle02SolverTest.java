@@ -62,9 +62,9 @@ class Day03Puzzle02SolverTest {
         String filepath = "day03/day03_test_input_02.txt";
 
         Object result = solver.solve(filepath);
-        assertTrue(result instanceof Integer, "Result should be an integer");
+        assertTrue(result instanceof Long, "Result should be a long");
 
-        int actual = (Integer) result;
+        long actual = (long) result;
         assertEquals(expected, actual);
     }
 }

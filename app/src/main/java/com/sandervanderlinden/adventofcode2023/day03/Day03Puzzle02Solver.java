@@ -47,7 +47,7 @@ public class Day03Puzzle02Solver extends Day03PuzzleSolver {
      * @return The sum of gear ratios for the processed line.
      */
     @Override
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         Set<SchematicToken> tokensInPreviousLine = tokensInCurrentLine;
         tokensInCurrentLine = convertLineToSchematicTokens(line);
         checkForGears(tokensInPreviousLine, tokensInCurrentLine);
