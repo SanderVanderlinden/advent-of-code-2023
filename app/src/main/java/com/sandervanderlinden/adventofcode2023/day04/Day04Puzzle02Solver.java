@@ -38,7 +38,7 @@ public class Day04Puzzle02Solver extends Day04PuzzleSolver {
      * @return The calculated value based on the line's data.
      */
     @Override
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         ensureBonusCardsListInitialized();
 
         int amountOfCards = 1 + amountOfBonusCards.poll().getValue();

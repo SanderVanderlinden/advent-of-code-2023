@@ -61,4 +61,10 @@ class LineProcessingUtilityTest {
         List<Long> result = LineProcessingUtility.extractNumbersAsList("12  34   56");
         assertEquals(Arrays.asList(12L, 34L, 56L), result);
     }
+
+    @Test
+    void extractNumbersAsList_withNegativeNumbers() {
+        List<Long> result = LineProcessingUtility.extractNumbersAsList("12  -34   56");
+        assertEquals(Arrays.asList(12L, -34L, 56L), result);
+    }
 }

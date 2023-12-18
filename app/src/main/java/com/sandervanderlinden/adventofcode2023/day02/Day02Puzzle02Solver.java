@@ -34,7 +34,7 @@ public class Day02Puzzle02Solver extends Day02PuzzleSolver {
      * @param line A string representing a line from the puzzle input.
      * @return The power value of the game.
      */
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         Game game = createGameFromLine(line);
 
         return Stream.of(Color.values())

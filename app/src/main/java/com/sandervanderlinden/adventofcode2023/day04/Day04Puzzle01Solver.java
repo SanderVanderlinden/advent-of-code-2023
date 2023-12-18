@@ -35,7 +35,7 @@ public class Day04Puzzle01Solver extends Day04PuzzleSolver {
      * @return The calculated value based on the line's data.
      */
     @Override
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         int amountOfMatchingNumbers = getAmountOfMatchingNumbers(line);
         return (int) Math.pow(2, amountOfMatchingNumbers - 1.0);
     }

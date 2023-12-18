@@ -17,10 +17,10 @@ public abstract class Day01PuzzleSolver extends LineSumPuzzleSolver {
      * @param line The string line from which digits are to be extracted.
      */
     @Override
-    public int extractValueFromLine(String line) {
+    public long extractValueFromLine(String line) {
         int firstNumber = extractFirstDigit(line);
         int lastNumber = extractLastDigit(line);
-        return firstNumber * 10 + lastNumber;
+        return firstNumber * 10L + lastNumber;
     }
 
     /**
