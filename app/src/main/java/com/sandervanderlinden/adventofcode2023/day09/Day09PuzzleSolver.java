@@ -5,17 +5,14 @@ import com.sandervanderlinden.adventofcode2023.common.LineSumPuzzleSolver;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sandervanderlinden.adventofcode2023.util.LineProcessingUtility.extractNumbersAsList;
-
 /**
  * Abstract class for solving Day 09 puzzles in the Advent of Code 2023.
  */
 public abstract class Day09PuzzleSolver extends LineSumPuzzleSolver {
 
-    @Override
-    protected long extractValueFromLine(String line) {
+    long calculateValue(List<Long> extractNumbersAsList) {
         long sum = 0;
-        List<Long> currentSequence = extractNumbersAsList(line);
+        List<Long> currentSequence = extractNumbersAsList;
         while (!allZeros(currentSequence)) {
             sum += currentSequence.get(currentSequence.size() - 1);
             currentSequence = calculateNextSequence(currentSequence);
