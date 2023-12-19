@@ -90,8 +90,8 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
             west();
         }
         //As at least 2 sides should be connected to the start pipe, there is no need to check the last side. One side will be found already by now.
-        nextPipe.setFrom(currentPipe.getTo());
         currentPipe = new Pipe(nextPipe);
+        nextPipe.setFrom(currentPipe.getTo());
     }
 
     private void north() {
