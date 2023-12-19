@@ -49,7 +49,7 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
         return solution();
     }
 
-    private void removeNonLoopElements() {
+    void removeNonLoopElements() {
         for (int x = 0; x < pipeGrid.length; x++) {
             for (int y = 0; y < pipeGrid[x].length; y++) {
                 Pipe pipe = pipeGrid[x][y];
@@ -113,7 +113,7 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
             if (potentialNextPipe.getPipeForm() == PipeForm.NORTHEAST) {
                 foundWest = true;
             }
-            if (potentialNextPipe.getPipeForm() == PipeForm.VERTICAL) {
+            if (potentialNextPipe.getPipeForm() == PipeForm.HORIZONTAL) {
                 foundWest = true;
             }
             if (potentialNextPipe.getPipeForm() == PipeForm.SOUTHEAST) {

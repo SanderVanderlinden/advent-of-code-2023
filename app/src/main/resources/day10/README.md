@@ -41,7 +41,31 @@ Find the tile in the loop that is farthest from the starting position, measured 
 
 ---
 
-[Placeholder for Part Two - Once details are provided, this section can be updated accordingly.]
+## --- Part Two ---
+
+### Enhanced Challenge: Enclosed Area Calculation
+
+Now, calculate the number of tiles enclosed within the pipe loop. This includes any tile that isn't part of the main loop but is surrounded by it.
+
+### Example
+
+```
+...........
+.S-------7.
+.|F-----7|.
+.||.....||.
+.||.....||.
+.|L-7.F-J|.
+.|..|.|..|.
+.L--J.L--J.
+...........
+```
+
+Determine the area within the loop by counting the enclosed tiles.
+
+### Enhanced Task
+
+Calculate how many tiles are enclosed by the pipe loop.
 
 ---
 

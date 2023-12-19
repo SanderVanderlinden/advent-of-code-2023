@@ -28,7 +28,6 @@ public class Day10Puzzle02Solver extends Day10PuzzleSolver {
     Object solution() {
         //jf of 7l telt maar als 1. 7j telt dan wel weer als 2
         //voor elke f moet er een l of een j volgen ergens
-        //volgens mij worden pipes geteld die geen deel van de loop uitmaken alsof ze een leeg veld zijn
         long areaSize = 0;
         for (int x = 0; x < pipeGrid.length; x++) {
             int totalAmountOfHorizontalPipes = getAmountOfHorizontalPipes(x, pipeGrid[x].length);
@@ -61,8 +60,8 @@ public class Day10Puzzle02Solver extends Day10PuzzleSolver {
                         totalPartsOfLoopInCurrentLine += switch (previousPipeForm) {
                             case SOUTHEAST -> currentPipeForm == PipeForm.NORTHEAST ? 2 : 1;
                             case SOUTHWEST -> currentPipeForm == PipeForm.NORTHWEST ? 2 : 1;
-                            case NORTHEAST -> currentPipeForm == PipeForm.SOUTHEAST ? 2 : 1;
-                            case NORTHWEST -> currentPipeForm == PipeForm.SOUTHWEST ? 2 : 1;
+                            //case NORTHEAST -> currentPipeForm == PipeForm.SOUTHEAST ? 2 : 1;
+                            //case NORTHWEST -> currentPipeForm == PipeForm.SOUTHWEST ? 2 : 1;
                             default -> throw new IllegalStateException("Unexpected value: " + previousPipeForm + " at x: " + x + ", y: " + y);
                         };
                         previousPipeForm = null;

@@ -56,6 +56,7 @@ class Day10Puzzle02SolverTest {
         FileReaderUtil.processFile(filePath, solver::processLine);
         solver.findFirstPipeAfterStart();
         solver.createLoop();
+        solver.removeNonLoopElements();
 
         int amountOfPipes = solver.getAmountOfHorizontalPipes(10, 10);
         int expected = 4;
