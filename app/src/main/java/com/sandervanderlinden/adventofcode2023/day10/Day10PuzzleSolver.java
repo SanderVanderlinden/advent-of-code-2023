@@ -17,11 +17,12 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
     Pipe[][] pipeGrid;
     Pipe currentPipe;
     Pipe nextPipe;
+    long loopLength = 1;
     private int lineIndex = 0;
 
     @Override
     public Object solve(String filePath) {
-        pipeGrid = new Pipe[countLines(filePath)][countCharsInFirstNonEmptyLine(filePath)];
+        pipeGrid = new Pipe[countCharsInFirstNonEmptyLine(filePath)][countLines(filePath)];
         FileReaderUtil.processFile(filePath, this::processLine);
         return finalizeSolver();
     }
@@ -43,8 +44,26 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
     @Override
     public Object finalizeSolver() {
         findFirstPipeAfterStart();
-        long loopLength = 1;
-        while (pipeGrid[currentPipe.getXCoordinate()][currentPipe.getYCoordinate()].getPipeForm() != PipeForm.START) {
+        createLoop();
+        removeNonLoopElements();
+        return solution();
+    }
+
+    private void removeNonLoopElements() {
+        for (int x = 0; x < pipeGrid.length; x++) {
+            for (int y = 0; y < pipeGrid[x].length; y++) {
+                Pipe pipe = pipeGrid[x][y];
+                if (pipe != null) {
+                    if (pipe.getFrom() == null){
+                        pipeGrid[x][y] = null;
+                    }
+                }
+            }
+        }
+    }
+
+    void createLoop() {
+        while (!pipeGrid[currentPipe.getXCoordinate()][currentPipe.getYCoordinate()].isStart()) {
             switch (currentPipe.getTo()) {
                 case NORTH -> north();
                 case EAST -> east();
@@ -54,42 +73,80 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
             loopLength++;
             currentPipe = new Pipe(nextPipe);
         }
-
-        return loopLength / 2;
     }
 
-    private void findFirstPipeAfterStart() {
+    abstract Object solution();
+
+    void findFirstPipeAfterStart() {
         int x = currentPipe.getXCoordinate();
         int y = currentPipe.getYCoordinate();
+        boolean foundEast = false;
+        boolean foundSouth = false;
+        boolean foundWest = false;
 
-        if (pipeGrid[x + 1][y].getPipeForm() == PipeForm.NORTHWEST) {
-            east();
+        Pipe potentialNextPipe = pipeGrid[x + 1][y];
+        if (potentialNextPipe != null) {
+            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHWEST) {
+                foundEast = true;
+            }
+            if (potentialNextPipe.getPipeForm() == PipeForm.HORIZONTAL) {
+                foundEast = true;
+            }
+            if (potentialNextPipe.getPipeForm() == PipeForm.SOUTHWEST) {
+                foundEast = true;
+            }
         }
-        else if (pipeGrid[x + 1][y].getPipeForm() == PipeForm.HORIZONTAL) {
-            east();
+        potentialNextPipe = pipeGrid[x][y + 1];
+        if (potentialNextPipe != null) {
+            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHEAST) {
+                foundSouth = true;
+            }
+            if (potentialNextPipe.getPipeForm() == PipeForm.VERTICAL) {
+                foundSouth = true;
+            }
+            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHWEST) {
+                foundSouth = true;
+            }
         }
-        else if (pipeGrid[x + 1][y].getPipeForm() == PipeForm.SOUTHWEST) {
-            east();
+        potentialNextPipe = pipeGrid[x - 1][y];
+        if (potentialNextPipe != null) {
+            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHEAST) {
+                foundWest = true;
+            }
+            if (potentialNextPipe.getPipeForm() == PipeForm.VERTICAL) {
+                foundWest = true;
+            }
+            if (potentialNextPipe.getPipeForm() == PipeForm.SOUTHEAST) {
+                foundWest = true;
+            }
         }
-        else if (pipeGrid[x][y + 1].getPipeForm() == PipeForm.NORTHEAST) {
-            south();
-        }
-        else if (pipeGrid[x][y + 1].getPipeForm() == PipeForm.VERTICAL) {
-            south();
-        }
-        else if (pipeGrid[x][y + 1].getPipeForm() == PipeForm.NORTHWEST) {
-            south();
-        }
-        else if (pipeGrid[x - 1][y].getPipeForm() == PipeForm.SOUTHEAST) {
-            west();
-        }
-        else if (pipeGrid[x - 1][y].getPipeForm() == PipeForm.HORIZONTAL) {
-            west();
-        }
-        else if (pipeGrid[x - 1][y].getPipeForm() == PipeForm.NORTHEAST) {
-            west();
-        }
+
         //As at least 2 sides should be connected to the start pipe, there is no need to check the last side. One side will be found already by now.
+        if (foundEast) {
+            if (foundSouth) {
+                currentPipe.setPipeForm(PipeForm.SOUTHEAST);
+            }
+            else if (foundWest) {
+                currentPipe.setPipeForm(PipeForm.HORIZONTAL);
+            }
+            else {
+                currentPipe.setPipeForm(PipeForm.NORTHEAST);
+            }
+            east();
+        }
+        else if (foundSouth) {
+            if (foundWest) {
+                currentPipe.setPipeForm(PipeForm.SOUTHWEST);
+            }
+            else {
+                currentPipe.setPipeForm(PipeForm.VERTICAL);
+            }
+            south();
+        }
+        else {
+            currentPipe.setPipeForm(PipeForm.NORTHWEST);
+            west();
+        }
         currentPipe = new Pipe(nextPipe);
         nextPipe.setFrom(currentPipe.getTo());
     }

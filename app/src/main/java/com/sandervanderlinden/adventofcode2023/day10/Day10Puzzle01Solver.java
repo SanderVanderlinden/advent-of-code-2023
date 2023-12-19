@@ -21,4 +21,9 @@ public class Day10Puzzle01Solver extends Day10PuzzleSolver {
         String filePath = "day10/day10_input.txt";
         calculateAndLogResult(solver, logger, filePath, Long.class);
     }
+
+    @Override
+    Object solution() {
+        return  loopLength / 2;
+    }
 }

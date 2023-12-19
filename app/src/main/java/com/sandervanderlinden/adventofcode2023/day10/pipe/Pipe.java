@@ -4,16 +4,20 @@ import static com.sandervanderlinden.adventofcode2023.day10.pipe.PipeForm.fromCh
 
 public class Pipe {
 
-    private final PipeForm pipeForm;
     private final int xCoordinate;
     private final int yCoordinate;
+    private PipeForm pipeForm;
     private Direction from;
     private Direction to;
+    private boolean isStart = false;
 
     public Pipe(PipeForm pipeForm, int xCoordinate, int yCoordinate) {
-        this.pipeForm = pipeForm;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+        this.pipeForm = pipeForm;
+        if (pipeForm == PipeForm.START) {
+            this.isStart = true;
+        }
     }
 
     public Pipe(char c, int x, int y) {
@@ -30,6 +34,10 @@ public class Pipe {
         return pipeForm;
     }
 
+    public void setPipeForm(PipeForm pipeForm) {
+        this.pipeForm = pipeForm;
+    }
+
     public int getXCoordinate() {
         return xCoordinate;
     }
@@ -38,15 +46,9 @@ public class Pipe {
         return yCoordinate;
     }
 
-    public void setFrom(Direction direction) {
-        this.from = direction;
-        setTo();
-    }
-
     public Direction getTo() {
         return to;
     }
-
 
     public void setTo() {
         this.to = switch (pipeForm) {
@@ -58,5 +60,18 @@ public class Pipe {
             case VERTICAL -> from == Direction.NORTH ? Direction.SOUTH : Direction.NORTH;
             case START -> null;
         };
+    }
+
+    public boolean isStart() {
+        return isStart;
+    }
+
+    public Object getFrom() {
+        return from;
+    }
+
+    public void setFrom(Direction direction) {
+        this.from = direction;
+        setTo();
     }
 }
