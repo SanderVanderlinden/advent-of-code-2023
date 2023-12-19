@@ -53,10 +53,9 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
         for (int x = 0; x < pipeGrid.length; x++) {
             for (int y = 0; y < pipeGrid[x].length; y++) {
                 Pipe pipe = pipeGrid[x][y];
-                if (pipe != null) {
-                    if (pipe.getFrom() == null){
+                if (pipe != null && (pipe.getFrom() == null)){
                         pipeGrid[x][y] = null;
-                    }
+
                 }
             }
         }
@@ -80,46 +79,10 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
     void findFirstPipeAfterStart() {
         int x = currentPipe.getXCoordinate();
         int y = currentPipe.getYCoordinate();
-        boolean foundEast = false;
-        boolean foundSouth = false;
-        boolean foundWest = false;
+        boolean foundEast = checkPipeForm(x + 1, y, PipeForm.NORTHWEST, PipeForm.HORIZONTAL, PipeForm.SOUTHWEST);
+        boolean foundSouth = checkPipeForm(x, y + 1, PipeForm.NORTHEAST, PipeForm.VERTICAL, PipeForm.NORTHWEST);
+        boolean foundWest = checkPipeForm(x - 1, y, PipeForm.NORTHEAST, PipeForm.HORIZONTAL, PipeForm.SOUTHEAST);
 
-        Pipe potentialNextPipe = pipeGrid[x + 1][y];
-        if (potentialNextPipe != null) {
-            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHWEST) {
-                foundEast = true;
-            }
-            if (potentialNextPipe.getPipeForm() == PipeForm.HORIZONTAL) {
-                foundEast = true;
-            }
-            if (potentialNextPipe.getPipeForm() == PipeForm.SOUTHWEST) {
-                foundEast = true;
-            }
-        }
-        potentialNextPipe = pipeGrid[x][y + 1];
-        if (potentialNextPipe != null) {
-            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHEAST) {
-                foundSouth = true;
-            }
-            if (potentialNextPipe.getPipeForm() == PipeForm.VERTICAL) {
-                foundSouth = true;
-            }
-            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHWEST) {
-                foundSouth = true;
-            }
-        }
-        potentialNextPipe = pipeGrid[x - 1][y];
-        if (potentialNextPipe != null) {
-            if (potentialNextPipe.getPipeForm() == PipeForm.NORTHEAST) {
-                foundWest = true;
-            }
-            if (potentialNextPipe.getPipeForm() == PipeForm.HORIZONTAL) {
-                foundWest = true;
-            }
-            if (potentialNextPipe.getPipeForm() == PipeForm.SOUTHEAST) {
-                foundWest = true;
-            }
-        }
 
         //As at least 2 sides should be connected to the start pipe, there is no need to check the last side. One side will be found already by now.
         if (foundEast) {
@@ -147,11 +110,24 @@ public abstract class Day10PuzzleSolver implements BasePuzzleSolver {
             currentPipe.setPipeForm(PipeForm.NORTHWEST);
             west();
         }
+
         currentPipe = new Pipe(nextPipe);
         nextPipe.setFrom(currentPipe.getTo());
     }
 
-    private void north() {
+    private boolean checkPipeForm(int x, int y, PipeForm... forms) {
+        Pipe potentialNextPipe = pipeGrid[x][y];
+        if (potentialNextPipe != null) {
+            for (PipeForm form : forms) {
+                if (potentialNextPipe.getPipeForm() == form) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+        private void north() {
         nextPipe = pipeGrid[currentPipe.getXCoordinate()][currentPipe.getYCoordinate() - 1];
         nextPipe.setFrom(Direction.SOUTH);
     }

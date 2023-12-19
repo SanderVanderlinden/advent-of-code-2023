@@ -46,6 +46,7 @@ public class Day10Puzzle02Solver extends Day10PuzzleSolver {
     int getAmountOfHorizontalPipes(int x, int lineLength) {
         int totalPartsOfLoopInCurrentLine = 0;
         PipeForm previousPipeForm = null;
+
         for (int y = 0; y < lineLength; y++) {
             if (pipeGrid[x][y] != null) {
                 PipeForm currentPipeForm = pipeGrid[x][y].getPipeForm();
@@ -53,23 +54,26 @@ public class Day10Puzzle02Solver extends Day10PuzzleSolver {
                     totalPartsOfLoopInCurrentLine++;
                 }
                 else if (currentPipeForm != PipeForm.VERTICAL) {
-                    if (previousPipeForm == null) {
-                        previousPipeForm = currentPipeForm;
-                    }
-                    else {
-                        totalPartsOfLoopInCurrentLine += switch (previousPipeForm) {
-                            case SOUTHEAST -> currentPipeForm == PipeForm.NORTHEAST ? 2 : 1;
-                            case SOUTHWEST -> currentPipeForm == PipeForm.NORTHWEST ? 2 : 1;
-                            //case NORTHEAST -> currentPipeForm == PipeForm.SOUTHEAST ? 2 : 1;
-                            //case NORTHWEST -> currentPipeForm == PipeForm.SOUTHWEST ? 2 : 1;
-                            default -> throw new IllegalStateException("Unexpected value: " + previousPipeForm + " at x: " + x + ", y: " + y);
-                        };
-                        previousPipeForm = null;
-                    }
+                    totalPartsOfLoopInCurrentLine += calculateLoopPart(previousPipeForm, currentPipeForm, x, y);
+                    previousPipeForm = (previousPipeForm == null) ? currentPipeForm : null;
                 }
             }
         }
         return totalPartsOfLoopInCurrentLine;
+    }
+
+    private int calculateLoopPart(PipeForm previousPipeForm, PipeForm currentPipeForm, int x, int y) {
+        if (previousPipeForm == null) {
+            return 0;
+        }
+        else {
+            return switch (previousPipeForm) {
+                case SOUTHEAST -> currentPipeForm == PipeForm.NORTHEAST ? 2 : 1;
+                case SOUTHWEST -> currentPipeForm == PipeForm.NORTHWEST ? 2 : 1;
+                default ->
+                        throw new IllegalStateException("Unexpected value: " + previousPipeForm + " at x: " + x + ", y: " + y);
+            };
+        }
     }
 
     private boolean isEven(double number) {

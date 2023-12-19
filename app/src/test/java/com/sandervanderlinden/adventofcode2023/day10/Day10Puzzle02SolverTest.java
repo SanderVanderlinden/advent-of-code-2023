@@ -3,6 +3,10 @@ package com.sandervanderlinden.adventofcode2023.day10;
 import com.sandervanderlinden.adventofcode2023.day10.pipe.Pipe;
 import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static com.sandervanderlinden.adventofcode2023.util.FileReaderUtil.countCharsInFirstNonEmptyLine;
 import static com.sandervanderlinden.adventofcode2023.util.FileReaderUtil.countLines;
@@ -13,40 +17,23 @@ class Day10Puzzle02SolverTest {
 
     private final Day10Puzzle02Solver solver = new Day10Puzzle02Solver();
 
-    @Test
-    void testSolve() {
-        int expected = 4;
-        String filepath = "day10/day10_test_input_02.txt";
-        Object result = solver.solve(filepath);
-
-        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
-        long actual = (long) result;
-
-        assertEquals(expected, actual);
+    private static Stream<ParameterizedTestCase> provideTestCases() {
+        return Stream.of(
+                new ParameterizedTestCase(4, "day10/day10_test_input_02.txt"),
+                new ParameterizedTestCase(8, "day10/day10_test_input_03.txt"),
+                new ParameterizedTestCase(10, "day10/day10_test_input_04.txt")
+        );
     }
 
-    @Test
-    void testSolve03() {
-        int expected = 8;
-        String filepath = "day10/day10_test_input_03.txt";
-        Object result = solver.solve(filepath);
+    @ParameterizedTest
+    @MethodSource("provideTestCases")
+    void testSolve(ParameterizedTestCase testCase) {
+        Object result = solver.solve(testCase.filepath);
 
         assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
         long actual = (long) result;
 
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void testSolve04() {
-        int expected = 10;
-        String filepath = "day10/day10_test_input_04.txt";
-        Object result = solver.solve(filepath);
-
-        assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
-        long actual = (long) result;
-
-        assertEquals(expected, actual);
+        assertEquals(testCase.expected, actual);
     }
 
     @Test
@@ -61,5 +48,16 @@ class Day10Puzzle02SolverTest {
         int amountOfPipes = solver.getAmountOfHorizontalPipes(10, 10);
         int expected = 4;
         assertEquals(expected, amountOfPipes);
+    }
+
+    private static class ParameterizedTestCase {
+
+        final int expected;
+        final String filepath;
+
+        ParameterizedTestCase(int expected, String filepath) {
+            this.expected = expected;
+            this.filepath = filepath;
         }
+    }
 }
