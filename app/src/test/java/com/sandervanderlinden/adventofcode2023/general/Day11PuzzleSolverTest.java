@@ -17,7 +17,7 @@ class Day11PuzzleSolverTest {
 
 
         long actual = (long) result;
-        long expectedLocationNumber = 0;
+        long expectedLocationNumber = 9947476;
         assertEquals(expectedLocationNumber, actual);
     }
 }

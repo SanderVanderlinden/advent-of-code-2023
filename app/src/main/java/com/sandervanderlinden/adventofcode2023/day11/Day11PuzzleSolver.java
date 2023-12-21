@@ -36,7 +36,7 @@ public abstract class Day11PuzzleSolver implements BasePuzzleSolver {
     @Override
     public Object finalizeSolver() {
         checkEmptyColumns();
-        return (long)calculateDistances();
+        return (long) calculateDistances();
     }
 
     private int calculateDistances() {
@@ -49,11 +49,11 @@ public abstract class Day11PuzzleSolver implements BasePuzzleSolver {
         return sum;
     }
 
-    private int calculateDistance(Galaxy g1, Galaxy g2) {
-        return (g2.getX() - g1.getX() + g2.getY() - g1.getY());
+    int calculateDistance(Galaxy g1, Galaxy g2) {
+        return (Math.abs(g2.getX() - g1.getX()) + Math.abs(g2.getY() - g1.getY()));
     }
 
-    private void checkEmptyColumns() {
+    void checkEmptyColumns() {
         List<Integer> emptyColumns = createListOfEmptyColumns();
         galaxies.forEach(galaxy -> galaxy.setX(calculateNewX(galaxy.getX(), emptyColumns)));
     }
