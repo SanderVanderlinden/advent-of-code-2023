@@ -4,6 +4,7 @@ import com.sandervanderlinden.adventofcode2023.day10.pipe.Pipe;
 import com.sandervanderlinden.adventofcode2023.util.FileReaderUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -17,23 +18,23 @@ class Day10Puzzle02SolverTest {
 
     private final Day10Puzzle02Solver solver = new Day10Puzzle02Solver();
 
-    private static Stream<ParameterizedTestCase> provideTestCases() {
+    private static Stream<Arguments> provideTestCases() {
         return Stream.of(
-                new ParameterizedTestCase(4, "day10/day10_test_input_02.txt"),
-                new ParameterizedTestCase(8, "day10/day10_test_input_03.txt"),
-                new ParameterizedTestCase(10, "day10/day10_test_input_04.txt")
+                Arguments.of(4, "day10/day10_test_input_02.txt"),
+                Arguments.of(8, "day10/day10_test_input_03.txt"),
+                Arguments.of(10, "day10/day10_test_input_04.txt")
         );
     }
 
     @ParameterizedTest
     @MethodSource("provideTestCases")
-    void testSolve(ParameterizedTestCase testCase) {
-        Object result = solver.solve(testCase.filepath);
+    void testSolve(int expected, String filepath) {
+        Object result = solver.solve(filepath);
 
         assertTrue(result instanceof Long, "Result should be a long, but was: " + result.getClass());
         long actual = (long) result;
 
-        assertEquals(testCase.expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -50,14 +51,4 @@ class Day10Puzzle02SolverTest {
         assertEquals(expected, amountOfPipes);
     }
 
-    private static class ParameterizedTestCase {
-
-        final int expected;
-        final String filepath;
-
-        ParameterizedTestCase(int expected, String filepath) {
-            this.expected = expected;
-            this.filepath = filepath;
-        }
-    }
 }
