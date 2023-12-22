@@ -1,0 +1,59 @@
+
+# [Day 11: Cosmic Expansion](https://adventofcode.com/2023/day/11)
+
+## --- Part One ---
+
+### Problem Description
+
+You assist a researcher at an observatory in analyzing cosmic expansion. The research involves calculating the sum of the lengths of the shortest path between every pair of galaxies, considering the universe's expansion.
+
+### Example
+
+Initial data:
+```
+...#......
+.......#..
+#.........
+..........
+......#...
+.#........
+.........#
+..........
+.......#..
+#...#.....
+```
+
+Expanded universe (rows and columns with no galaxies are doubled):
+```
+....#........
+.........#...
+#............
+.............
+.............
+........#....
+.#...........
+............#
+.............
+.............
+.........#...
+#....#.......
+```
+
+### Task
+
+1. Expand the universe by doubling the size of rows and columns with no galaxies.
+2. Calculate the sum of the shortest path lengths between each pair of galaxies.
+
+## --- Part Two ---
+
+### Enhanced Challenge: Massive Cosmic Expansion
+
+Now, expand the universe even further by making each empty row or column one million times larger.
+
+### Enhanced Task
+
+Starting with the same initial image, expand the universe according to the new rules, then find the length of the shortest path between every pair of galaxies and calculate the sum of these lengths.
+
+---
+
+[← Back to Day 10](../day10/README.md) | [Go to Day 12 →](../day12/README.md)
