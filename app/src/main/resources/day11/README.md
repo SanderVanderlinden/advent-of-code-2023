@@ -5,7 +5,7 @@
 
 ### Problem Description
 
-At an observatory, you help an Elf researcher studying cosmic expansion. The researcher's data is compiled into a giant image with empty space (.) and galaxies (#). The task is to calculate the sum of the lengths of the shortest path between every pair of galaxies, considering the universe's expansion.
+You assist a researcher at an observatory in analyzing cosmic expansion. The research involves calculating the sum of the lengths of the shortest path between every pair of galaxies, considering the universe's expansion.
 
 ### Example
 
@@ -42,12 +42,17 @@ Expanded universe (rows and columns with no galaxies are doubled):
 ### Task
 
 1. Expand the universe by doubling the size of rows and columns with no galaxies.
-2. Find the shortest path between every pair of galaxies.
-3. Calculate the sum of these shortest path lengths.
+2. Calculate the sum of the shortest path lengths between each pair of galaxies.
 
----
+## --- Part Two ---
 
-[Placeholder for Part Two - Once details are provided, this section can be updated accordingly.]
+### Enhanced Challenge: Massive Cosmic Expansion
+
+Now, expand the universe even further by making each empty row or column one million times larger.
+
+### Enhanced Task
+
+Starting with the same initial image, expand the universe according to the new rules, then find the length of the shortest path between every pair of galaxies and calculate the sum of these lengths.
 
 ---
 

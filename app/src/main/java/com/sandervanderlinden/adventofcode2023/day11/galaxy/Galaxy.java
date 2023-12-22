@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class Galaxy {
 
-    private final int y;
-    private int x;
+    private final long y;
+    private long x;
 
-    public Galaxy(int x, int y) {
+    public Galaxy(long x, long y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public long getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(long x) {
         this.x = x;
     }
 
@@ -40,7 +40,7 @@ public class Galaxy {
                 '}';
     }
 
-    public int getY() {
+    public long getY() {
         return y;
     }
 }

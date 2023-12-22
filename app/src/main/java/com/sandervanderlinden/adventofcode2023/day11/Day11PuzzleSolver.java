@@ -13,7 +13,8 @@ import java.util.Set;
  */
 public abstract class Day11PuzzleSolver implements BasePuzzleSolver {
 
-    int y = 0;
+    long y = 0;
+    long expansionFactor;
     List<Galaxy> galaxies = new ArrayList<>();
     Set<Integer> columnsContainingGalaxies = new HashSet<>();
 
@@ -28,28 +29,35 @@ public abstract class Day11PuzzleSolver implements BasePuzzleSolver {
             }
         }
         else {
-            y++;
+            y += getExpansionFactor();
         }
         y++;
+    }
+
+    long getExpansionFactor() {
+        return expansionFactor;
+    }
+    void setExpansionFactor(long expansionFactor) {
+        this.expansionFactor = expansionFactor;
     }
 
     @Override
     public Object finalizeSolver() {
         checkEmptyColumns();
-        return (long) calculateDistances();
+        return calculateDistances();
     }
 
-    private int calculateDistances() {
-        int sum = 0;
+    private long calculateDistances() {
+        long sum = 0;
         for (int i = 0; i < galaxies.size(); i++) {
-            for (int j = i; j < galaxies.size(); j++) {
+            for (int j = i + 1; j < galaxies.size(); j++) {
                 sum += calculateDistance(galaxies.get(i), galaxies.get(j));
             }
         }
         return sum;
     }
 
-    int calculateDistance(Galaxy g1, Galaxy g2) {
+    long calculateDistance(Galaxy g1, Galaxy g2) {
         return (Math.abs(g2.getX() - g1.getX()) + Math.abs(g2.getY() - g1.getY()));
     }
 
@@ -58,11 +66,11 @@ public abstract class Day11PuzzleSolver implements BasePuzzleSolver {
         galaxies.forEach(galaxy -> galaxy.setX(calculateNewX(galaxy.getX(), emptyColumns)));
     }
 
-    private int calculateNewX(int x, List<Integer> emptyColumns) {
-        return x + getAmountOfEmptyColumnsBeforeX(x, emptyColumns);
+    private long calculateNewX(long x, List<Integer> emptyColumns) {
+        return x + getExpansionFactor() * getAmountOfEmptyColumnsBeforeX(x, emptyColumns);
     }
 
-    private int getAmountOfEmptyColumnsBeforeX(int x, List<Integer> emptyColumns) {
+    private int getAmountOfEmptyColumnsBeforeX(long x, List<Integer> emptyColumns) {
         return (int) emptyColumns.stream()
                 .filter(column -> column < x)
                 .count();

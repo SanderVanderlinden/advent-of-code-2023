@@ -16,7 +16,7 @@ class Day11Puzzle01SolverTest {
 
     @Test
     void testSolve() {
-        int expected = 374;
+        long expected = 374;
         String filepath = "day11/day11_test_input.txt";
         Object result = solver.solve(filepath);
 
@@ -29,6 +29,7 @@ class Day11Puzzle01SolverTest {
     @Test
     void testGrid() {
         String filePath = "day11/day11_test_input.txt";
+        solver.initializeSolver();
         FileReaderUtil.processFile(filePath, solver::processLine);
         solver.checkEmptyColumns();
 
@@ -42,7 +43,7 @@ class Day11Puzzle01SolverTest {
         Galaxy galaxy1 = new Galaxy(4, 1);
         Galaxy galaxy2 = new Galaxy(12, 4);
 
-        int expected = solver.calculateDistance(galaxy1, galaxy2);
+        long expected = solver.calculateDistance(galaxy1, galaxy2);
         int actual = 11;
         assertEquals(expected, actual);
 
